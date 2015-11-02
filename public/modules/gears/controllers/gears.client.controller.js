@@ -4,12 +4,17 @@
 angular.module('gears').controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears',
 	function($scope, $stateParams, $location, Authentication, Gears) {
 		$scope.authentication = Authentication;
-
+	    $scope.gearTypes = [
+		{ id: 1, name: 'Keyboard' },
+		{ id: 2, name: 'Mouse'}
+	    ];
+	    $scope.selectedGearType = null;
 		// Create new Gear
 		$scope.create = function() {
 			// Create new Gear object
 			var gear = new Gears ({
-				name: this.name
+			    name: this.name,
+			    type: $scope.selectedGearType.name
 			});
 
 			// Redirect after save

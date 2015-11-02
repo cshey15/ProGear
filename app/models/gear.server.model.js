@@ -18,7 +18,7 @@ var GearSchema = new Schema({
     },
     type: {
         type: String, default: '',
-        required: 'Please fill Gear name'
+        required: 'Please fill Gear type'
     }, //keyboard, mouse, etc
     /* this might be unnecessary.. we might want to write some backend
     * logic that handles the link creation dynamically.. basically I dont understand
