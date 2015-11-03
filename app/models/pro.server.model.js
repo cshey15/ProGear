@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    ObjectID = require('mongodb').ObjectID,
     Schema = mongoose.Schema;
 
 /**
@@ -40,7 +41,11 @@ var ProSchema = new Schema({
         required: 'name cannot be blank',
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
         validate: [validateLength, 'name must be 15 chars in length or less']
-    }
+    },
+    gearlist: [{
+	type: ObjectID,
+	ref: 'Gear'
+    }]
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
