@@ -2,9 +2,9 @@
     <div class="page-header">
         <h1 data-ng-bind="pro.name"></h1>
         <p data-ng-bind="pro.team"></p>
-        <div ng-repeat="gears in pro.gear">
+        <div ng-repeat="gear in pro.gearList">
             test
-            {{gears.name}} - by {{gears.type}}
+            {{gear.name}} - by {{gear.type}}
         </div>
     </div>
     <div class="pull-right">

@@ -86,7 +86,7 @@ angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $scope.pro.gear.push(selectedItem);
+                $scope.pro.gearList.push(selectedItem);
             }, function () {
                 
             });
