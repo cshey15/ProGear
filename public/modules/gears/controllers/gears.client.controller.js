@@ -2,8 +2,8 @@
 
 // Gears controller
 var app = angular.module('gears');
-app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears',
-	function($scope, $stateParams, $location, Authentication, Gears) {
+app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal',
+	function($scope, $stateParams, $location, Authentication, Gears, $modal) {
 		$scope.authentication = Authentication;
 	    $scope.gearTypes = [
 		{ id: 1, name: 'Keyboard' },
@@ -68,10 +68,20 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 				gearId: $stateParams.gearId
 			});
         };
-        $scope.selected = {
-            gear: null
-        };
 
+        $scope.openCreate = function () {
+                var modalInstance = $modal.open({
+                    animation: true,
+                    templateUrl: 'modules/gears/views/modalCreate-gear.client.view.html',
+                    controller: 'GearsController.modal',
+                    size: 'sm'
+            });
+            modalInstance.result.then(function (newGear) {
+                $scope.find();
+            }, function () {
+                
+            }); 
+        }
 	}
 ]);
 
@@ -87,4 +97,19 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+
+        $scope.modalSubmit = function (data) {
+            //event.preventDefault();
+            var gear = new Gears({
+                name: data.name,
+                type: data.selectedGearType.name
+            });
+            
+            // close modal after save
+            gear.$save(function (response) {
+                $modalInstance.close(gear)
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        }
     }]);

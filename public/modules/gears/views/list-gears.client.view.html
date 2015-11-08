@@ -16,4 +16,7 @@
     <div class="alert alert-warning text-center" data-ng-hide="!gears.$resolved || gears.length">
     	No Gears yet, why don't you <a href="/#!/gears/create">create one</a>?
     </div>
+    <div class="text-center" data-ng-hide="!(!gears.$resolved || gears.length)">
+        <button ng-click="openCreate()">Create new gear</button>
+    </div>
 </section>
