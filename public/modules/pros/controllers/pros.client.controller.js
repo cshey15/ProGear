@@ -1,7 +1,8 @@
 'use strict';
 
 // Pros controller
-angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal',
+var app = angular.module('pros');
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal',
     function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
@@ -91,5 +92,40 @@ angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '
                 
             });
         };
+
+        $scope.openCreate = function () {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/pros/views/modalCreate-pro.client.view.html',
+                controller: 'ProsController.modal',
+                size: 'sm'
+            });
+            modalInstance.result.then(function () {
+                $scope.find();
+            }, function () {
+                
+            });
+        }
+
     }
 ]);
+
+app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {        
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+        
+        $scope.modalSubmit = function (data) {
+            var pro = new Pros({
+                name: data.name,
+                team: data.team
+            });
+            
+            // Redirect after save
+            pro.$save(function (response) {
+                $modalInstance.close()
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        }
+    }]);
