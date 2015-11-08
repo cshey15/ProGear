@@ -16,7 +16,7 @@
     <!-- this is the paging control -->
     <pagination total-items="pros.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="pros.length > pageSize"></pagination>
     <!-- end -->
-    <div class="alert alert-warning text-center" data-ng-hide="!pros.$resolved || pros.length">
-        No pros yet, why don't you <a href="/#!/pros/create">create one</a>?
+    <div class="alert alert-warning text-center">
+        No pros yet, why don't you <button ng-click="open('lg')">create one</button>?
     </div>
 </section>

@@ -18,7 +18,8 @@ var GearSchema = new Schema({
     },
     type: {
         type: String, default: '',
-        required: 'Please fill Gear type'
+        required: 'Please fill Gear type',
+        enum: ['keyboard', 'mouse']
     }, //keyboard, mouse, etc
     /* this might be unnecessary.. we might want to write some backend
     * logic that handles the link creation dynamically.. basically I dont understand
@@ -33,7 +34,11 @@ var GearSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	}
+    },
+    pros: {
+        type: Schema.Types.ObjectId, 
+        ref: 'Pro'
+    }
 });
 
 mongoose.model('Gear', GearSchema);

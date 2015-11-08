@@ -17,6 +17,13 @@
                         <textarea name="team" data-ng-model="pro.team" id="team" class="form-control" cols="30" rows="10" placeholder="Team" required></textarea>
                     </div>
                 </div>
+                <div data-ng-hide="pro.gear.$resolved || !pro.gear.length">
+                    <h2>Gears</h2>
+                    <div ng-repeat="gears in pro.gear">
+
+                        {{gears.name}} - by {{gears.type}}
+                    </div>
+                </div>
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>
@@ -25,5 +32,8 @@
                 </div>
             </fieldset>
         </form>
+        <div class="alert alert-warning text-center">
+            No pros yet, why don't you <button ng-click="open('lg')">create one</button>?
+        </div>
     </div>
 </section>

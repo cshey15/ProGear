@@ -1,0 +1,24 @@
+﻿<section>
+    <div class="page-header">
+        <h1>Gears</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="gear in gears" ng-click="$event.preventDefault(); selected.gear = gear" class="list-group-item">
+            <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="gear.created | date:'medium'"></span>
+                by
+                <span data-ng-bind="gear.user.displayName"></span>
+            </small>
+            <h4 class="list-group-item-heading" data-ng-bind="gear.name"></h4>
+        </a>
+    </div>
+    <div class="modal-footer">
+        Selected: <b>{{ selected.gear.name }}</b>
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!gears.$resolved || gears.length">
+        No Gears yet, why don't you <a href="/#!/gears/create">create one</a>?
+    </div>
+</section>

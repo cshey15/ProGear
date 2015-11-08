@@ -40,7 +40,8 @@ var ProSchema = new Schema({
         required: 'name cannot be blank',
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
         validate: [validateLength, 'name must be 15 chars in length or less']
-    }
+    },
+    gear: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }]
 });
 
 // Expose the model to other objects (similar to a 'public' setter).

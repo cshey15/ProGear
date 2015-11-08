@@ -1,8 +1,8 @@
 'use strict';
 
 // Pros controller
-angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros',
-    function ($scope, $stateParams, $location, Authentication, Pros) {
+angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -20,7 +20,6 @@ angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '
                 name: this.name,
                 team: this.team
             });
-            
             // Redirect after save
             pro.$save(function (response) {
                 $location.path('pros/' + response._id);
@@ -75,6 +74,22 @@ angular.module('pros').controller('ProsController', ['$scope', '$stateParams', '
         // Search for a pro
         $scope.proSearch = function (product) {
             $location.path('pros/' + product._id);
+        };
+
+        $scope.open = function (size) {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/gears/views/modalList-gear.client.view.html',
+                controller: 'GearsController.modal',
+                size: size
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+                $scope.pro.gear.push(selectedItem);
+            }, function () {
+                
+            });
         };
     }
 ]);

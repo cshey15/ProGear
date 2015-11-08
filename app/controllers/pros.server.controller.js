@@ -29,7 +29,7 @@ exports.create = function(req, res) {
  * Show the current Pro
  */
 exports.read = function(req, res) {
-    Pro.findById(req.params.proId).exec(function (err, pro) {
+    Pro.findById(req.params.proId).populate('gear').exec(function (err, pro) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -50,7 +50,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
     var pro = req.pro;
-    
+    pro.gear = req.pro.gear;
     pro = _.extend(pro, req.body);
     
     pro.save(function (err) {
@@ -107,7 +107,7 @@ exports.proByID = function (req, res, next, id) {
         });
     }
     
-    Pro.findById(id).exec(function (err, pro) {
+    Pro.findById(id).populate('gear').exec(function (err, pro) {
         if (err) return next(err);
         if (!pro) {
             return res.status(404).send({

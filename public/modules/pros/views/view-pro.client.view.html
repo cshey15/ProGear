@@ -2,6 +2,10 @@
     <div class="page-header">
         <h1 data-ng-bind="pro.name"></h1>
         <p data-ng-bind="pro.team"></p>
+        <div ng-repeat="gears in pro.gear">
+            test
+            {{gears.name}} - by {{gears.type}}
+        </div>
     </div>
     <div class="pull-right">
         <a class="btn btn-primary" href="/#!/pros/{{pro._id}}/edit">

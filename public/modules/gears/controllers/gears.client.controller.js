@@ -1,7 +1,8 @@
 'use strict';
 
 // Gears controller
-angular.module('gears').controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears',
+var app = angular.module('gears');
+app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears',
 	function($scope, $stateParams, $location, Authentication, Gears) {
 		$scope.authentication = Authentication;
 	    $scope.gearTypes = [
@@ -66,6 +67,24 @@ angular.module('gears').controller('GearsController', ['$scope', '$stateParams',
 			$scope.gear = Gears.get({ 
 				gearId: $stateParams.gearId
 			});
-		};
+        };
+        $scope.selected = {
+            gear: null
+        };
+
 	}
 ]);
+
+app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', function ($scope, Gears, $modalInstance) {
+        $scope.selected = {
+            gear: null
+        };
+        $scope.gears = Gears.query();
+        $scope.ok = function () {
+            $modalInstance.close($scope.selected.gear);
+        };
+        
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }]);
