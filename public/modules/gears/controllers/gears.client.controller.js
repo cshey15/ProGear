@@ -70,20 +70,19 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         };
 
         $scope.openCreate = function () {
-                var modalInstance = $modal.open({
-                    animation: true,
-                    templateUrl: 'modules/gears/views/modalCreate-gear.client.view.html',
-                    controller: 'GearsController.modal',
-                    size: 'sm'
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/gears/views/modalCreate-gear.client.view.html',
+                controller: 'GearsController.modal',
+                size: 'sm'
             });
             modalInstance.result.then(function (newGear) {
                 $scope.find();
             }, function () {
                 
             }); 
-        }
-	}
-]);
+        };
+}]);
 
 app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', function ($scope, Gears, $modalInstance) {
         $scope.selected = {
@@ -107,9 +106,9 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
             
             // close modal after save
             gear.$save(function (response) {
-                $modalInstance.close(gear)
+                $modalInstance.close(gear);
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
-        }
+        };
     }]);
