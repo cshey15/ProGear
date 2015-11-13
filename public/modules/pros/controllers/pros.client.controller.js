@@ -109,6 +109,20 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
         };
 
+        $scope.openCreateGear = function () {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/gears/views/modalCreate-gear.client.view.html',
+                controller: 'GearsController.modal',
+                size: 'sm'
+            });
+            modalInstance.result.then(function (gear) {
+                $scope.pro.gearList.push(gear);
+            }, function () {
+                
+            });
+        };
+
     }]);
 
 app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {        
