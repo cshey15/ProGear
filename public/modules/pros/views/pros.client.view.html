@@ -11,6 +11,12 @@
         <a data-ng-repeat="pro in pros | limitTo: offset - pros.length | limitTo: pageSize" data-ng-href="#!/pros/{{pro._id}}" class="list-group-item">
             <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
             <span data-ng-bind="pro.team"></span>
+            <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="pro.created | date:'medium'"></span>
+                by
+                <span data-ng-bind="pro.user.displayName"></span>
+            </small>
         </a>
     </div>
     <!-- this is the paging control -->

@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
     var pro = new Pro(req.body);
-    
+    pro.user = req.user;
     pro.save(function (err) {
         if (err) {
             return res.status(400).send({
@@ -29,7 +29,7 @@ exports.create = function(req, res) {
  * Show the current Pro
  */
 exports.read = function(req, res) {
-    Pro.findById(req.params.proId).populate('gearList').exec(function (err, pro) {
+    Pro.findById(req.params.proId).populate('user', 'displayName').populate('gearList').exec(function (err, pro) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -85,7 +85,7 @@ exports.delete = function(req, res) {
  * List of Pros
  */
 exports.list = function(req, res) {
-    Pro.find().exec(function (err, pros) {
+    Pro.find().populate('user', 'displayName').populate('gearList').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -117,4 +117,14 @@ exports.proByID = function (req, res, next, id) {
         req.pro = pro;
         next();
     });
+};
+
+/**
+ * Pro authorization middleware
+ */
+exports.hasAuthorization = function (req, res, next) {
+    if (req.pro.user.id !== req.user.id) {
+        return res.status(403).send('User is not authorized');
+    }
+    next();
 };
