@@ -123,6 +123,13 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
         };
 
+        $scope.removeGear = function (gear) {
+            for (var i in $scope.pro.gearList) {
+                if ($scope.pro.gearList [i] === gear) {
+                    $scope.pro.gearList.splice(i, 1);
+                }
+            }
+        };
     }]);
 
 app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {        

@@ -21,7 +21,7 @@
                     <h2>Gears</h2>
                     <div ng-repeat="gear in pro.gearList">
 
-                        {{gear.name}} - by {{gear.type}}
+                        {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
                     </div>
                 </div>
                 <div class="form-group">
