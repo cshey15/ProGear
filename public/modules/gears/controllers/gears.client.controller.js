@@ -30,20 +30,22 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 		};
 
 		// Remove existing Gear
-		$scope.remove = function(gear) {
-			if ( gear ) { 
-				gear.$remove();
-
-				for (var i in $scope.gears) {
-					if ($scope.gears [i] === gear) {
-						$scope.gears.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.gear.$remove(function() {
-					$location.path('gears');
-				});
-			}
+        $scope.remove = function (gear) {
+            if (confirm("Are you sure you want to delete?")) {
+                if (gear) {
+                    gear.$remove();
+                    
+                    for (var i in $scope.gears) {
+                        if ($scope.gears [i] === gear) {
+                            $scope.gears.splice(i, 1);
+                        }
+                    }
+                } else {
+                    $scope.gear.$remove(function () {
+                        $location.path('gears');
+                    });
+                }
+            }
 		};
 
 		// Update existing Gear

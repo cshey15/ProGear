@@ -34,18 +34,20 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         
         // Remove existing Pro
         $scope.remove = function (pro) {
-            if (pro) {
-                pro.$remove();
-                
-                for (var i in $scope.pros) {
-                    if ($scope.pros [i] === pro) {
-                        $scope.pros.splice(i, 1);
+            if (confirm("Are you sure you want to delete?")) {
+                if (pro) {
+                    pro.$remove();
+                    
+                    for (var i in $scope.pros) {
+                        if ($scope.pros [i] === pro) {
+                            $scope.pros.splice(i, 1);
+                        }
                     }
+                } else {
+                    $scope.pro.$remove(function () {
+                        $location.path('pros');
+                    });
                 }
-            } else {
-                $scope.pro.$remove(function () {
-                    $location.path('pros');
-                });
             }
         };
         
