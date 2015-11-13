@@ -107,10 +107,9 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             }, function () {
                 
             });
-        }
+        };
 
-    }
-]);
+    }]);
 
 app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {        
         $scope.cancel = function () {
@@ -125,9 +124,9 @@ app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', func
             
             // Redirect after save
             pro.$save(function (response) {
-                $modalInstance.close()
+                $modalInstance.close();
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
-        }
+        };
     }]);
