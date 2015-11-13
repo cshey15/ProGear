@@ -89,7 +89,15 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
 
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $scope.pro.gearList.push(selectedItem);
+                var contains = false;
+                for (var i in $scope.pro.gearList) {
+                    if ($scope.pro.gearList [i]._id === selectedItem._id) {
+                        contains = true;
+                    }
+                }
+                if (!contains) {
+                    $scope.pro.gearList.push(selectedItem);
+                }
             }, function () {
                 
             });
