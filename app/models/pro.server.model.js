@@ -46,8 +46,7 @@ var ProSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    mouseList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }],
-    keyboardList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }],
+    gearList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }],
     popularityScore: {
         type: Number,
         default: 0
