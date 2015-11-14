@@ -25,12 +25,6 @@ var ProSchema = new Schema({
         // default values can be set
         default: Date.now
     },
-    team: {
-        type: String,
-        default: '',
-        // types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
-        trim: true
-    },
     name: {
         type: String,
         default: '',
@@ -41,12 +35,29 @@ var ProSchema = new Schema({
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
         validate: [validateLength, 'name must be 15 chars in length or less']
     },
+    team: {
+        type: String,
+        default: '',
+        required: 'team cannot be blank',
+        // types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
+        trim: true
+    },
     user: {
         type: Schema.ObjectId,
         ref: 'User'
     },
-    gearList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }]
+    mouseList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }],
+    keyboardList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gear' }],
+    popularityScore: {
+        type: Number,
+        default: 0
+    },
+    profileLink: {
+        type: String,
+        
+    }
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
 mongoose.model('Pro', ProSchema);
+

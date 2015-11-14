@@ -25,8 +25,16 @@ var GearSchema = new Schema({
     * logic that handles the link creation dynamically.. basically I dont understand
     * how the amazon/ebay/whatever affiliate linking system works
     */
-    link: { type: String, default: '' },
-
+    amazonLink: { type: String, default: '' },
+    asin: { type: String, default: '' },
+    popularityScore: {
+        type: Number,
+        default: 0
+    },
+    published: {
+        type: Boolean,
+        default: false
+    },
 	created: {
 		type: Date,
 		default: Date.now
@@ -35,10 +43,10 @@ var GearSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
     },
-    pros: {
+    pros: [{
         type: Schema.Types.ObjectId, 
         ref: 'Pro'
-    }
+    }]
 });
 
 mongoose.model('Gear', GearSchema);

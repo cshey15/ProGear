@@ -2,6 +2,9 @@
     <div class="page-header">
         <h1>Gears</h1>
     </div>
+    <div class="form-group">
+        <input type="text" ng-model="search" typeahead="gear as gear.name for gear in gears | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="gearSearch($item)" placeholder="Search Gear...">
+    </div>
     <div class="list-group">
         <a data-ng-repeat="gear in gears" data-ng-href="#!/gears/{{gear._id}}" class="list-group-item">
 			<small class="list-group-item-text">

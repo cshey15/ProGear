@@ -71,6 +71,11 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 			});
         };
 
+        // go to gear
+        $scope.gearSearch = function (product) {
+            $location.path('gears/' + product._id);
+        };
+
         $scope.openCreate = function () {
             var modalInstance = $modal.open({
                 animation: true,
@@ -112,5 +117,10 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
+        };
+
+        // Search for a pro
+        $scope.gearSearch = function (product) {
+            $scope.selected.gear = product;
         };
     }]);
