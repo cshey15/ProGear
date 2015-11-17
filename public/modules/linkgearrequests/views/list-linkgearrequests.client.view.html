@@ -1,0 +1,29 @@
+<section data-ng-controller="LinkGearRequestsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>LinkGearRequests</h1>
+    </div>
+    <div class="list-group">
+        <div data-ng-repeat="linkGearRequest in linkGearRequests" class="list-group-item">
+            <div class="pull-right">
+                <a class="btn btn-primary" data-ng-click="setStatus(linkGearRequest, 'approved');">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </a>
+                <a class="btn btn-primary" data-ng-click="setStatus(linkGearRequest, 'denied');">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </div>
+            <p>Pro: <span data-ng-bind="linkGearRequest.pro.name"></span> - <span data-ng-bind="linkGearRequest.gear.name"></span></p>
+            <p>Status: <span data-ng-bind="linkGearRequest.status"></span></p>
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="linkGearRequest.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="linkGearRequest.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="linkGearRequest.name"></h4>
+        </div>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!linkGearRequests.$resolved || linkGearRequests.length">
+    	No LinkGearRequests yet, why don't you <a href="/#!/linkGearRequests/create">create one</a>?
+    </div>
+</section>

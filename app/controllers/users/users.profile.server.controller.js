@@ -17,8 +17,8 @@ exports.update = function(req, res) {
 	var user = req.user;
 	var message = null;
 
-	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
+	// For security measurement we remove the roles from the req.body object (commenting out so that we can manually set ourselves to admin)
+	//delete req.body.roles;
 
 	if (user) {
 		// Merge existing user

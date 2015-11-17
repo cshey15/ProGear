@@ -17,6 +17,10 @@ angular.module('pros').config(['$stateProvider',
             url: '/pros/:proId',
             templateUrl: 'modules/pros/views/view-pro.client.view.html'
         }).
+        state('addGear', {
+            url: '/pros/:proId/addGear?type',
+            templateUrl: 'modules/pros/views/addGear-pro.client.view.html'
+        }).
 		state('editPro', {
             url: '/pros/:proId/edit',
             templateUrl: 'modules/pros/views/edit-pro.client.view.html'

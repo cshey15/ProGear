@@ -1,0 +1,33 @@
+﻿<section data-ng-controller="ProsController" data-ng-init="addGear()">
+    <h1>Adding {{type}} for {{pro.name}}</h1>
+    <form class="form-horizontal" data-ng-submit="createRequest()" novalidate>
+        <h2>Step 1.</h2>
+        <div class="form-group">
+            <label class="control-label" for="name">Select an existing item</label>
+            <div class="controls">
+                <input type="text" ng-model="search" typeahead="gear as gear.name for gear in gears | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="gearSelect($item)" placeholder="Start typing for Gear...">
+                {{$scope.selectedGear}}
+            </div>
+        </div>
+        <h2>Step 2. Provide proof</h2>
+        <div class="form-group">
+            <label class="control-label" for="name">Proof</label>
+            <div class="controls">
+                <input type="text" name="proof" data-ng-model="proofLink" id="proofLink" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <h3>Step 3. Add explanation</h3>
+        <div class="form-group">
+            <label class="control-label" for="explanation">Explanation</label>
+            <div class="controls">
+                <textarea name="explanation" data-ng-model="explanation" id="explanation" class="form-control" cols="30" rows="10" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default">
+        </div>
+        <div data-ng-show="error" class="text-danger">
+            <strong data-ng-bind="error"></strong>
+        </div>
+    </form>
+</section>

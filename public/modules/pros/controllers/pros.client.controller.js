@@ -2,8 +2,8 @@
 
 // Pros controller
 var app = angular.module('pros');
-app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal',
-    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal) {
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -23,7 +23,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
             // Redirect after save
             pro.$save(function (response) {
-                $location.path('pros/' + response._id);
+                $location.path('pros/' + response._id);  
                 
                 // Clear form fields
                 $scope.name = '';
@@ -34,7 +34,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         
         // Remove existing Pro
         $scope.remove = function (pro) {
-            if (confirm("Are you sure you want to delete?")) {
+            if (confirm('Are you sure you want to delete?')) {
                 if (pro) {
                     pro.$remove();
                     
@@ -100,6 +100,40 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 }
             }, function () {
                 
+            });
+        };
+
+        $scope.addGear = function () {
+            $scope.pro = Pros.get({
+                proId: $stateParams.proId
+            });
+            $scope.type = $stateParams.type;
+            $scope.gears = Gears.query();
+        };
+        
+        $scope.gearSelect = function (item) {
+            $scope.selectedGear = item;
+        };
+        
+        $scope.createRequest = function () {
+            // Create new Pro object
+            var request = new LinkGearRequests({
+                pro: $scope.pro._id,
+                gear: $scope.selectedGear._id,
+                proofLink: this.proofLink,
+                explanation: this.explanation
+            });
+
+            // Redirect after save
+            request.$save(function (response) {
+                $location.path('pros/' + $scope.pro._id);
+                
+                $scope.search = '';
+                // Clear form fields
+                $scope.proofLink = '';
+                $scope.explanation = '';
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
             });
         };
 

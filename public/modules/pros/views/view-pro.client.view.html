@@ -1,19 +1,32 @@
 <section data-ng-controller="ProsController" data-ng-init="findOne()">
     <div class="page-header">
-        <h1 data-ng-bind="pro.name"></h1>
-        <p data-ng-bind="pro.team"></p>
-        <div ng-repeat="gear in pro.gearList">
-            test
-            {{gear.name}} - {{gear.type}}
+        <div class="pull-right">
+            <a class="btn btn-primary" href="/#!/pros/{{pro._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary" data-ng-click="remove();">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
         </div>
-    </div>
-    <div class="pull-right">
-        <a class="btn btn-primary" href="/#!/pros/{{pro._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn btn-primary" data-ng-click="remove();">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
+        <h1 data-ng-bind="pro.name"></h1>
+        <p>Team: <span data-ng-bind="pro.team"></span></p>
+        <hr />
+        <h2>Mouse</h2>
+        <a ng-href="/#!/pros/{{pro._id}}/addGear?type=Mouse">Add a mouse</a>
+        <div data-ng-hide="pro.gearList.$resolved || !pro.gearList.length">
+            <div ng-repeat="gear in pro.gearList | filter: {type: 'Mouse'}">
+                {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
+            </div>
+        </div>
+        <hr />
+        <h2>Keyboard</h2>
+        <a ng-href="/#!/pros/{{pro._id}}/addGear?type=Keyboard">Add a Keyboard</a>
+        <div data-ng-hide="pro.gearList.$resolved || !pro.gearList.length">
+            <div ng-repeat="gear in pro.gearList | filter: {type: 'Keyboard'}">
+
+                {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
+            </div>
+        </div>
     </div>
     <small>
         <em class="text-muted">
