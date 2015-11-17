@@ -16,6 +16,7 @@ function validateUrl(value) {
  */
 var LinkGearRequestSchema = new Schema({
     gear: { type: mongoose.Schema.Types.ObjectId, ref: 'Gear' },
+    pro: { type: mongoose.Schema.Types.ObjectId, ref: 'Pro' },
     proofLink: {
         type: String,
         required: 'Please provide proof',

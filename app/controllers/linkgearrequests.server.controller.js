@@ -74,7 +74,7 @@ exports.delete = function(req, res) {
  * List of LinkGearRequests
  */
 exports.list = function(req, res) { 
-	LinkGearRequest.find().sort('-created').populate('user', 'displayName').populate('pro', 'pro.name').populate('gear', 'name').exec(function(err, linkGearRequests) {
+	LinkGearRequest.find().sort('-created').populate('user', 'displayName').populate('pro', 'name').populate('gear', 'name').exec(function(err, linkGearRequests) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

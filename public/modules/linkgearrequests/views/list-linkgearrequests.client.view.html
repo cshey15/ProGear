@@ -1,4 +1,7 @@
 <section data-ng-controller="LinkGearRequestsController" data-ng-init="find()">
+    <div data-ng-show="message" class="alert alert-success">
+        <button type="button" class="close" ng-click="message = null" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong data-ng-bind="message"></strong>
+    </div>
     <div class="page-header">
         <h1>LinkGearRequests</h1>
     </div>
