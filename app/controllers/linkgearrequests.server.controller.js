@@ -14,7 +14,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var linkGearRequest = new LinkGearRequest(req.body);
-	linkGearRequest.user = req.body.user;
+	linkGearRequest.user = req.user;
 
 	linkGearRequest.save(function(err) {
 		if (err) {
@@ -39,7 +39,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
 	var linkGearRequest = req.linkGearRequest ;
-
+    linkGearRequest.approver = req.user;
 	linkGearRequest = _.extend(linkGearRequest , req.body);
 
 	linkGearRequest.save(function(err) {
