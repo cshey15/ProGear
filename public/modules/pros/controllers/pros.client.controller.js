@@ -116,25 +116,33 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
         
         $scope.createRequest = function () {
-            // Create new Pro object
+            var pro = $scope.pro;
+
+            // Create new request object
             var request = new LinkGearRequests({
                 pro: $scope.pro._id,
                 gear: $scope.selectedGear._id,
                 proofLink: this.proofLink,
                 explanation: this.explanation
             });
-
-            // Redirect after save
+            
             request.$save(function (response) {
-                $location.path('pros/' + $scope.pro._id);
-                
-                $scope.search = '';
-                // Clear form fields
-                $scope.proofLink = '';
-                $scope.explanation = '';
+                pro.requestList.push(response);
+
+                // Redirect after save
+                pro.$update(function (response) {
+                    $location.path('pros/' + response._id);
+                    
+                    $scope.search = '';
+                    // Clear form fields
+                    $scope.proofLink = '';
+                    $scope.explanation = '';
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
-            });
+            });  
         };
 
         $scope.openCreate = function () {
