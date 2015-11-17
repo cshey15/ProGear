@@ -6,7 +6,10 @@
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
     Pro = mongoose.model('Pro'),
+    RequestHandler = require('./linkgearrequests.server.controller.js'),
+    GearHandler = require('./gears.server.controller.js'),
     _ = require('lodash');
+
 
 /**
  * Create a Pro
@@ -29,7 +32,7 @@ exports.create = function(req, res) {
  * Show the current Pro
  */
 exports.read = function(req, res) {
-    Pro.findById(req.params.proId).populate('user', 'displayName').populate('gearList').exec(function (err, pro) {
+    Pro.findById(req.params.proId).populate('user', 'displayName').exec(function (err, pro) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -50,7 +53,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
     var pro = req.pro;
-    pro.gearList = req.pro.gearList;
+    //pro.gearList = req.pro.gearList;
     pro = _.extend(pro, req.body);
     
     pro.save(function (err) {
@@ -60,6 +63,30 @@ exports.update = function(req, res) {
             });
         } else {
             res.json(pro);
+        }
+    });
+};
+
+exports.addGearRequest = function (req, res) {
+    var pro = req.pro;
+    var request = new RequestHandler(req.body);
+    
+    request.save(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            pro.requestList.push(request);
+            pro.save(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.json(pro);
+                }
+            });
         }
     });
 };
@@ -85,7 +112,7 @@ exports.delete = function(req, res) {
  * List of Pros
  */
 exports.list = function(req, res) {
-    Pro.find().populate('user', 'displayName').populate('gearList').exec(function (err, pros) {
+    Pro.find().populate('user', 'displayName').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -107,7 +134,7 @@ exports.proByID = function (req, res, next, id) {
         });
     }
     
-    Pro.findById(id).populate('gearList').exec(function (err, pro) {
+    Pro.findById(id).populate('user', 'displayName').exec(function (err, pro) {
         if (err) return next(err);
         if (!pro) {
             return res.status(404).send({
