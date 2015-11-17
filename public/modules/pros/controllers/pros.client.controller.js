@@ -116,8 +116,6 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
         
         $scope.createRequest = function () {
-            var pro = $scope.pro;
-
             // Create new request object
             var request = new LinkGearRequests({
                 pro: $scope.pro._id,
@@ -127,10 +125,10 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
             
             request.$save(function (response) {
-                pro.requestList.push(response);
+                $scope.pro.requestList.push(response);
 
                 // Redirect after save
-                pro.$update(function (response) {
+                $scope.pro.$update(function (response) {
                     $location.path('pros/' + response._id);
                     
                     $scope.search = '';

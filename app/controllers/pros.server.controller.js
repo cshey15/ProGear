@@ -32,7 +32,7 @@ exports.create = function(req, res) {
  * Show the current Pro
  */
 exports.read = function(req, res) {
-    Pro.findById(req.params.proId).populate('user', 'displayName').exec(function (err, pro) {
+    Pro.findById(req.params.proId).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pro) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -112,7 +112,7 @@ exports.delete = function(req, res) {
  * List of Pros
  */
 exports.list = function(req, res) {
-    Pro.find().populate('user', 'displayName').exec(function (err, pros) {
+    Pro.find().populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -134,7 +134,7 @@ exports.proByID = function (req, res, next, id) {
         });
     }
     
-    Pro.findById(id).populate('user', 'displayName').exec(function (err, pro) {
+    Pro.findById(id).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pro) {
         if (err) return next(err);
         if (!pro) {
             return res.status(404).send({

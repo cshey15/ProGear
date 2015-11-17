@@ -74,7 +74,7 @@ exports.delete = function(req, res) {
  * List of LinkGearRequests
  */
 exports.list = function(req, res) { 
-	LinkGearRequest.find().sort('-created').populate('user', 'displayName').populate('pro gear').exec(function(err, linkGearRequests) {
+	LinkGearRequest.find().sort('-created').populate('user', 'displayName').populate('pro', 'pro.name').populate('gear', 'name').exec(function(err, linkGearRequests) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -89,7 +89,7 @@ exports.list = function(req, res) {
  * LinkGearRequest middleware
  */
 exports.linkGearRequestByID = function(req, res, next, id) { 
-	LinkGearRequest.findById(id).populate('user', 'displayName').exec(function(err, linkGearRequest) {
+	LinkGearRequest.findById(id).populate('user', 'displayName').populate('pro', 'name').populate('gear', 'name').exec(function(err, linkGearRequest) {
 		if (err) return next(err);
 		if (! linkGearRequest) return next(new Error('Failed to load LinkGearRequest ' + id));
 		req.linkGearRequest = linkGearRequest ;

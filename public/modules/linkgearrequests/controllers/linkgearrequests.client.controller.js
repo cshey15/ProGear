@@ -67,7 +67,8 @@ angular.module('linkGearRequests').controller('LinkGearRequestsController', ['$s
             if (linkGearRequest.status !== status) {
                 linkGearRequest.status = status;
                 
-                linkGearRequest.$update(function () {
+                linkGearRequest.$update(function (response) {
+                    //$location.path('pros/' + response.pro._id);
                 }, function (errorResponse) {
                     $scope.error = errorResponse.data.message;
                 }); 
