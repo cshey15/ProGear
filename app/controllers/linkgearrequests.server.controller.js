@@ -89,7 +89,7 @@ exports.list = function(req, res) {
  * LinkGearRequest middleware
  */
 exports.linkGearRequestByID = function(req, res, next, id) { 
-	LinkGearRequest.findById(id).populate('user', 'displayName').exec(function(err, linkGearRequest) {
+	LinkGearRequest.findById(id).populate('user', 'displayName').populate('pro gear').exec(function(err, linkGearRequest) {
 		if (err) return next(err);
 		if (! linkGearRequest) return next(new Error('Failed to load LinkGearRequest ' + id));
 		req.linkGearRequest = linkGearRequest ;

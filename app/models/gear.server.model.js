@@ -42,7 +42,11 @@ var GearSchema = new Schema({
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
-    }
+    },
+    pros: [{
+        type: Schema.Types.ObjectId, 
+        ref: 'Pro'
+    }]
 });
 
 mongoose.model('Gear', GearSchema);
