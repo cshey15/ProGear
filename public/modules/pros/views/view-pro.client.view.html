@@ -15,7 +15,7 @@
         <a ng-href="/#!/pros/{{pro._id}}/addGear?type=Mouse">Add a mouse</a>
         <div data-ng-hide="pro.gearList.$resolved || !pro.gearList.length">
             <div ng-repeat="gear in pro.gearList | filter: {type: 'Mouse'}">
-                {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
+                {{gear.name}} - {{gear.type}}
             </div>
         </div>
         <hr />
@@ -24,7 +24,7 @@
         <div data-ng-hide="pro.gearList.$resolved || !pro.gearList.length">
             <div ng-repeat="gear in pro.gearList | filter: {type: 'Keyboard'}">
 
-                {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
+                {{gear.name}} - {{gear.type}}
             </div>
         </div>
     </div>
