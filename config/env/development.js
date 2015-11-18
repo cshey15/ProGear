@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/progear-dev',
+	db: 'mongodb://devprogear:as1gma@ds035844.mongolab.com:35844/progear',
 	app: {
 		title: 'progear - Development Environment'
 	},
