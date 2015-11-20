@@ -11,8 +11,11 @@ module.exports = function(app) {
 
 	app.route('/gears/:gearId')
 		.get(gears.read)
-		.put(users.requiresLogin, gears.hasAuthorization, gears.update)
+		.put(users.requiresLogin, gears.update)
 		.delete(users.requiresLogin, gears.hasAuthorization, gears.delete);
+
+    app.route('/admin/gears/unpublished')
+        .get(gears.listUnpublished);
 
 	// Finish by binding the Gear middleware
 	app.param('gearId', gears.gearByID);

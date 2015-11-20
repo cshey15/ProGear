@@ -25,8 +25,9 @@ var GearSchema = new Schema({
     * logic that handles the link creation dynamically.. basically I dont understand
     * how the amazon/ebay/whatever affiliate linking system works
     */
-    amazonLink: { type: String, default: '' },
-    asin: { type: String, default: '' },
+    amazonLink: { type: String },
+    website: { type: String },
+    asin: { type: String },
     popularityScore: {
         type: Number,
         default: 0

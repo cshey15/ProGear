@@ -6,7 +6,7 @@ angular.module('gears').config(['$stateProvider',
 		// Gears state routing
 		$stateProvider.
 		state('listGears', {
-			url: '/gears',
+			url: '/gears?unpublishedonly',
 			templateUrl: 'modules/gears/views/list-gears.client.view.html'
 		}).
 		state('createGear', {

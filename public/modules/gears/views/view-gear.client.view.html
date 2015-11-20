@@ -1,15 +1,19 @@
 <section data-ng-controller="GearsController" data-ng-init="findOne()">
 	<div class="page-header">
+        <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == gear.user._id))">
+            <a class="btn btn-primary" href="/#!/gears/{{gear._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-primary" data-ng-click="remove();">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
 		<h1 data-ng-bind="gear.name"></h1>
+        <p>Type: <span data-ng-bind="gear.type"></span></p>
+        <p><a data-ng-href="gear.fbProfile" data-ng-show="gear.amazonLink">Buy now!</a></p>
+        <p><a data-ng-href="gear.website" data-ng-show="gear.website">Website</a></p>
 	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == gear.user._id))">
-		<a class="btn btn-primary" href="/#!/gears/{{gear._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
-		</a>
-		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
-		</a>
-	</div>
+
 	<small>
 		<em class="text-muted">
 			Posted on

@@ -12,6 +12,36 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="published">Published</label>
+                    <div class="controls">
+                        <input type="checkbox" data-ng-model="gear.published" id="published" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">Type</label>
+                    <div class="controls">
+                        <select id="type" class="form-control" ng-model="gear.selectedGearType" ng-options="type as type.name for type in gearTypes"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">Amazon Link</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="gear.amazonLink" id="amazonLink" class="form-control" placeholder="www.amazon.com/">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">Official Website</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="gear.website" id="website" class="form-control" placeholder="www.website.com/">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">ASIN</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="gear.asin" id="asin" class="form-control" placeholder="ASIN">
+                    </div>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>
 				<div data-ng-show="error" class="text-danger">

@@ -14,6 +14,14 @@
                     <div class="col-sm-10 controls">
                         <select id="type" class="form-control" ng-model="data.selectedGearType" ng-options="type as type.name for type in gearTypes"></select>
                     </div>
+                    <label class="col-sm-10 control-label" for="name">Amazon Link</label>
+                    <div class="col-sm-10 controls">
+                        <input type="text" data-ng-model="data.amazonLink" id="amazonLink" class="form-control" placeholder="www.amazon.com/">
+                    </div>
+                    <label class="col-sm-10 control-label" for="name">Official Website</label>
+                    <div class="col-sm-10 controls">
+                        <input type="text" data-ng-model="data.website" id="website" class="form-control" placeholder="www.website.com/">
+                    </div>
                 </div>
                 <div class="col-sm-offset-2 col-sm-10 form-group">
                     <input type="submit" class="btn btn-default" data-ng-click="modalSubmit(data)">

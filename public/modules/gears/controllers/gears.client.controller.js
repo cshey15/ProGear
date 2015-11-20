@@ -22,9 +22,11 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 		// Create new Gear
 		$scope.create = function() {
 			// Create new Gear object
-			var gear = new Gears ({
+			var gear = new Gears.resource ({
 			    name: this.name,
-			    type: $scope.selectedGearType.name
+                type: $scope.selectedGearType.name,
+                amazonLink: this.amazonLink,
+                website: this.website
 			});
 
 			// Redirect after save
@@ -70,12 +72,16 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 
 		// Find a list of Gears
 		$scope.find = function() {
-			$scope.gears = Gears.query();
+            if ($stateParams.unpublishedonly && $stateParams.unpublishedonly === 'true') {
+                $scope.gears = Gears.admin.query();
+            } else {
+                $scope.gears = Gears.resource.query();
+            }
 		};
 
 		// Find existing Gear
 		$scope.findOne = function() {
-			$scope.gear = Gears.get({ 
+			$scope.gear = Gears.resource.get({ 
 				gearId: $stateParams.gearId
 			});
         };
@@ -104,7 +110,7 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
         $scope.selected = {
             gear: null
         };
-        $scope.gears = Gears.query();
+        $scope.gears = Gears.resource.query();
         $scope.ok = function () {
             $modalInstance.close($scope.selected.gear);
         };
@@ -117,7 +123,9 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
             //event.preventDefault();
             var gear = new Gears({
                 name: data.name,
-                type: data.selectedGearType.name
+                type: data.selectedGearType.name,
+                amazonLink: data.amazonLink,
+                website: data.website
             });
             
             // close modal after save
