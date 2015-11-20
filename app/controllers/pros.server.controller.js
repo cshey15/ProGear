@@ -32,20 +32,7 @@ exports.create = function(req, res) {
  * Show the current Pro
  */
 exports.read = function(req, res) {
-    Pro.findById(req.params.proId).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pro) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            if (!pro) {
-                return res.status(404).send({
-                    message: 'Pro not found'
-                });
-            }
-            res.json(pro);
-        }
-    });
+    res.jsonp(req.pro);
 };
 
 /**

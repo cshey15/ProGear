@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 	// LinkGearRequests Routes
 	app.route('/linkGearRequests')
-		.get(linkGearRequests.list)
+		.get(users.requiresLogin, users.hasAuthorization('admin'), linkGearRequests.list)
 		.post(users.requiresLogin, linkGearRequests.create);
 
 	app.route('/linkGearRequests/:linkGearRequestId')
