@@ -75,18 +75,6 @@ ProSchema.virtual('gearList').get(function () {
     return gears;
 });
 
-var gearGroup = function (requestList) {
-    var gears = [];
-
-    for(var i in requestList)
-    {
-        if (requestList[i].status === 'approved') {
-            gears.push(requestList[i].gear);
-        }
-    }
-    return gears;
-};
-
 ProSchema.set('toJSON', { getters: true, virtuals: true });
 ProSchema.set('toObject', { getters: true, virtuals: true });
 
