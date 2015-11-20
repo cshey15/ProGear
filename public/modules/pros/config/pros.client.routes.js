@@ -6,7 +6,7 @@ angular.module('pros').config(['$stateProvider',
         // Pros state routing
         $stateProvider.
 		state('listPros', {
-            url: '/pros',
+            url: '/pros?unpublishedonly',
             templateUrl: 'modules/pros/views/pros.client.view.html'
         }).
 		state('createPro', {

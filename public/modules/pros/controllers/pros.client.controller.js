@@ -17,9 +17,13 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         // Create new Pro
         $scope.create = function () {
             // Create new Pro object
-            var pro = new Pros({
+            var pro = new Pros.resource({
                 name: this.name,
-                team: this.team
+                sport: this.sport,
+                team: this.team,
+                alias: this.alias,
+                fbProfile: this.fbProfile,
+                website: this.website
             });
             // Redirect after save
             pro.$save(function (response) {
@@ -64,12 +68,16 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         
         // Find a list of Pros
         $scope.find = function () {
-            $scope.pros = Pros.query();
+            if ($stateParams.unpublishedonly && $stateParams.unpublishedonly === 'true') {
+                $scope.pros = Pros.admin.query();
+            } else {
+                $scope.pros = Pros.resource.query();
+            }
         };
         
         // Find existing Pro
         $scope.findOne = function () {
-            $scope.pro = Pros.get({
+            $scope.pro = Pros.resource.get({
                 proId: $stateParams.proId
             });
         };
@@ -104,7 +112,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
 
         $scope.addGear = function () {
-            $scope.pro = Pros.get({
+            $scope.pro = Pros.resource.get({
                 proId: $stateParams.proId
             });
             $scope.type = $stateParams.type;

@@ -41,6 +41,13 @@ var ProSchema = new Schema({
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
         validate: [validateLength, 'name must be 15 chars in length or less']
     },
+    sport: {
+        type: String,
+        default: '',
+        required: 'sport cannot be blank',
+        // types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
+        trim: true
+    },
     team: {
         type: String,
         default: '',
@@ -57,9 +64,18 @@ var ProSchema = new Schema({
         type: Number,
         default: 0
     },
-    profileLink: {
+    fbProfile: {
         type: String,
-        
+    },
+    website: {
+        type: String,
+    },
+    alias: {
+        type: String,
+    },
+    published: {
+        type: Boolean,
+        default: false,
     }
 });
 

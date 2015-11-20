@@ -13,6 +13,9 @@ module.exports = function(app) {
         .get(pros.read)
         .put(users.requiresLogin, pros.update)
 	    .delete(users.requiresLogin, pros.delete);
-
+    
+    app.route('/admin/pros/unpublished')
+        .get(pros.listUnpublished);
+    
     app.param('proId', pros.proByID);
 };

@@ -12,9 +12,33 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="name">Team</label>
+                    <label class="control-label" for="sport">Sport</label>
                     <div class="controls">
-                        <input name="team" data-ng-model="team" id="team" class="form-control" cols="30" rows="10" placeholder="Team">
+                        <input type="text" data-ng-model="sport" id="sport" class="form-control" placeholder="Sport" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="team">Team</label>
+                    <div class="controls">
+                        <input name="team" data-ng-model="team" id="team" class="form-control" placeholder="Team" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="alias">Alt Ids (seperate by comma)</label>
+                    <div class="controls">
+                        <input name="alias" data-ng-model="alias" id="alias" class="form-control" placeholder="CLGNA Doublelift, zero and tenfb">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="fbProfile">Facebook profile</label>
+                    <div class="controls">
+                        <input name="fbProfile" data-ng-model="fbProfile" id="fbProfile" class="form-control" placeholder="www.facebook.com/">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="website">Website</label>
+                    <div class="controls">
+                        <input name="website" data-ng-model="website" id="website" class="form-control" placeholder="www.example.com/">
                     </div>
                 </div>
                 <div class="form-group">

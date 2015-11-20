@@ -99,7 +99,7 @@ exports.delete = function(req, res) {
  * List of Pros
  */
 exports.list = function(req, res) {
-    Pro.find().populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
+    Pro.find({ published: true }).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -109,6 +109,19 @@ exports.list = function(req, res) {
         }
     });
 };
+
+exports.listUnpublished = function (req, res) {
+    Pro.find({ published: false }).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(pros);
+        }
+    });
+};
+
 
 /**
  * Pro middleware

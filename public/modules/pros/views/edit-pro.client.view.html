@@ -12,9 +12,39 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="published">Published</label>
+                    <div class="controls">
+                        <input type="checkbox" data-ng-model="pro.published" id="published" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="sport">Sport</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="pro.sport" id="sport" class="form-control" placeholder="Sport" required>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="team">Team</label>
                     <div class="controls">
-                        <input name="team" data-ng-model="pro.team" id="team" class="form-control" cols="30" rows="10" placeholder="Team" required>
+                        <input name="team" data-ng-model="pro.team" id="team" class="form-control" placeholder="Team" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="alias">Alt Ids (seperate by comma)</label>
+                    <div class="controls">
+                        <input name="alias" data-ng-model="pro.alias" id="alias" class="form-control" placeholder="CLGNA Doublelift, zero and tenfb">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="fbProfile">Facebook profile</label>
+                    <div class="controls">
+                        <input name="fbProfile" data-ng-model="pro.fbProfile" id="fbProfile" class="form-control" placeholder="www.facebook.com/">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="website">Website</label>
+                    <div class="controls">
+                        <input name="website" data-ng-model="pro.website" id="website" class="form-control" cols="30" rows="10" placeholder="www.example.com/">
                     </div>
                 </div>
                 <h2>Mouse</h2>
@@ -24,7 +54,7 @@
                         {{gear.name}} - {{gear.type}} <i class="glyphicon glyphicon-remove" ng-click="removeGear(gear)"></i>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <h2>Keyboard</h2>
                 <div data-ng-hide="pro.gearList.$resolved || !pro.gearList.length">
                     <div ng-repeat="gear in pro.gearList | filter: {type: 'Keyboard'}">
@@ -40,11 +70,12 @@
                 </div>
             </fieldset>
         </form>
-        <div class="alert alert-warning text-center">
+        <!-- Not needed here but could use this code **Remove before production! **
+            <div class="alert alert-warning text-center">
             <button ng-click="open('lg')">Link gear</button>?
         </div>
         <div class="text-center">
             <button ng-click="openCreateGear()">Create new gear</button>
-        </div>
+        </div>-->
     </div>
 </section>
