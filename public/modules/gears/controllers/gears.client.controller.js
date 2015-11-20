@@ -4,7 +4,16 @@
 var app = angular.module('gears');
 app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal',
 	function($scope, $stateParams, $location, Authentication, Gears, $modal) {
-		$scope.authentication = Authentication;
+        $scope.authentication = Authentication;
+        $scope.currentPage = 1;
+        $scope.pageSize = 5;
+        $scope.offset = 0;
+        
+        // Page changed handler
+        $scope.pageChanged = function () {
+            $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
+        };
+
 	    $scope.gearTypes = [
 		{ id: 1, name: 'Keyboard' },
 		{ id: 2, name: 'Mouse'}
