@@ -6,7 +6,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
 	function($scope, $stateParams, $location, Authentication, Gears, $modal) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
-        $scope.pageSize = 5;
+        $scope.pageSize = 10;
         $scope.offset = 0;
         
         // Page changed handler
@@ -121,7 +121,7 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
 
         $scope.modalSubmit = function (data) {
             //event.preventDefault();
-            var gear = new Gears({
+            var gear = new Gears.resource({
                 name: data.name,
                 type: data.selectedGearType.name,
                 amazonLink: data.amazonLink,

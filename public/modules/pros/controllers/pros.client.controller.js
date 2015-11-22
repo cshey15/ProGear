@@ -116,7 +116,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 proId: $stateParams.proId
             });
             $scope.type = $stateParams.type;
-            $scope.gears = Gears.query();
+            $scope.gears = Gears.resource.query();
         };
         
         $scope.gearSelect = function (item) {
@@ -173,7 +173,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 size: 'sm'
             });
             modalInstance.result.then(function (gear) {
-                $scope.pro.gearList.push(gear);
+                $scope.selectedGear = gear
             }, function () {
                 
             });
