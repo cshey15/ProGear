@@ -13,6 +13,9 @@ module.exports = function(app) {
 		.get(gears.read)
 		.put(users.requiresLogin, gears.update)
 		.delete(users.requiresLogin, gears.hasAuthorization, gears.delete);
+    
+    app.route('/gears/:gearId/pros')
+		.get(gears.getProsForGear)
 
     app.route('/admin/gears/unpublished')
         .get(gears.listUnpublished);

@@ -5,7 +5,9 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Gear = mongoose.model('Gear'),
+    Gear = mongoose.model('Gear'),
+    Pro = mongoose.model('Pro'),
+    LinkGearRequest = mongoose.model('LinkGearRequest'),
 	_ = require('lodash');
 
 /**
@@ -95,6 +97,18 @@ exports.listUnpublished = function (req, res) {
         }
     });
 };
+
+exports.getProsForGear = function (req, res) {
+    LinkGearRequest.find({ gear: req.gear, status: "approved" }).deepPopulate("pro").select("pro").exec(function (err, pros) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(pros);
+        }
+    });
+}
 
 /**
  * Gear middleware

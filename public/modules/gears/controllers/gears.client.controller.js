@@ -3,7 +3,7 @@
 // Gears controller
 var app = angular.module('gears');
 app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal',
-	function($scope, $stateParams, $location, Authentication, Gears, $modal) {
+    function ($scope, $stateParams, $location, Authentication, Gears, $modal) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -13,34 +13,34 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         $scope.pageChanged = function () {
             $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
         };
-
-	    $scope.gearTypes = [
-		{ id: 1, name: 'Keyboard' },
-		{ id: 2, name: 'Mouse'}
-	    ];
-	    $scope.selectedGearType = null;
-		// Create new Gear
-		$scope.create = function() {
-			// Create new Gear object
-			var gear = new Gears.resource ({
-			    name: this.name,
+        
+        $scope.gearTypes = [
+            { id: 1, name: 'Keyboard' },
+            { id: 2, name: 'Mouse' }
+        ];
+        $scope.selectedGearType = null;
+        // Create new Gear
+        $scope.create = function () {
+            // Create new Gear object
+            var gear = new Gears.resource({
+                name: this.name,
                 type: $scope.selectedGearType.name,
                 amazonLink: this.amazonLink,
                 website: this.website
-			});
-
-			// Redirect after save
-			gear.$save(function(response) {
-				$location.path('gears/' + response._id);
-
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		// Remove existing Gear
+            });
+            
+            // Redirect after save
+            gear.$save(function (response) {
+                $location.path('gears/' + response._id);
+                
+                // Clear form fields
+                $scope.name = '';
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+        
+        // Remove existing Gear
         $scope.remove = function (gear) {
             if (confirm('Are you sure you want to delete?')) {
                 if (gear) {
@@ -57,33 +57,34 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
                     });
                 }
             }
-		};
-
-		// Update existing Gear
-		$scope.update = function() {
-			var gear = $scope.gear;
-
-			gear.$update(function() {
-				$location.path('gears/' + gear._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		// Find a list of Gears
-		$scope.find = function() {
+        };
+        
+        // Update existing Gear
+        $scope.update = function () {
+            var gear = $scope.gear;
+            
+            gear.$update(function () {
+                $location.path('gears/' + gear._id);
+            }, function (errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+        
+        // Find a list of Gears
+        $scope.find = function () {
             if ($stateParams.unpublishedonly && $stateParams.unpublishedonly === 'true') {
                 $scope.gears = Gears.admin.query();
             } else {
                 $scope.gears = Gears.resource.query();
             }
-		};
-
-		// Find existing Gear
-		$scope.findOne = function() {
-			$scope.gear = Gears.resource.get({ 
-				gearId: $stateParams.gearId
-			});
+        };
+        
+        // Find existing Gear
+        $scope.findOne = function () {
+            $scope.gear = Gears.resource.get({
+                gearId: $stateParams.gearId
+            });
+            $scope.relatedPros = Gears.getProsForGear($stateParams.gearId);
         };
 
         // go to gear

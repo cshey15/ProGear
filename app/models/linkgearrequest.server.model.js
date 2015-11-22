@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
+
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 
 function validateUrl(value) {
@@ -47,4 +49,6 @@ var LinkGearRequestSchema = new Schema({
 	}
 });
 
+var options = {};
+LinkGearRequestSchema.plugin(deepPopulate, options /* more on options below */);
 mongoose.model('LinkGearRequest', LinkGearRequestSchema);

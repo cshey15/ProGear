@@ -6,6 +6,8 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
+
 /**
  * Gear Schema
  */
@@ -45,5 +47,6 @@ var GearSchema = new Schema({
 		ref: 'User'
     }
 });
-
+var options = {};
+GearSchema.plugin(deepPopulate, options /* more on options below */);
 mongoose.model('Gear', GearSchema);
