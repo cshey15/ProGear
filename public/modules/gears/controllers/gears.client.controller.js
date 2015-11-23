@@ -19,6 +19,21 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             { id: 2, name: 'Mouse' }
         ];
         $scope.selectedGearType = null;
+        
+        $scope.selectedTypeFilter = null;
+
+        $scope.setFilterGearType = function (value) {
+            if ($scope.selectedTypeFilter === value) {
+                $scope.selectedTypeFilter = undefined;
+            } else {
+                $scope.selectedTypeFilter = value;
+            }
+        };
+        
+        $scope.byType = function (entry) {
+            return $scope.selectedTypeFilter === undefined || entry.type === $scope.selectedTypeFilter;
+        };
+
         // Create new Gear
         $scope.create = function () {
             // Create new Gear object

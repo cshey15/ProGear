@@ -1,9 +1,10 @@
 'use strict';
+///<reference path="../../core/services/menus.client.service.js" />
 
 // Pros controller
 var app = angular.module('pros');
-app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests',
-    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests) {
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -13,6 +14,34 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         $scope.pageChanged = function () {
             $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
         };
+        
+        $scope.selectedSportFilter = undefined;
+        
+        $scope.setSelectedSportFilter = function (value) {
+            if ($scope.selectedSportFilter === value) {
+                $scope.selectedSportFilter = undefined;
+            } else {
+                $scope.selectedSportFilter = value;
+            }
+        };
+        
+        $scope.sportFilter = function (item) {
+            return $scope.selectedSportFilter === undefined || item.sport == $scope.selectedSportFilter;
+        }
+        
+        $scope.selectedTeamFilter = undefined;
+        
+        $scope.setSelectedTeamFilter = function (value) {
+            if ($scope.selectedTeamFilter === value) {
+                $scope.selectedTeamFilter = undefined;
+            } else {
+                $scope.selectedTeamFilter = value;
+            }
+        };
+        
+        $scope.teamFilter = function (item) {
+            return $scope.selectedTeamFilter === undefined || item.team == $scope.selectedTeamFilter;
+        }
 
         // Create new Pro
         $scope.create = function () {
