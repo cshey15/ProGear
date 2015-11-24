@@ -1,10 +1,14 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://devprogear:as1gma@ds035844.mongolab.com:35844/progear',
-	app: {
-		title: 'progear - Development Environment'
-	},
+	//db: 'mongodb://devprogear:as1gma@ds035844.mongolab.com:35844/progear',
+	//app: {
+	//	title: 'progear - Development Environment'
+ //   },
+    db: 'mongodb://localhost/progear-dev',
+    app: {
+        title: 'progear - Development Environment'
+    },
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
