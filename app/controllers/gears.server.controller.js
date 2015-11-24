@@ -99,7 +99,7 @@ exports.listUnpublished = function (req, res) {
 };
 
 exports.getProsForGear = function (req, res) {
-    LinkGearRequest.find({ gear: req.gear, status: "approved" }).deepPopulate("pro").select("pro").exec(function (err, pros) {
+    LinkGearRequest.find({ gear: req.gear, status: 'approved' }).deepPopulate('pro').select('pro').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -108,7 +108,7 @@ exports.getProsForGear = function (req, res) {
             res.json(pros);
         }
     });
-}
+};
 
 /**
  * Gear middleware

@@ -26,8 +26,8 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
         
         $scope.sportFilter = function (item) {
-            return $scope.selectedSportFilter === undefined || item.sport == $scope.selectedSportFilter;
-        }
+            return $scope.selectedSportFilter === undefined || item.sport === $scope.selectedSportFilter;
+        };
         
         $scope.selectedTeamFilter = undefined;
         
@@ -40,8 +40,8 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
         
         $scope.teamFilter = function (item) {
-            return $scope.selectedTeamFilter === undefined || item.team == $scope.selectedTeamFilter;
-        }
+            return $scope.selectedTeamFilter === undefined || item.team === $scope.selectedTeamFilter;
+        };
 
         // Create new Pro
         $scope.create = function () {
@@ -202,7 +202,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 size: 'sm'
             });
             modalInstance.result.then(function (gear) {
-                $scope.selectedGear = gear
+                $scope.selectedGear = gear;
             }, function () {
                 
             });
