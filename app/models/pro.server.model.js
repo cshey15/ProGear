@@ -80,16 +80,16 @@ var ProSchema = new Schema({
 });
 
 // automatically populated based approved requestList
-ProSchema.virtual('gearList').get(function () {
-    var gears = [];
+//ProSchema.virtual('gearList').get(function () {
+//    var gears = [];
     
-    for (var i in this.requestList) {
-        if (this.requestList[i].status === 'approved') {
-            gears.push(this.requestList[i].gear);
-        }
-    }
-    return gears;
-});
+//    for (var i in this.requestList) {
+//        if (this.requestList[i].status === 'approved') {
+//            gears.push(this.requestList[i].gear);
+//        }
+//    }
+//    return gears;
+//});
 
 ProSchema.set('toJSON', { getters: true, virtuals: true });
 ProSchema.set('toObject', { getters: true, virtuals: true });

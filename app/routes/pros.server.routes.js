@@ -13,7 +13,10 @@ module.exports = function(app) {
         .get(pros.read)
         .put(users.requiresLogin, pros.update)
 	    .delete(users.requiresLogin, pros.delete);
-    
+
+    app.route('/pros/:proId/gears')
+	    .get(pros.getGearsForPro);
+
     app.route('/admin/pros/unpublished')
         .get(pros.listUnpublished);
     

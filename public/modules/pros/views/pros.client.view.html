@@ -11,18 +11,16 @@
         <div class="form-group">
             Filter by Sport:
             <button type="button" class="btn btn-default"
-                    ng-model="selected[sportFilterValue]"
                     btn-checkbox
-                    ng-class="{active: !selectedSportType}"
+                    ng-class="{active: !selectedSportFilter}"
                     ng-click="setSelectedSportFilter()">
                 All Sports
             </button>
             <button type="button"
                     ng-repeat="pro in pros  | unique:'sport' | limitTo:5"
                     class="btn btn-default"
-                    ng-model="selected[pro.sport]"
                     btn-checkbox
-                    ng-class="{active: pro.sport == selectedSport}"
+                    ng-class="{active: pro.sport == selectedSportFilter}"
                     ng-click="setSelectedSportFilter(pro.sport)">
                 {{pro.sport}}
             </button>
@@ -30,18 +28,16 @@
         <div class="form-group">
             Filter by Team:
             <button type="button" class="btn btn-default"
-                    ng-model="selected[teamFilterValue]"
                     btn-checkbox
-                    ng-class="{active: !selectedTeamType}"
+                    ng-class="{active: !selectedTeamFilter}"
                     ng-click="setSelectedTeamFilter()">
                 All Teams
             </button>
             <button type="button"
                     ng-repeat="pro in pros | filter:sportFilter | unique:'team' | limitTo:5"
                     class="btn btn-default"
-                    ng-model="selected[pro.team]"
                     btn-checkbox
-                    ng-class="{active: pro.team == selectedTeam}"
+                    ng-class="{active: pro.team == selectedTeamFilter}"
                     ng-click="setSelectedTeamFilter(pro.team)">
                 {{pro.team}}
             </button>

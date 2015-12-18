@@ -1,6 +1,6 @@
 <section data-ng-controller="GearsController" data-ng-init="findOne()">
 	<div class="page-header">
-        <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == gear.user._id))">
+        <div class="pull-right" data-ng-show=" data-ng-show="shouldRender(authentication.user)">
             <a class="btn btn-primary" href="/#!/gears/{{gear._id}}/edit">
                 <i class="glyphicon glyphicon-edit"></i>
             </a>
@@ -10,8 +10,8 @@
         </div>
 		<h1 data-ng-bind="gear.name"></h1>
         <p>Type: <span data-ng-bind="gear.type"></span></p>
-        <p><a data-ng-href="gear.fbProfile" data-ng-show="gear.amazonLink">Buy now!</a></p>
-        <p><a data-ng-href="gear.website" data-ng-show="gear.website">Website</a></p>
+        <p><a data-ng-href="http://{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Buy now!</a></p>
+        <p><a data-ng-href="http://{{gear.website}}" data-ng-show="gear.website">Website</a></p>
 	</div>
     <div class="list-group">
         <h3> Pros that use  this gear:</h3>

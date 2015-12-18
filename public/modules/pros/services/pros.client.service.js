@@ -18,6 +18,11 @@ angular.module('pros').factory('Pros', ['$resource',
                     method: 'PUT'
                 }
             }),
+            getGearsForPro: function (id) {
+                return $resource('pros/:proId/gears', {
+                    proId: id
+                }).query();
+            }
         };
     }
 ]);

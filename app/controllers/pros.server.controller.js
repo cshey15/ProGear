@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
     Pro = mongoose.model('Pro'),
+    LinkGearRequest = mongoose.model('LinkGearRequest'),
     RequestHandler = require('./linkgearrequests.server.controller.js'),
     GearHandler = require('./gears.server.controller.js'),
     _ = require('lodash');
@@ -122,6 +123,17 @@ exports.listUnpublished = function (req, res) {
     });
 };
 
+exports.getGearsForPro = function (req, res) {
+    LinkGearRequest.find({ pro: req.pro, status: 'approved' }).deepPopulate('gear').select('gear').exec(function (err, pros) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(pros);
+        }
+    });
+};
 
 /**
  * Pro middleware

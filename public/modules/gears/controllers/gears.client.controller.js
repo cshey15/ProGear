@@ -20,7 +20,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         ];
         $scope.selectedGearType = null;
         
-        $scope.selectedTypeFilter = null;
+        $scope.selectedTypeFilter = undefined;
 
         $scope.setFilterGearType = function (value) {
             if ($scope.selectedTypeFilter === value) {
@@ -119,6 +119,17 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             }, function () {
                 
             }); 
+        };
+
+        $scope.shouldRender = function (user) {
+            if (user) {
+                for (var userRoleIndex in user.roles) {
+                    if ('admin' === user.roles[userRoleIndex]) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         };
 }]);
 

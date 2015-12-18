@@ -109,6 +109,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             $scope.pro = Pros.resource.get({
                 proId: $stateParams.proId
             });
+            $scope.gearList = Pros.getGearsForPro($stateParams.proId);
         };
 
         // Search for a pro
@@ -206,6 +207,17 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             }, function () {
                 
             });
+        };
+
+        $scope.shouldRender = function (user) {
+            if (user) {
+                for (var userRoleIndex in user.roles) {
+                    if ('admin' === user.roles[userRoleIndex]) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         };
 
         $scope.removeGear = function (gear) {
