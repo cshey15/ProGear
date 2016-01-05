@@ -13,8 +13,8 @@
         <p>Sport: <span data-ng-bind="pro.sport"></span></p>
         <p>Team: <span data-ng-bind="pro.team"></span></p>
         <p>Alt Ids: <span data-ng-bind="pro.alias"></span></p>
-        <p><a data-ng-href="pro.fbProfile" data-ng-show="pro.fbProfile">Facebook</a></p>
-        <p><a data-ng-href="pro.website" data-ng-show="pro.website">Website</a></p>
+        <p><a data-ng-href="http://{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook</a></p>
+        <p><a data-ng-href="http://{{pro.website}}" data-ng-show="pro.website">Website</a></p>
         <hr />
         <h2>Mouse</h2>
         <a ng-href="/#!/pros/{{pro._id}}/addGear?type=Mouse">Add a mouse</a>
