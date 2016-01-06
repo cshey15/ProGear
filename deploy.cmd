@@ -112,8 +112,9 @@ echo ###########
 echo Install Flatten-packages
 echo ###########
 call :ExecuteCmd !NPM_CMD! install flatten-packages
-IF !ERRORLEVEL! NEQ 0 goto error
-node node_modules/flatten-packages/bin/flatten
+	pushd "%DEPLOYMENT_TARGET%"
+	node node_modules/flatten-packages/bin/flatten
+	popd
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 1. KuduSync
