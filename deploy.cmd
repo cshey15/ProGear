@@ -80,51 +80,47 @@ IF DEFINED KUDU_SELECT_NODE_VERSION_CMD (
 )
 
 goto :EOF
-# ----------
-# Deployment
-# ----------
 
-echo Handling node.js grunt deployment.
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Deployment
+:: ----------
 
-# 1. Select node version
-selectNodeVersion
+:Deployment
+echo Handling node.js deployment.
 
+:: 1. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
 
-# 2. Install npm packages
-if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
-  echo ###########
-  echo Install NPM packages
-  echo ##########
-  eval $NPM_CMD install
-  exitWithMessageOnError "npm failed"
-fi
+:: 2. Select node version
+call :SelectNodeVersion
 
-# 3. Install bower packages
-if [ -e "$DEPLOYMENT_SOURCE/bower.json" ]; then
-  echo ###########
-  echo Install Bower packages
-  echo ###########
-  eval $NPM_CMD install bower
-  exitWithMessageOnError "installing bower failed"
-  ./node_modules/.bin/bower install
-  exitWithMessageOnError "bower failed"
-fi
+:: 3. Install npm packages
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! install --production
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 3. Install npm packages
+IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! install bower
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
 
 echo ###########
 echo Install Flatten-packages
 echo ###########
-eval $NPM_CMD install flatten-packages
-exitWithMessageOnError "installing flatten-packages failed"
+call :ExecuteCmd NPM_CMD install flatten-packages
+IF !ERRORLEVEL! NEQ 0 goto error
 node ./node_modules/flatten-packages/bin/flatten .
-exitWithMessageOnError "flatten-packages failed"
-
-
-echo ##########
-echo SYNCING
-echo ##########
-# 5. KuduSync to Target
-"$KUDU_SYNC_CMD" -v 500 -f "$DEPLOYMENT_SOURCE" -t "$DEPLOYMENT_TARGET" -n "$NEXT_MANIFEST_PATH" -p "$PREVIOUS_MANIFEST_PATH" -i ".git;.hg;.deployment;deploy.sh"
-exitWithMessageOnError "Kudu Sync to Target failed"
+IF !ERRORLEVEL! NEQ 0 goto error
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
