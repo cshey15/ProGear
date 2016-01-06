@@ -20,6 +20,7 @@
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
     <Content Include="README.md" />
+    <Compile Include="app\controllers\fileupload.server.controller.js" />
     <Compile Include="gruntfile.js" />
     <Compile Include="karma.conf.js" />
     <Compile Include="server.js" />
