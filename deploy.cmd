@@ -103,19 +103,10 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install bower
+  node_modules/.bin/bower install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
-
-
-echo ###########
-echo Install Flatten-packages
-echo ###########
-call :ExecuteCmd !NPM_CMD! install flatten-packages
-	pushd "%DEPLOYMENT_TARGET%"
-	node node_modules/flatten-packages/bin/flatten
-	popd
-IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 1. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
