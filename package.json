@@ -1,13 +1,17 @@
 {
   "name": "progear",
   "description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cshey15/ProGear.git"
+  },
   "scripts": {
-    "start": "node server.js"
+    "start": "node node_modules/grunt-cli/bin/grunt"
   },
   "dependencies": {
     "async": "~0.9.0",
