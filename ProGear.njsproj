@@ -1,245 +1,245 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <SchemaVersion>2.0</SchemaVersion>
-        <ProjectGuid>{fde3c981-18f1-4b53-817a-4869985a8668}</ProjectGuid>
-        <ProjectHome />
-        <ProjectView>ShowAllFiles</ProjectView>
-        <StartupFile>server.js</StartupFile>
-        <WorkingDirectory>.</WorkingDirectory>
-        <OutputPath>.</OutputPath>
-        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
-        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
-    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
-    <ItemGroup>
-        <Content Include="bower.json" />
-        <Content Include="package.json" />
-        <Content Include="LICENSE.md" />
-        <Content Include="README.md" />
-        <Compile Include="gruntfile.js" />
-        <Compile Include="karma.conf.js" />
-        <Compile Include="server.js" />
-        <Compile Include="config\config.js" />
-        <Compile Include="config\express.js" />
-        <Compile Include="config\init.js" />
-        <Compile Include="config\passport.js" />
-        <Content Include="public\humans.txt" />
-        <Content Include="public\robots.txt" />
-        <Compile Include="public\application.js" />
-        <Compile Include="public\config.js" />
-        <Compile Include="app\controllers\core.server.controller.js" />
-        <Compile Include="app\controllers\errors.server.controller.js" />
-        <Compile Include="app\controllers\gears.server.controller.js" />
-        <Compile Include="app\controllers\linkgearrequests.server.controller.js" />
-        <Compile Include="app\controllers\pros.server.controller.js" />
-        <Compile Include="app\controllers\users.server.controller.js" />
-        <Compile Include="app\models\gear.server.model.js" />
-        <Compile Include="app\models\linkgearrequest.server.model.js" />
-        <Compile Include="app\models\pro.server.model.js" />
-        <Compile Include="app\models\user.server.model.js" />
-        <Compile Include="app\routes\core.server.routes.js" />
-        <Compile Include="app\routes\gears.server.routes.js" />
-        <Compile Include="app\routes\linkgearrequests.server.routes.js" />
-        <Compile Include="app\routes\pros.server.routes.js" />
-        <Compile Include="app\routes\users.server.routes.js" />
-        <Compile Include="app\tests\gear.server.model.test.js" />
-        <Compile Include="app\tests\gear.server.routes.test.js" />
-        <Compile Include="app\tests\linkgearrequest.server.model.test.js" />
-        <Compile Include="app\tests\linkgearrequest.server.routes.test.js" />
-        <Compile Include="app\tests\pro.server.model.test.js" />
-        <Compile Include="app\tests\user.server.model.test.js" />
-        <Content Include="app\views\404.server.view.html" />
-        <Content Include="app\views\500.server.view.html" />
-        <Content Include="app\views\index.server.view.html" />
-        <Content Include="app\views\layout.server.view.html" />
-        <Compile Include="app\controllers\users\users.authentication.server.controller.js" />
-        <Compile Include="app\controllers\users\users.authorization.server.controller.js" />
-        <Compile Include="app\controllers\users\users.password.server.controller.js" />
-        <Compile Include="app\controllers\users\users.profile.server.controller.js" />
-        <Content Include="app\views\templates\reset-password-confirm-email.server.view.html" />
-        <Content Include="app\views\templates\reset-password-email.server.view.html" />
-        <Compile Include="config\env\all.js" />
-        <Compile Include="config\env\development.js" />
-        <Compile Include="config\env\production.js" />
-        <Compile Include="config\env\secure.js" />
-        <Compile Include="config\env\test.js" />
-        <Compile Include="config\strategies\facebook.js" />
-        <Compile Include="config\strategies\github.js" />
-        <Compile Include="config\strategies\google.js" />
-        <Compile Include="config\strategies\linkedin.js" />
-        <Compile Include="config\strategies\local.js" />
-        <Compile Include="config\strategies\twitter.js" />
-        <Compile Include="public\modules\core\core.client.module.js" />
-        <Compile Include="public\modules\gears\gears.client.module.js" />
-        <Compile Include="public\modules\linkgearrequests\linkgearrequests.client.module.js" />
-        <Compile Include="public\modules\pros\pros.client.module.js" />
-        <Compile Include="public\modules\users\users.client.module.js" />
-        <Compile Include="public\modules\core\config\core.client.routes.js" />
-        <Compile Include="public\modules\core\controllers\header.client.controller.js" />
-        <Compile Include="public\modules\core\controllers\home.client.controller.js" />
-        <Content Include="public\modules\core\css\core.css" />
-        <Compile Include="public\modules\core\services\menus.client.service.js" />
-        <Compile Include="public\modules\core\tests\header.client.controller.test.js" />
-        <Compile Include="public\modules\core\tests\home.client.controller.test.js" />
-        <Content Include="public\modules\core\views\header.client.view.html" />
-        <Content Include="public\modules\core\views\home.client.view.html" />
-        <Content Include="public\modules\core\img\brand\logo.png" />
-        <Content Include="public\modules\core\img\brand\favicon.ico" />
-        <Content Include="public\modules\core\img\loaders\loader.gif" />
-        <Compile Include="public\modules\gears\config\gears.client.config.js" />
-        <Compile Include="public\modules\gears\config\gears.client.routes.js" />
-        <Compile Include="public\modules\gears\controllers\gears.client.controller.js" />
-        <Compile Include="public\modules\gears\services\gears.client.service.js" />
-        <Compile Include="public\modules\gears\tests\gears.client.controller.test.js" />
-        <Content Include="public\modules\gears\views\create-gear.client.view.html" />
-        <Content Include="public\modules\gears\views\edit-gear.client.view.html" />
-        <Content Include="public\modules\gears\views\list-gears.client.view.html" />
-        <Content Include="public\modules\gears\views\modalCreate-gear.client.view.html" />
-        <Content Include="public\modules\gears\views\modalList-gear.client.view.html" />
-        <Content Include="public\modules\gears\views\view-gear.client.view.html" />
-        <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.config.js" />
-        <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.routes.js" />
-        <Compile Include="public\modules\linkgearrequests\controllers\linkgearrequests.client.controller.js" />
-        <Compile Include="public\modules\linkgearrequests\services\linkgearrequests.client.service.js" />
-        <Compile Include="public\modules\linkgearrequests\tests\linkgearrequests.client.controller.test.js" />
-        <Content Include="public\modules\linkgearrequests\views\create-linkgearrequest.client.view.html" />
-        <Content Include="public\modules\linkgearrequests\views\edit-linkgearrequest.client.view.html" />
-        <Content Include="public\modules\linkgearrequests\views\list-linkgearrequests.client.view.html" />
-        <Content Include="public\modules\linkgearrequests\views\view-linkgearrequest.client.view.html" />
-        <Compile Include="public\modules\pros\config\pros.client.config.js" />
-        <Compile Include="public\modules\pros\config\pros.client.routes.js" />
-        <Compile Include="public\modules\pros\controllers\pros.client.controller.js" />
-        <Compile Include="public\modules\pros\services\pros.client.service.js" />
-        <Compile Include="public\modules\pros\tests\pros.client.controller.test.js" />
-        <Content Include="public\modules\pros\views\addGear-pro.client.view.html" />
-        <Content Include="public\modules\pros\views\create-pro.client.view.html" />
-        <Content Include="public\modules\pros\views\edit-pro.client.view.html" />
-        <Content Include="public\modules\pros\views\modalCreate-pro.client.view.html" />
-        <Content Include="public\modules\pros\views\pros.client.view.html" />
-        <Content Include="public\modules\pros\views\view-pro.client.view.html" />
-        <Compile Include="public\modules\users\config\users.client.config.js" />
-        <Compile Include="public\modules\users\config\users.client.routes.js" />
-        <Compile Include="public\modules\users\controllers\authentication.client.controller.js" />
-        <Compile Include="public\modules\users\controllers\password.client.controller.js" />
-        <Compile Include="public\modules\users\controllers\settings.client.controller.js" />
-        <Content Include="public\modules\users\css\users.css" />
-        <Compile Include="public\modules\users\services\authentication.client.service.js" />
-        <Compile Include="public\modules\users\services\users.client.service.js" />
-        <Compile Include="public\modules\users\tests\authentication.client.controller.test.js" />
-        <Content Include="public\modules\users\img\buttons\facebook.png" />
-        <Content Include="public\modules\users\img\buttons\github.png" />
-        <Content Include="public\modules\users\img\buttons\google.png" />
-        <Content Include="public\modules\users\img\buttons\linkedin.png" />
-        <Content Include="public\modules\users\img\buttons\twitter.png" />
-        <Content Include="public\modules\users\views\authentication\signin.client.view.html" />
-        <Content Include="public\modules\users\views\authentication\signup.client.view.html" />
-        <Content Include="public\modules\users\views\password\forgot-password.client.view.html" />
-        <Content Include="public\modules\users\views\password\reset-password-invalid.client.view.html" />
-        <Content Include="public\modules\users\views\password\reset-password-success.client.view.html" />
-        <Content Include="public\modules\users\views\password\reset-password.client.view.html" />
-        <Content Include="public\modules\users\views\settings\change-password.client.view.html" />
-        <Content Include="public\modules\users\views\settings\edit-profile.client.view.html" />
-        <Content Include="public\modules\users\views\settings\social-accounts.client.view.html" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="app" />
-        <Folder Include="app\controllers" />
-        <Folder Include="app\controllers\users" />
-        <Folder Include="app\models" />
-        <Folder Include="app\routes" />
-        <Folder Include="app\tests" />
-        <Folder Include="app\views" />
-        <Folder Include="app\views\templates" />
-        <Folder Include="config" />
-        <Folder Include="config\env" />
-        <Folder Include="config\strategies" />
-        <Folder Include="public" />
-        <Folder Include="public\modules" />
-        <Folder Include="public\modules\core" />
-        <Folder Include="public\modules\core\config" />
-        <Folder Include="public\modules\core\controllers" />
-        <Folder Include="public\modules\core\css" />
-        <Folder Include="public\modules\core\img" />
-        <Folder Include="public\modules\core\img\brand" />
-        <Folder Include="public\modules\core\img\loaders" />
-        <Folder Include="public\modules\core\services" />
-        <Folder Include="public\modules\core\tests" />
-        <Folder Include="public\modules\core\views" />
-        <Folder Include="public\modules\gears" />
-        <Folder Include="public\modules\gears\config" />
-        <Folder Include="public\modules\gears\controllers" />
-        <Folder Include="public\modules\gears\services" />
-        <Folder Include="public\modules\gears\tests" />
-        <Folder Include="public\modules\gears\views" />
-        <Folder Include="public\modules\linkgearrequests" />
-        <Folder Include="public\modules\linkgearrequests\config" />
-        <Folder Include="public\modules\linkgearrequests\controllers" />
-        <Folder Include="public\modules\linkgearrequests\services" />
-        <Folder Include="public\modules\linkgearrequests\tests" />
-        <Folder Include="public\modules\linkgearrequests\views" />
-        <Folder Include="public\modules\pros" />
-        <Folder Include="public\modules\pros\config" />
-        <Folder Include="public\modules\pros\controllers" />
-        <Folder Include="public\modules\pros\services" />
-        <Folder Include="public\modules\pros\tests" />
-        <Folder Include="public\modules\pros\views" />
-        <Folder Include="public\modules\users" />
-        <Folder Include="public\modules\users\config" />
-        <Folder Include="public\modules\users\controllers" />
-        <Folder Include="public\modules\users\css" />
-        <Folder Include="public\modules\users\img" />
-        <Folder Include="public\modules\users\img\buttons" />
-        <Folder Include="public\modules\users\services" />
-        <Folder Include="public\modules\users\tests" />
-        <Folder Include="public\modules\users\views" />
-        <Folder Include="public\modules\users\views\authentication" />
-        <Folder Include="public\modules\users\views\password" />
-        <Folder Include="public\modules\users\views\settings" />
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
-    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
-    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
-    <ProjectExtensions>
-        <VisualStudio>
-          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
-            <WebProjectProperties>
-              <UseIIS>False</UseIIS>
-              <AutoAssignPort>True</AutoAssignPort>
-              <DevelopmentServerPort>0</DevelopmentServerPort>
-              <DevelopmentServerVPath>/</DevelopmentServerVPath>
-              <IISUrl>http://localhost:48022/</IISUrl>
-              <NTLMAuthentication>False</NTLMAuthentication>
-              <UseCustomServer>True</UseCustomServer>
-              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
-              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-            </WebProjectProperties>
-          </FlavorProperties>
-          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
-            <WebProjectProperties>
-              <StartPageUrl>
-              </StartPageUrl>
-              <StartAction>CurrentPage</StartAction>
-              <AspNetDebugging>True</AspNetDebugging>
-              <SilverlightDebugging>False</SilverlightDebugging>
-              <NativeDebugging>False</NativeDebugging>
-              <SQLDebugging>False</SQLDebugging>
-              <ExternalProgram>
-              </ExternalProgram>
-              <StartExternalURL>
-              </StartExternalURL>
-              <StartCmdLineArguments>
-              </StartCmdLineArguments>
-              <StartWorkingDirectory>
-              </StartWorkingDirectory>
-              <EnableENC>False</EnableENC>
-              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
-            </WebProjectProperties>
-          </FlavorProperties>
-        </VisualStudio>
-    </ProjectExtensions>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{fde3c981-18f1-4b53-817a-4869985a8668}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>server.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="bower.json" />
+    <Content Include="package.json" />
+    <Content Include="LICENSE.md" />
+    <Content Include="README.md" />
+    <Compile Include="gruntfile.js" />
+    <Compile Include="karma.conf.js" />
+    <Compile Include="server.js" />
+    <Compile Include="config\config.js" />
+    <Compile Include="config\express.js" />
+    <Compile Include="config\init.js" />
+    <Compile Include="config\passport.js" />
+    <Content Include="public\humans.txt" />
+    <Content Include="public\robots.txt" />
+    <Compile Include="public\application.js" />
+    <Compile Include="public\config.js" />
+    <Compile Include="app\controllers\core.server.controller.js" />
+    <Compile Include="app\controllers\errors.server.controller.js" />
+    <Compile Include="app\controllers\gears.server.controller.js" />
+    <Compile Include="app\controllers\linkgearrequests.server.controller.js" />
+    <Compile Include="app\controllers\pros.server.controller.js" />
+    <Compile Include="app\controllers\users.server.controller.js" />
+    <Compile Include="app\models\gear.server.model.js" />
+    <Compile Include="app\models\linkgearrequest.server.model.js" />
+    <Compile Include="app\models\pro.server.model.js" />
+    <Compile Include="app\models\user.server.model.js" />
+    <Compile Include="app\routes\core.server.routes.js" />
+    <Compile Include="app\routes\gears.server.routes.js" />
+    <Compile Include="app\routes\linkgearrequests.server.routes.js" />
+    <Compile Include="app\routes\pros.server.routes.js" />
+    <Compile Include="app\routes\users.server.routes.js" />
+    <Compile Include="app\tests\gear.server.model.test.js" />
+    <Compile Include="app\tests\gear.server.routes.test.js" />
+    <Compile Include="app\tests\linkgearrequest.server.model.test.js" />
+    <Compile Include="app\tests\linkgearrequest.server.routes.test.js" />
+    <Compile Include="app\tests\pro.server.model.test.js" />
+    <Compile Include="app\tests\user.server.model.test.js" />
+    <Content Include="app\views\404.server.view.html" />
+    <Content Include="app\views\500.server.view.html" />
+    <Content Include="app\views\index.server.view.html" />
+    <Content Include="app\views\layout.server.view.html" />
+    <Compile Include="app\controllers\users\users.authentication.server.controller.js" />
+    <Compile Include="app\controllers\users\users.authorization.server.controller.js" />
+    <Compile Include="app\controllers\users\users.password.server.controller.js" />
+    <Compile Include="app\controllers\users\users.profile.server.controller.js" />
+    <Content Include="app\views\templates\reset-password-confirm-email.server.view.html" />
+    <Content Include="app\views\templates\reset-password-email.server.view.html" />
+    <Compile Include="config\env\all.js" />
+    <Compile Include="config\env\development.js" />
+    <Compile Include="config\env\production.js" />
+    <Compile Include="config\env\secure.js" />
+    <Compile Include="config\env\test.js" />
+    <Compile Include="config\strategies\facebook.js" />
+    <Compile Include="config\strategies\github.js" />
+    <Compile Include="config\strategies\google.js" />
+    <Compile Include="config\strategies\linkedin.js" />
+    <Compile Include="config\strategies\local.js" />
+    <Compile Include="config\strategies\twitter.js" />
+    <Compile Include="public\modules\core\core.client.module.js" />
+    <Compile Include="public\modules\gears\gears.client.module.js" />
+    <Compile Include="public\modules\linkgearrequests\linkgearrequests.client.module.js" />
+    <Compile Include="public\modules\pros\pros.client.module.js" />
+    <Compile Include="public\modules\users\users.client.module.js" />
+    <Compile Include="public\modules\core\config\core.client.routes.js" />
+    <Compile Include="public\modules\core\controllers\header.client.controller.js" />
+    <Compile Include="public\modules\core\controllers\home.client.controller.js" />
+    <Content Include="public\modules\core\css\core.css" />
+    <Compile Include="public\modules\core\services\menus.client.service.js" />
+    <Compile Include="public\modules\core\tests\header.client.controller.test.js" />
+    <Compile Include="public\modules\core\tests\home.client.controller.test.js" />
+    <Content Include="public\modules\core\views\header.client.view.html" />
+    <Content Include="public\modules\core\views\home.client.view.html" />
+    <Content Include="public\modules\core\img\brand\logo.png" />
+    <Content Include="public\modules\core\img\brand\favicon.ico" />
+    <Content Include="public\modules\core\img\loaders\loader.gif" />
+    <Compile Include="public\modules\gears\config\gears.client.config.js" />
+    <Compile Include="public\modules\gears\config\gears.client.routes.js" />
+    <Compile Include="public\modules\gears\controllers\gears.client.controller.js" />
+    <Compile Include="public\modules\gears\services\gears.client.service.js" />
+    <Compile Include="public\modules\gears\tests\gears.client.controller.test.js" />
+    <Content Include="public\modules\gears\views\create-gear.client.view.html" />
+    <Content Include="public\modules\gears\views\edit-gear.client.view.html" />
+    <Content Include="public\modules\gears\views\list-gears.client.view.html" />
+    <Content Include="public\modules\gears\views\modalCreate-gear.client.view.html" />
+    <Content Include="public\modules\gears\views\modalList-gear.client.view.html" />
+    <Content Include="public\modules\gears\views\view-gear.client.view.html" />
+    <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.config.js" />
+    <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.routes.js" />
+    <Compile Include="public\modules\linkgearrequests\controllers\linkgearrequests.client.controller.js" />
+    <Compile Include="public\modules\linkgearrequests\services\linkgearrequests.client.service.js" />
+    <Compile Include="public\modules\linkgearrequests\tests\linkgearrequests.client.controller.test.js" />
+    <Content Include="public\modules\linkgearrequests\views\create-linkgearrequest.client.view.html" />
+    <Content Include="public\modules\linkgearrequests\views\edit-linkgearrequest.client.view.html" />
+    <Content Include="public\modules\linkgearrequests\views\list-linkgearrequests.client.view.html" />
+    <Content Include="public\modules\linkgearrequests\views\view-linkgearrequest.client.view.html" />
+    <Compile Include="public\modules\pros\config\pros.client.config.js" />
+    <Compile Include="public\modules\pros\config\pros.client.routes.js" />
+    <Compile Include="public\modules\pros\controllers\pros.client.controller.js" />
+    <Compile Include="public\modules\pros\services\pros.client.service.js" />
+    <Compile Include="public\modules\pros\tests\pros.client.controller.test.js" />
+    <Content Include="public\modules\pros\views\addGear-pro.client.view.html" />
+    <Content Include="public\modules\pros\views\create-pro.client.view.html" />
+    <Content Include="public\modules\pros\views\edit-pro.client.view.html" />
+    <Content Include="public\modules\pros\views\modalCreate-pro.client.view.html" />
+    <Content Include="public\modules\pros\views\pros.client.view.html" />
+    <Content Include="public\modules\pros\views\view-pro.client.view.html" />
+    <Compile Include="public\modules\users\config\users.client.config.js" />
+    <Compile Include="public\modules\users\config\users.client.routes.js" />
+    <Compile Include="public\modules\users\controllers\authentication.client.controller.js" />
+    <Compile Include="public\modules\users\controllers\password.client.controller.js" />
+    <Compile Include="public\modules\users\controllers\settings.client.controller.js" />
+    <Content Include="public\modules\users\css\users.css" />
+    <Compile Include="public\modules\users\services\authentication.client.service.js" />
+    <Compile Include="public\modules\users\services\users.client.service.js" />
+    <Compile Include="public\modules\users\tests\authentication.client.controller.test.js" />
+    <Content Include="public\modules\users\img\buttons\facebook.png" />
+    <Content Include="public\modules\users\img\buttons\github.png" />
+    <Content Include="public\modules\users\img\buttons\google.png" />
+    <Content Include="public\modules\users\img\buttons\linkedin.png" />
+    <Content Include="public\modules\users\img\buttons\twitter.png" />
+    <Content Include="public\modules\users\views\authentication\signin.client.view.html" />
+    <Content Include="public\modules\users\views\authentication\signup.client.view.html" />
+    <Content Include="public\modules\users\views\password\forgot-password.client.view.html" />
+    <Content Include="public\modules\users\views\password\reset-password-invalid.client.view.html" />
+    <Content Include="public\modules\users\views\password\reset-password-success.client.view.html" />
+    <Content Include="public\modules\users\views\password\reset-password.client.view.html" />
+    <Content Include="public\modules\users\views\settings\change-password.client.view.html" />
+    <Content Include="public\modules\users\views\settings\edit-profile.client.view.html" />
+    <Content Include="public\modules\users\views\settings\social-accounts.client.view.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="app" />
+    <Folder Include="app\controllers" />
+    <Folder Include="app\controllers\users" />
+    <Folder Include="app\models" />
+    <Folder Include="app\routes" />
+    <Folder Include="app\tests" />
+    <Folder Include="app\views" />
+    <Folder Include="app\views\templates" />
+    <Folder Include="config" />
+    <Folder Include="config\env" />
+    <Folder Include="config\strategies" />
+    <Folder Include="public" />
+    <Folder Include="public\modules" />
+    <Folder Include="public\modules\core" />
+    <Folder Include="public\modules\core\config" />
+    <Folder Include="public\modules\core\controllers" />
+    <Folder Include="public\modules\core\css" />
+    <Folder Include="public\modules\core\img" />
+    <Folder Include="public\modules\core\img\brand" />
+    <Folder Include="public\modules\core\img\loaders" />
+    <Folder Include="public\modules\core\services" />
+    <Folder Include="public\modules\core\tests" />
+    <Folder Include="public\modules\core\views" />
+    <Folder Include="public\modules\gears" />
+    <Folder Include="public\modules\gears\config" />
+    <Folder Include="public\modules\gears\controllers" />
+    <Folder Include="public\modules\gears\services" />
+    <Folder Include="public\modules\gears\tests" />
+    <Folder Include="public\modules\gears\views" />
+    <Folder Include="public\modules\linkgearrequests" />
+    <Folder Include="public\modules\linkgearrequests\config" />
+    <Folder Include="public\modules\linkgearrequests\controllers" />
+    <Folder Include="public\modules\linkgearrequests\services" />
+    <Folder Include="public\modules\linkgearrequests\tests" />
+    <Folder Include="public\modules\linkgearrequests\views" />
+    <Folder Include="public\modules\pros" />
+    <Folder Include="public\modules\pros\config" />
+    <Folder Include="public\modules\pros\controllers" />
+    <Folder Include="public\modules\pros\services" />
+    <Folder Include="public\modules\pros\tests" />
+    <Folder Include="public\modules\pros\views" />
+    <Folder Include="public\modules\users" />
+    <Folder Include="public\modules\users\config" />
+    <Folder Include="public\modules\users\controllers" />
+    <Folder Include="public\modules\users\css" />
+    <Folder Include="public\modules\users\img" />
+    <Folder Include="public\modules\users\img\buttons" />
+    <Folder Include="public\modules\users\services" />
+    <Folder Include="public\modules\users\tests" />
+    <Folder Include="public\modules\users\views" />
+    <Folder Include="public\modules\users\views\authentication" />
+    <Folder Include="public\modules\users\views\password" />
+    <Folder Include="public\modules\users\views\settings" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

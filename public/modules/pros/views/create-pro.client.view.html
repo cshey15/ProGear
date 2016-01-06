@@ -12,6 +12,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="name">Picture</label>
+                    <div class="controls">
+                        <button class="controls">
+                            <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                                 ngf-resize="{width: 100, height: 100}">Select</div>
+                        </button>
+                        <img ng-show="file.$valid" ngf-thumbnail="file">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="sport">Sport</label>
                     <div class="controls">
                         <input type="text" data-ng-model="sport" id="sport" class="form-control" placeholder="Sport" required>

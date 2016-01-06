@@ -3,8 +3,8 @@
 
 // Pros controller
 var app = angular.module('pros');
-app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus',
-    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus) {
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus', 'Upload',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -57,14 +57,23 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             // Redirect after save
             pro.$save(function (response) {
                 $location.path('pros/' + response._id);  
-                
+                $scope.upload($scope.file);
                 // Clear form fields
                 $scope.name = '';
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
-        
+
+        $scope.upload = function (file, proid) {
+            Upload.upload({
+                url: 'api/upload/',
+                method: 'POST',
+                data: { 'type': 'pro', id: proid },
+                file: file
+            });
+        };
+
         // Remove existing Pro
         $scope.remove = function (pro) {
             if (confirm('Are you sure you want to delete?')) {
