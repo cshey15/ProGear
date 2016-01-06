@@ -16,7 +16,9 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include=".deployment" />
     <Content Include="bower.json" />
+    <Content Include="deploy.cmd" />
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
     <Content Include="README.md" />
