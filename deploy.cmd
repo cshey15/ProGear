@@ -117,9 +117,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 echo ###########
 echo Install Flatten-packages
 echo ###########
-call :ExecuteCmd NPM_CMD install flatten-packages
+call :ExecuteCmd !NPM_CMD! install flatten-packages
 IF !ERRORLEVEL! NEQ 0 goto error
-node ./node_modules/flatten-packages/bin/flatten .
+!NPM_CMD! ./node_modules/flatten-packages/bin/flatten .
 IF !ERRORLEVEL! NEQ 0 goto error
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
