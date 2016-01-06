@@ -21,6 +21,7 @@
     <Content Include="deploy.cmd" />
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
+    <Content Include="public\modules\media\images\defaultPerson.jpg" />
     <Content Include="README.md" />
     <Compile Include="app\controllers\fileupload.server.controller.js" />
     <Compile Include="gruntfile.js" />
@@ -184,6 +185,8 @@
     <Folder Include="public\modules\linkgearrequests\services" />
     <Folder Include="public\modules\linkgearrequests\tests" />
     <Folder Include="public\modules\linkgearrequests\views" />
+    <Folder Include="public\modules\media\" />
+    <Folder Include="public\modules\media\images\" />
     <Folder Include="public\modules\pros" />
     <Folder Include="public\modules\pros\config" />
     <Folder Include="public\modules\pros\controllers" />

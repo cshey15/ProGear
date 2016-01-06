@@ -41,9 +41,9 @@ var ProSchema = new Schema({
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
         validate: [validateLength, 'name must be 15 chars in length or less']
     },
-    pictureUrl: {
+    profilePictureUrl: {
         type: String,
-        default: '',
+        default: '/modules/media/images/defaultPerson.jpg',
     },
     sport: {
         type: String,
