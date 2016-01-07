@@ -103,7 +103,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install bower
-  call :ExecuteCmd  node_modules/.bin/bower install
+  call node_modules/.bin/bower install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
