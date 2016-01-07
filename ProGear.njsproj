@@ -19,6 +19,7 @@
     <Content Include=".deployment" />
     <Content Include="bower.json" />
     <Content Include="deploy.cmd" />
+    <Content Include="node_modules\.bin\bower" />
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
     <Content Include="public\modules\gears\views\list-gears-admin.client.view.html" />
@@ -164,6 +165,7 @@
     <Folder Include="config" />
     <Folder Include="config\env" />
     <Folder Include="config\strategies" />
+    <Folder Include="node_modules\.bin\" />
     <Folder Include="public" />
     <Folder Include="public\modules" />
     <Folder Include="public\modules\core" />
