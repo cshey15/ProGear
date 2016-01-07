@@ -8,13 +8,12 @@
     <div class="form-group">
         Filter by type:
         <button type="button"class="btn btn-default"
-                btn-checkbox
+                
                 ng-class="{active: !selectedTypeFilter}"
                 ng-click="setFilterGearType()">All</button>
         <button type="button"
                 ng-repeat="gearType in gearTypes"
                 class="btn btn-default"
-                btn-checkbox
                 ng-class="{active: gearType.name == selectedTypeFilter}"
                 ng-click="setFilterGearType(gearType.name)">
             {{gearType.name}}
