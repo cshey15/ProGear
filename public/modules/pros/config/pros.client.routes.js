@@ -7,7 +7,7 @@ angular.module('pros').config(['$stateProvider',
         $stateProvider.
 		state('listPros', {
             url: '/pros?unpublishedonly',
-            templateUrl: 'modules/pros/views/pros.client.view.html'
+            templateUrl: 'modules/pros/views/list-pros.client.view.html'
         }).
 		state('createPro', {
             url: '/pros/create',
@@ -24,6 +24,10 @@ angular.module('pros').config(['$stateProvider',
 		state('editPro', {
             url: '/pros/:proId/edit',
             templateUrl: 'modules/pros/views/edit-pro.client.view.html'
+        })
+        .state('listProsAdmin', {
+            url: '/admin/pros?unpublishedonly',
+            templateUrl: 'modules/pros/views/list-pros-admin.client.view.html'
         });
     }
 ]);

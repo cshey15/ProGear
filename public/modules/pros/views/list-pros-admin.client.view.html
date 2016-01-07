@@ -1,0 +1,65 @@
+<section data-ng-controller="ProsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Pros</h1>
+    </div>
+    <!-- this is the new search input field -->
+    <div class="form-group">
+        <input type="text" ng-model="search" typeahead="pro as pro.name for pro in pros | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="proSearch($item)" placeholder="Search Pro...">
+    </div>
+    <!-- end -->
+    <div class="list-group">
+        <div class="form-group">
+            Filter by Sport:
+            <button type="button" class="btn btn-default"
+                    btn-checkbox
+                    ng-class="{active: !selectedSportFilter}"
+                    ng-click="setSelectedSportFilter()">
+                All Sports
+            </button>
+            <button type="button"
+                    ng-repeat="pro in pros  | unique:'sport' | limitTo:5"
+                    class="btn btn-default"
+                    btn-checkbox
+                    ng-class="{active: pro.sport == selectedSportFilter}"
+                    ng-click="setSelectedSportFilter(pro.sport)">
+                {{pro.sport}}
+            </button>
+        </div>
+        <div class="form-group">
+            Filter by Team:
+            <button type="button" class="btn btn-default"
+                    btn-checkbox
+                    ng-class="{active: !selectedTeamFilter}"
+                    ng-click="setSelectedTeamFilter()">
+                All Teams
+            </button>
+            <button type="button"
+                    ng-repeat="pro in pros | filter:sportFilter | unique:'team' | limitTo:5"
+                    class="btn btn-default"
+                    btn-checkbox
+                    ng-class="{active: pro.team == selectedTeamFilter}"
+                    ng-click="setSelectedTeamFilter(pro.team)">
+                {{pro.team}}
+            </button>
+        </div>
+        <a data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize" data-ng-href="#!/pros/{{pro._id}}" class="list-group-item">
+            <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
+            <span data-ng-bind="pro.team"></span>
+            <small class="list-group-item-text">
+                Posted on
+                <span data-ng-bind="pro.created | date:'medium'"></span>
+                by
+                <span data-ng-bind="pro.user.displayName"></span>
+            </small>
+        </a>
+    </div>
+    <!-- this is the paging control -->
+    <pagination total-items="pros.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="pros.length > pageSize"></pagination>
+    <!-- end -->
+    <div class="alert alert-warning text-center" data-ng-hide="!pros.$resolved || pros.length">
+        No pros yet, why don't you <a href="/#!/pros/create">create one</a>?
+    </div>
+    <div class="text-center" data-ng-hide="!(!pros.$resolved || pros.length)">
+        <button ng-click="openCreate()">Create new pro</button>
+    </div>
+</section>

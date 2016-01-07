@@ -20,6 +20,10 @@ angular.module('gears').config(['$stateProvider',
 		state('editGear', {
 			url: '/gears/:gearId/edit',
 			templateUrl: 'modules/gears/views/edit-gear.client.view.html'
-		});
+        }).
+        state('listGearsAdmin', {
+            url: '/admin/gears?unpublishedonly',
+            templateUrl: 'modules/gears/views/list-gears-admin.client.view.html'
+        });
 	}
 ]);
