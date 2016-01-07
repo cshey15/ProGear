@@ -18,7 +18,7 @@
             </button>
             <button type="button"
                     ng-repeat="pro in pros  | unique:'sport' | limitTo:5"
-                    class="btn btn-default"
+                    class="btn btn-default  btn-sm"
                     btn-checkbox
                     ng-class="{active: pro.sport == selectedSportFilter}"
                     ng-click="setSelectedSportFilter(pro.sport)">
@@ -42,7 +42,7 @@
                 {{pro.team}}
             </button>
         </div>
-        <a data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize" data-ng-href="#!/pros/{{pro._id}}" class="list-group-item">
+        <a data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize" data-ng-href="#!/pros/{{pro._id}}/edit" class="list-group-item">
             <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
             <span data-ng-bind="pro.team"></span>
             <small class="list-group-item-text">

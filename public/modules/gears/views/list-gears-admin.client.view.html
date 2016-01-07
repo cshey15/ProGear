@@ -20,7 +20,7 @@
         </button>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="gear in gears | filter:byType | limitTo: offset - gears.length | limitTo: pageSize" data-ng-href="#!/gears/{{gear._id}}" class="list-group-item">
+        <a data-ng-repeat="gear in gears | filter:byType | limitTo: offset - gears.length | limitTo: pageSize" data-ng-href="#!/gears/{{gear._id}}/edit" class="list-group-item">
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="gear.created | date:'medium'"></span>
