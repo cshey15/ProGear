@@ -6,37 +6,31 @@
         <input type="text" ng-model="search" typeahead="gear as gear.name for gear in gears | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="gearSearch($item)" placeholder="Search Gear...">
     </div>
     <div class="form-group">
-        Filter by type:
-        <button type="button"class="btn btn-default"
-                
-                ng-class="{active: !selectedTypeFilter}"
-                ng-click="setFilterGearType()">All</button>
-        <button type="button"
-                ng-repeat="gearType in gearTypes"
-                class="btn btn-default"
-                ng-class="{active: gearType.name == selectedTypeFilter}"
-                ng-click="setFilterGearType(gearType.name)">
-            {{gearType.name}}
-        </button>
+        <label>Filter by type:</label>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default"
+                    ng-class="{active: !selectedTypeFilter}"
+                    ng-click="setFilterGearType()">
+                All
+            </button>
+            <button type="button"
+                    ng-repeat="gearType in gearTypes"
+                    class="btn btn-default"
+                    ng-class="{active: gearType.name == selectedTypeFilter}"
+                    ng-click="setFilterGearType(gearType.name)">
+                {{gearType.name}}
+            </button>
+        </div>
     </div>
-    <div class="list-group">
-        <a data-ng-repeat="gear in gears | filter:byType | limitTo: offset - gears.length | limitTo: pageSize" data-ng-href="#!/gears/{{gear._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="gear.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="gear.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="gear.name"></h4>
-        </a>
+    <div class="list-group row">
+        <div data-ng-repeat="gear in gears | filter:byType | limitTo: offset - gears.length | limitTo: pageSize" class="list-group-item col-sm-3 text-center">
+            <a data-ng-href="#!/gears/{{gear._id}}">
+                <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                <h4 class="list-group-item-heading" data-ng-bind="gear.name"></h4>
+            </a>
+        </div>
     </div>
     <!-- this is the paging control -->
     <pagination total-items="gears.length" ng-model="currentPage" ng-change="pageChanged()" max-size="pageSize" ng-show="gears.length > pageSize"></pagination>
     <!-- end -->
-    <div class="alert alert-warning text-center" data-ng-hide="!gears.$resolved || gears.length">
-    	No Gears yet, why don't you <a href="/#!/gears/create">create one</a>?
-    </div>
-    <div class="text-center" data-ng-hide="!(!gears.$resolved || gears.length)">
-        <button ng-click="openCreate()">Create new gear</button>
-    </div>
 </section>

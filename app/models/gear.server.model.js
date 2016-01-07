@@ -18,6 +18,10 @@ var GearSchema = new Schema({
 		required: 'Please fill Gear name',
 		trim: true
     },
+    profilePictureUrl: {
+        type: String,
+        default: '/modules/media/images/imageComingSoon.jpg',
+    },
     type: {
         type: String, default: '',
         required: 'Please fill Gear type',
