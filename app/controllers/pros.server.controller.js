@@ -124,7 +124,8 @@ exports.listUnpublished = function (req, res) {
 };
 
 exports.getGearsForPro = function (req, res) {
-    LinkGearRequest.find({ pro: req.pro, status: 'approved' }).deepPopulate('gear').select('gear').exec(function (err, pros) {
+    //TODO, add explanation and proof link to gears section
+    LinkGearRequest.find({ pro: req.pro, status: 'approved' }).deepPopulate('gear').select('proofLink explanation gear').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)

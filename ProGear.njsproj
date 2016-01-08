@@ -165,6 +165,7 @@
     <Folder Include="config" />
     <Folder Include="config\env" />
     <Folder Include="config\strategies" />
+    <Folder Include="node_modules\" />
     <Folder Include="node_modules\.bin\" />
     <Folder Include="public" />
     <Folder Include="public\modules" />
