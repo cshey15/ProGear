@@ -9,7 +9,11 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         $scope.currentPage = 1;
         $scope.pageSize = 10;
         $scope.offset = 0;
-        
+        $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places.
+            { id: 1, name: 'Keyboard' },
+            { id: 2, name: 'Mouse' }
+        ];
+
         // Page changed handler
         $scope.pageChanged = function () {
             $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;

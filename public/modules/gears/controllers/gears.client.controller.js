@@ -14,7 +14,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
         };
         
-        $scope.gearTypes = [
+        $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places.
             { id: 1, name: 'Keyboard' },
             { id: 2, name: 'Mouse' }
         ];
