@@ -9,6 +9,12 @@ module.exports = function(app) {
 		.get(gears.list)
 		.post(users.requiresLogin, gears.create);
 
+    app.route('/gears/top')
+		.get(gears.listTop);
+
+    app.route('/gears/recent')
+		.get(gears.listRecent);
+
 	app.route('/gears/:gearId')
 		.get(gears.read)
 		.put(users.requiresLogin, gears.update)

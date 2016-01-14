@@ -111,6 +111,30 @@ exports.list = function(req, res) {
     });
 };
 
+exports.listTop = function (req, res) {
+    Pro.find({ published: true }).sort('-popularityScore').limit(6).exec(function (err, gears) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(gears);
+        }
+    });
+};
+
+exports.listRecent = function (req, res) {
+    Pro.find({ published: true }).sort('-created').limit(6).exec(function (err, gears) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(gears);
+        }
+    });
+};
+
 exports.listUnpublished = function (req, res) {
     Pro.find({ published: false }).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
         if (err) {

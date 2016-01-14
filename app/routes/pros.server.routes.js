@@ -8,6 +8,12 @@ module.exports = function(app) {
         .get(pros.list)
         .post(pros.create);
 
+    app.route('/pros/top')
+		.get(pros.listTop);
+    
+    app.route('/pros/recent')
+		.get(pros.listRecent);
+
     // the proId param is added to the params object for the request
     app.route('/pros/:proId')
         .get(pros.read)
