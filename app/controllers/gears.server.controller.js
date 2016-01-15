@@ -31,8 +31,20 @@ exports.create = function(req, res) {
 /**
  * Show the current Gear
  */
-exports.read = function(req, res) {
-	res.jsonp(req.gear);
+var aws = require('aws-lib');
+var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prsge-20');
+
+exports.read = function (req, res) {
+    if (req.gear.asin){
+        prodAdv.call('ItemLookup', { ItemId: req.gear.asin, ResponseGroup: 'ItemAttributes,Reviews,Images' }, function (err, result) {
+            if (!err && req.gear && result && result.Items && result.Items.Item) {
+                req.gear.info = result.Items.Item;
+            }
+            res.jsonp(req.gear);
+        }); 
+    } else {
+        res.jsonp(req.gear);
+    }
 };
 
 /**
@@ -141,7 +153,7 @@ exports.gearByID = function(req, res, next, id) {
 	Gear.findById(id).populate('user', 'displayName').populate('pro').exec(function(err, gear) {
 		if (err) return next(err);
 		if (! gear) return next(new Error('Failed to load Gear ' + id));
-		req.gear = gear ;
+        req.gear = gear;
 		next();
 	});
 };

@@ -1,5 +1,5 @@
 <section data-ng-controller="HomeController" data-ng-init="find()">
-    <div class="row">
+    <div class="well">
         <h1>Proz Gear</h1>
         <h2>Find out what gear your favorite Gamer pro uses to beat the competition </h2>
     </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         <h3>Top gear</h3>
-        <div class="list-group row">
+        <div class="list-group">
             <div data-ng-repeat="gear in topGears" class="list-group-item col-sm-3 text-center">
                 <a data-ng-href="#!/gears/{{gear._id}}">
                     <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
@@ -41,7 +41,7 @@
     </div>
     <div class="row">
         <h3>Recently added gear</h3>
-        <div class="list-group row">
+        <div class="list-group">
             <div data-ng-repeat="gear in recentGears" class="list-group-item col-sm-3 text-center">
                 <a data-ng-href="#!/gears/{{gear._id}}">
                     <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
