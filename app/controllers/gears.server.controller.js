@@ -9,30 +9,73 @@ var mongoose = require('mongoose'),
     Pro = mongoose.model('Pro'),
     LinkGearRequest = mongoose.model('LinkGearRequest'),
 	_ = require('lodash');
+    
+var regexForASIN = new RegExp('http://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})');
+function extractASIN(url) {
+    return url.match(regexForASIN);
+}
+
+var aws = require('aws-lib');
+var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prsge-20');
+function save(req, res, gear) {
+    gear.lastUpdated = Date.now();
+    if (gear.amazonLink && !gear.asin) {
+        var matches = extractASIN(gear.amazonLink);
+        if (matches) {
+            gear.asin = matches[4];
+        }
+    }
+    
+    if (gear.asin) {
+        // maybe move this to offline process
+        prodAdv.call('ItemLookup', { ItemId: gear.asin, ResponseGroup: 'ItemAttributes,Images' }, function (err, result) {
+            if (!err && result && result.Items && result.Items.Item) {
+                gear.features = result.Items.Item.ItemAttributes.Feature;
+                gear.profilePictureUrl = result.Items.Item.MediumImage.URL;
+                gear.amazonLink = result.Items.Item.DetailPageURL;
+                gear.name = result.Items.Item.ItemAttributes.Title;
+            } else {
+                console.log('Error getting product');
+                // Todo- default values?
+            }
+            
+            gear.save(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.jsonp(gear);
+                }
+            });
+        });
+    } else {
+        gear.save(function (err) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.jsonp(gear);
+            }
+        });
+    }
+}
 
 /**
  * Create a Gear
  */
 exports.create = function(req, res) {
 	var gear = new Gear(req.body);
-	gear.user = req.user;
-
-	gear.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(gear);
-		}
-	});
+    gear.user = req.user;
+    save(req, res, gear);
 };
+
+
 
 /**
  * Show the current Gear
  */
-var aws = require('aws-lib');
-var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prsge-20');
 
 exports.read = function (req, res) {
     res.jsonp(req.gear);
@@ -49,7 +92,7 @@ exports.getDetails = function (req, res) { //Possible TODO: move this to save/up
             }
         });
     }
-}
+};
 
 /**
  * Update a Gear
@@ -58,16 +101,8 @@ exports.update = function(req, res) {
 	var gear = req.gear ;
 
 	gear = _.extend(gear , req.body);
+    save(req, res, gear);
 
-	gear.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(gear);
-		}
-	});
 };
 
 /**

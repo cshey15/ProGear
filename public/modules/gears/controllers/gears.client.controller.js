@@ -97,18 +97,11 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         // Find existing Gear
         $scope.findOne = function () {
             $scope.$watch(function () {
-                console.log("digest called");
-                if ($scope.gearDetails && $scope.gearDetails.item) {
-                    $scope.iframeURL = $sce.trustAsResourceUrl($scope.gearDetails.item.CustomerReviews.IFrameURL);
-                }
+                console.log('digest called');
             });
             $scope.gear = Gears.resource.get({
                 gearId: $stateParams.gearId
             });
-            $scope.gearDetails = Gears.getDetails($stateParams.gearId);
-            $scope.iframeURL = "";
-            $scope.relatedPros = Gears.getProsForGear($stateParams.gearId);
-
         };
 
         // go to gear

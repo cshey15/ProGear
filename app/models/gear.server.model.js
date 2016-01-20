@@ -18,10 +18,6 @@ var GearSchema = new Schema({
 		required: 'Please fill Gear name',
 		trim: true
     },
-    profilePictureUrl: {
-        type: String,
-        default: '/modules/media/images/imageComingSoon.jpg',
-    },
     type: {
         type: String, default: '',
         required: 'Please fill Gear type',
@@ -31,13 +27,25 @@ var GearSchema = new Schema({
     * logic that handles the link creation dynamically.. basically I dont understand
     * how the amazon/ebay/whatever affiliate linking system works
     */
-    amazonLink: { type: String },
+    
     website: { type: String },
     asin: { type: String },
     popularityScore: {
         type: Number,
         default: 0
     },
+
+    // START - Retrieved from Amazon.
+    amazonLink: { type: String }, 
+    profilePictureUrl: {
+        type: String,
+        default: '/modules/media/images/imageComingSoon.jpg',
+    },
+    features: [{
+            type: String
+        }],
+    // END - Retrieve from Amazon
+
     published: {
         type: Boolean,
         default: false
@@ -45,7 +53,11 @@ var GearSchema = new Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	},
+    },
+    lastUpdated: {
+        type: Date,
+        default: Date.now
+    },
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
