@@ -2,8 +2,8 @@
 
 // Gears controller
 var app = angular.module('gears');
-app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal',
-    function ($scope, $stateParams, $location, Authentication, Gears, $modal) {
+app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal', '$sce',
+    function ($scope, $stateParams, $location, Authentication, Gears, $modal, $sce) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 10;
@@ -96,10 +96,19 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         
         // Find existing Gear
         $scope.findOne = function () {
+            $scope.$watch(function () {
+                console.log("digest called");
+                if ($scope.gearDetails && $scope.gearDetails.item) {
+                    $scope.iframeURL = $sce.trustAsResourceUrl($scope.gearDetails.item.CustomerReviews.IFrameURL);
+                }
+            });
             $scope.gear = Gears.resource.get({
                 gearId: $stateParams.gearId
             });
+            $scope.gearDetails = Gears.getDetails($stateParams.gearId);
+            $scope.iframeURL = "";
             $scope.relatedPros = Gears.getProsForGear($stateParams.gearId);
+
         };
 
         // go to gear

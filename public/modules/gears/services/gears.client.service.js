@@ -24,6 +24,11 @@ angular.module('gears').factory('Gears', ['$resource',
                     gearId: id
                 }).query();
             },
+            getDetails: function (id) {
+                return $resource('gears/:gearId/details', {
+                    gearId: id
+                }).get();
+            },
             getTop: function (id) {
                 return $resource('gears/top', {
                     gearId: id

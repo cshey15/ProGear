@@ -8,10 +8,17 @@
                 <i class="glyphicon glyphicon-trash"></i>
             </a>
         </div>
-        <h1 data-ng-bind="gear.name"></h1>
+        <div class="pull-left">
+            <img ng-src="{{gearDetails.item.MediumImage.URL}}"/>
+        </div>
+        <h1>{{gear.name}}</h1>
         <p>Type: <span data-ng-bind="gear.type"></span></p>
-        <p><a data-ng-href="http://{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Buy now!</a></p>
+        <p><a data-ng-href="http://{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Check it out on Amazon</a></p>
         <p><a data-ng-href="http://{{gear.website}}" data-ng-show="gear.website">Website</a></p>
+        <iframe ng-src="{{iframeURL}}"></iframe>
+        <ul>
+            <li ng-repeat="feature in gearDetails.item.ItemAttributes.Feature">{{feature}}</li>
+        </ul>
     </div>
     <div class="container">
         <div class="row">

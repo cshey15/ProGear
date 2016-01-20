@@ -35,17 +35,21 @@ var aws = require('aws-lib');
 var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prsge-20');
 
 exports.read = function (req, res) {
-    if (req.gear.asin){
-        prodAdv.call('ItemLookup', { ItemId: req.gear.asin, ResponseGroup: 'ItemAttributes,Reviews,Images' }, function (err, result) {
-            if (!err && req.gear && result && result.Items && result.Items.Item) {
-                req.gear.info = result.Items.Item;
-            }
-            res.jsonp(req.gear);
-        }); 
-    } else {
-        res.jsonp(req.gear);
-    }
+    res.jsonp(req.gear);
 };
+
+exports.getDetails = function (req, res) { //Possible TODO: move this to save/update and save info into our database?
+    var gear = req.gear;
+    if (gear.asin) {
+        prodAdv.call('ItemLookup', { ItemId: gear.asin, ResponseGroup: 'ItemAttributes,Reviews,Images' }, function (err, result) {
+            if (!err && result && result.Items && result.Items.Item) {
+                res.send({ item: result.Items.Item });
+            } else {
+                res.jsonp({}); // Todo- default values?
+            }
+        });
+    }
+}
 
 /**
  * Update a Gear
@@ -152,9 +156,9 @@ exports.getProsForGear = function (req, res) {
 exports.gearByID = function(req, res, next, id) { 
 	Gear.findById(id).populate('user', 'displayName').populate('pro').exec(function(err, gear) {
 		if (err) return next(err);
-		if (! gear) return next(new Error('Failed to load Gear ' + id));
-        req.gear = gear;
-		next();
+        if (!gear) return next(new Error('Failed to load Gear ' + id));
+            req.gear = gear;
+            next();
 	});
 };
 

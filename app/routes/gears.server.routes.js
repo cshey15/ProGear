@@ -22,6 +22,10 @@ module.exports = function(app) {
     
     app.route('/gears/:gearId/pros')
 	.get(gears.getProsForGear);
+    
+    app.route('/gears/:gearId/details')
+	.get(gears.getDetails);
+    
 
     app.route('/admin/gears/unpublished')
         .get(gears.listUnpublished);
