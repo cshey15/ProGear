@@ -31,6 +31,12 @@ var ProSchema = new Schema({
         // default values can be set
         default: Date.now
     },
+    lastUpdated: {
+        // types are defined e.g. String, Date, Number (http://mongoosejs.com/docs/guide.html)
+        type: Date,   
+        // default values can be set
+        default: Date.now
+    },
     name: {
         type: String,
         default: '',

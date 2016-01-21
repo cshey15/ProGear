@@ -44,7 +44,7 @@ exports.update = function(req, res) {
     var pro = req.pro;
     //pro.gearList = req.pro.gearList;
     pro = _.extend(pro, req.body);
-    
+    pro.lastUpdated = Date.now();
     pro.save(function (err) {
         if (err) {
             return res.status(400).send({
@@ -67,6 +67,7 @@ exports.addGearRequest = function (req, res) {
             });
         } else {
             pro.requestList.push(request);
+            pro.lastUpdated = Date.now();
             pro.save(function (err) {
                 if (err) {
                     return res.status(400).send({

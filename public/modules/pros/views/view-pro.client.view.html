@@ -35,13 +35,11 @@
                 </div>
             </div>
         </div>
+        <hr />
         <div class="row">
             <small>
                 <em class="text-muted">
-                    Posted on
-                    <span data-ng-bind="pro.created | date:'mediumDate'"></span>
-                    by
-                    <span data-ng-bind="pro.user.displayName"></span>.
+                    Last updated on <span data-ng-bind="pro.lastUpdated | date:'mediumDate'"></span>
                 </em>
             </small>
             <p><small><a>Report an issue</a></small></p><!-- TODO-->
