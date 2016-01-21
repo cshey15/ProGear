@@ -160,6 +160,44 @@ exports.getGearsForPro = function (req, res) {
     });
 };
 
+var azure = require('azure-storage');
+var blobSvc = azure.createBlobService('prozgear', 'ga2+n3Y0sSwZSSCeKLs9M0s2JNgJahvZdkOU7ixRvTHvXzkzxIAVC8r00sHBroTjgIcwJO2zoIbbnZvD80c7HA==');
+blobSvc.createContainerIfNotExists('profileimages', { publicAccessLevel : 'blob' }, function (error, result, response) {
+    if (!error) {
+    // Container exists and allows
+    // anonymous read access to blob
+    // content and metadata within this container
+    }
+});
+
+exports.uploadFile = function (req, res) {
+    // We are able to access req.files.file thanks to 
+    // the multiparty middleware
+    var file = req.files.file;
+    if (!file || !req.pro) {
+        return res.status(400).send({
+            message: 'error'
+        });
+    }
+    var ext = file.type.split('/')[1];
+    var filename = req.body.id + '.' + ext;
+    blobSvc.createBlockBlobFromLocalFile ('profileimages', filename, file.path, function (error, result, response) {
+        console.log('upload complete');
+        if (!error) {
+            req.pro.profilePictureUrl = 'https://prozgear.blob.core.windows.net/profileimages/' + filename;
+            req.pro.save(function (err) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    return res.status(200).send({ message: 'upload successful' });
+                }
+            });
+        }
+    });
+};
+
 /**
  * Pro middleware
  */

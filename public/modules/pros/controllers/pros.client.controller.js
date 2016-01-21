@@ -60,20 +60,27 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
             // Redirect after save
             pro.$save(function (response) {
-                $location.path('pros/' + response._id);  
-                $scope.upload($scope.file);
-                // Clear form fields
-                $scope.name = '';
+                $scope.upload($scope.file, response._id).then(function (resp) {
+                    $location.path('pros/' + response._id);
+                    // Clear form fields
+                    $scope.name = '';
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
+                }, function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                });
+
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
         $scope.upload = function (file, proid) {
-            Upload.upload({
-                url: 'api/upload/',
+            return Upload.upload({
+                url: '/api/pro/' + proid + '/upload',
                 method: 'POST',
-                data: { 'type': 'pro', id: proid },
+                data: { 'type': 'pro', 'id': proid },
                 file: file
             });
         };

@@ -27,7 +27,6 @@
     <Content Include="public\modules\media\images\imageComingSoon.jpg" />
     <Content Include="public\modules\pros\views\list-pros-admin.client.view.html" />
     <Content Include="README.md" />
-    <Compile Include="app\controllers\fileupload.server.controller.js" />
     <Compile Include="gruntfile.js" />
     <Compile Include="karma.conf.js" />
     <Compile Include="server.js" />

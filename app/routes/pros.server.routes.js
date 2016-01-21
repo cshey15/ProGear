@@ -25,6 +25,10 @@ module.exports = function(app) {
 
     app.route('/admin/pros/unpublished')
         .get(pros.listUnpublished);
-    
+
+    var multiparty = require('connect-multiparty'),
+        multipartyMiddleware = multiparty();
+    app.route('/api/pro/:proId/upload').post(multipartyMiddleware, pros.uploadFile);
+
     app.param('proId', pros.proByID);
 };
