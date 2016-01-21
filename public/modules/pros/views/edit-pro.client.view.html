@@ -18,6 +18,18 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="name">Picture</label>
+                    <div class="controls">
+                        <img class="profilepic img-rounded" ng-show="pro.profilePictureUrl" ng-src="{{pro.profilePictureUrl}}"/>
+                        <button class="controls">
+                            <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                                 ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                                 ngf-resize="{width: 160, height: 160}">Select</div>
+                        </button>
+                        <img class="profilepic img-rounded" ng-show="file.$valid" ngf-thumbnail="file"/>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="sport">Sport</label>
                     <div class="controls">
                         <input type="text" data-ng-model="pro.sport" id="sport" class="form-control" placeholder="Sport" required>

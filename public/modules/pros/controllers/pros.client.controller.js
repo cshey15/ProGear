@@ -13,7 +13,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             { id: 1, name: 'Keyboard' },
             { id: 2, name: 'Mouse' }
         ];
-
+        
         // Page changed handler
         $scope.pageChanged = function () {
             $scope.offset = ($scope.currentPage - 1) * $scope.pageSize;
@@ -46,10 +46,13 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         $scope.teamFilter = function (item) {
             return $scope.selectedTeamFilter === undefined || item.team === $scope.selectedTeamFilter;
         };
-
+        
         // Create new Pro
         $scope.create = function () {
             // Create new Pro object
+            if (!$scope.file) {
+                $scope.error = 'Please enter a photo';
+            }
             var pro = new Pros.resource({
                 name: this.name,
                 sport: this.sport,
@@ -75,7 +78,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 $scope.error = errorResponse.data.message;
             });
         };
-
+        
         $scope.upload = function (file, proid) {
             return Upload.upload({
                 url: '/api/pro/' + proid + '/upload',
@@ -84,7 +87,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 file: file
             });
         };
-
+        
         // Remove existing Pro
         $scope.remove = function (pro) {
             if (confirm('Are you sure you want to delete?')) {
@@ -109,7 +112,20 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             var pro = $scope.pro;
             
             pro.$update(function () {
-                $location.path('pros/' + pro._id);
+                if ($scope.file) {
+                    $scope.upload($scope.file, pro._id).then(function (resp) {
+                        $location.path('pros/' + pro._id);
+                        // Clear form fields
+                        $scope.name = '';
+                    }, function (resp) {
+                        console.log('Error status: ' + resp.status);
+                    }, function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    });
+                } else {
+                    $location.path('pros/' + pro._id);
+                }
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -131,12 +147,12 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
             $scope.gearList = Pros.getGearsForPro($stateParams.proId);
         };
-
+        
         // Search for a pro
         $scope.proSearch = function (product) {
             $location.path('pros/' + product._id);
         };
-
+        
         $scope.open = function (size) {
             var modalInstance = $modal.open({
                 animation: true,
@@ -144,7 +160,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 controller: 'GearsController.modal',
                 size: size
             });
-
+            
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
                 var contains = false;
@@ -160,7 +176,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 
             });
         };
-
+        
         $scope.addGear = function () {
             $scope.pro = Pros.resource.get({
                 proId: $stateParams.proId
@@ -184,7 +200,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             
             request.$save(function (response) {
                 $scope.pro.requestList.push(response);
-
+                
                 // Redirect after save
                 $scope.pro.$update(function (response) {
                     $location.path('pros/' + response._id);
@@ -198,9 +214,9 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 });
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
-            });  
+            });
         };
-
+        
         $scope.openCreate = function () {
             var modalInstance = $modal.open({
                 animation: true,
@@ -214,7 +230,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 
             });
         };
-
+        
         $scope.openCreateGear = function () {
             var modalInstance = $modal.open({
                 animation: true,
@@ -228,7 +244,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 
             });
         };
-
+        
         $scope.shouldRender = function (user) {
             if (user) {
                 for (var userRoleIndex in user.roles) {
@@ -239,7 +255,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             }
             return false;
         };
-
+        
         $scope.removeGear = function (gear) {
             for (var i in $scope.pro.gearList) {
                 if ($scope.pro.gearList [i] === gear) {
@@ -249,7 +265,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         };
     }]);
 
-app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {        
+app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };

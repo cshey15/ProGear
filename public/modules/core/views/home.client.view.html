@@ -9,7 +9,7 @@
         <div class="list-group">
             <div data-ng-repeat="pro in topPros" class="list-group-item col-sm-2 text-center">
                 <a data-ng-href="#!/pros/{{pro._id}}">
-                    <img ng-src="{{pro.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                    <img ng-src="{{pro.profilePictureUrl}}" class="listpic img-responsive img-rounded center-block" />
                     <h4 class="list-group-item-heading">{{pro.name}}</h4>
                 </a>
 
@@ -21,7 +21,7 @@
         <div class="list-group">
             <div data-ng-repeat="gear in topGears" class="list-group-item col-sm-3 text-center">
                 <a data-ng-href="#!/gears/{{gear._id}}">
-                    <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                    <img ng-src="{{gear.profilePictureUrl}}" class="listpic img-responsive img-rounded center-block" />
                     <h4 class="list-group-item-heading" data-ng-bind="gear.name"></h4>
                 </a>
             </div>
@@ -32,7 +32,7 @@
         <div class="list-group">
             <div data-ng-repeat="pro in recentPros" class="list-group-item col-sm-2 text-center">
                 <a data-ng-href="#!/pros/{{pro._id}}">
-                    <img ng-src="{{pro.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                    <img ng-src="{{pro.profilePictureUrl}}" class="listpic img-responsive img-rounded center-block" />
                     <h4 class="list-group-item-heading">{{pro.name}}</h4>
                 </a>
 
@@ -44,7 +44,7 @@
         <div class="list-group">
             <div data-ng-repeat="gear in recentGears" class="list-group-item col-sm-3 text-center">
                 <a data-ng-href="#!/gears/{{gear._id}}">
-                    <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                    <img ng-src="{{gear.profilePictureUrl}}" class="listpic img-responsive img-rounded center-block" />
                     <h4 class="list-group-item-heading" data-ng-bind="gear.name"></h4>
                 </a>
             </div>

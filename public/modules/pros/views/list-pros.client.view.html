@@ -43,13 +43,18 @@
             </div>
         </div>
         <div class="list-group row">
-            <div data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize | orderBy:'name'" class="list-group-item col-sm-3 text-center">
-                <a data-ng-href="#!/pros/{{pro._id}}">
-                    <img ng-src="{{pro.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
-                    <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
-                </a>   
-                <p class="list-group-item-text">Plays {{pro.sport}} for {{pro.team}}</p>
-                          
+            <div data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize | orderBy:'name'" class="list-group-item col-sm-3 text-center listitem">
+                <div class="row">
+                    <a data-ng-href="#!/pros/{{pro._id}}">
+                        <img ng-src="{{pro.profilePictureUrl}}" class="listpic img-responsive img-rounded text-center center-block" />
+                    </a>
+                </div>
+                <div class="row">
+                    <a data-ng-href="#!/pros/{{pro._id}}">
+                        <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
+                    </a>
+                    <p class="list-group-item-text">Plays {{pro.sport}} for {{pro.team}}</p>
+                </div>
             </div>
         </div>
     </div>

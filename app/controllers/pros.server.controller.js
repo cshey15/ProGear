@@ -9,7 +9,8 @@ var mongoose = require('mongoose'),
     LinkGearRequest = mongoose.model('LinkGearRequest'),
     RequestHandler = require('./linkgearrequests.server.controller.js'),
     GearHandler = require('./gears.server.controller.js'),
-    _ = require('lodash');
+    _ = require('lodash'), 
+    uuid = require('node-uuid');;
 
 
 /**
@@ -180,10 +181,11 @@ exports.uploadFile = function (req, res) {
         });
     }
     var ext = file.type.split('/')[1];
-    var filename = req.body.id + '.' + ext;
+    var filename = uuid.v4() + '.' + ext;
     blobSvc.createBlockBlobFromLocalFile ('profileimages', filename, file.path, function (error, result, response) {
         console.log('upload complete');
         if (!error) {
+            var oldPicture = req.pro.profilePictureUrl;
             req.pro.profilePictureUrl = 'https://prozgear.blob.core.windows.net/profileimages/' + filename;
             req.pro.save(function (err) {
                 if (err) {
@@ -191,6 +193,14 @@ exports.uploadFile = function (req, res) {
                         message: errorHandler.getErrorMessage(err)
                     });
                 } else {
+                    var blob = oldPicture.split('https://prozgear.blob.core.windows.net/profileimages/');
+                    if (blob.length > 1) {
+                        blobSvc.deleteBlob('profileimages', blob[1], function (error, response) {
+                            if (!error) {
+                                console.log("old profile picture deleted");
+                            }
+                        });
+                    }
                     return res.status(200).send({ message: 'upload successful' });
                 }
             });

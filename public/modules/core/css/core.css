@@ -21,6 +21,15 @@
     margin-right: 15px;
 }
 
+.listpic {
+    width:160px;
+    height:160px;
+}
+
+.listitem {
+    height:240px;
+}
+
 .amazonReviews {
     width:100%;
     height:100%;
