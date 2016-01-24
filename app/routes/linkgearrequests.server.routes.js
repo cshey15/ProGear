@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users.server.controller');
-	var linkGearRequests = require('../../app/controllers/linkGearRequests.server.controller');
+	var linkGearRequests = require('../../app/controllers/linkgearrequests.server.controller');
 
 	// LinkGearRequests Routes
 	app.route('/linkGearRequests')

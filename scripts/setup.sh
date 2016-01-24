@@ -13,6 +13,7 @@ sudo yum install -y nodejs
 # NPM
 npm install -g bower
 npm install -g grunt-cli
+npm install -g forever
 # npm install -g gulp ???
 
 npm install
