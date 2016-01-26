@@ -7,7 +7,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
     function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 12;
         $scope.offset = 0;
         $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places.
             { id: 1, name: 'Keyboard' },
@@ -53,30 +53,32 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             if (!$scope.file) {
                 $scope.error = 'Please enter a photo';
             }
-            var pro = new Pros.resource({
-                name: this.name,
-                sport: this.sport,
-                team: this.team,
-                alias: this.alias,
-                fbProfile: this.fbProfile,
-                website: this.website
-            });
-            // Redirect after save
-            pro.$save(function (response) {
-                $scope.upload($scope.file, response._id).then(function (resp) {
-                    $location.path('pros/' + response._id);
-                    // Clear form fields
-                    $scope.name = '';
-                }, function (resp) {
-                    console.log('Error status: ' + resp.status);
-                }, function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            else {
+                var pro = new Pros.resource({
+                    name: this.name,
+                    sport: this.sport,
+                    team: this.team,
+                    alias: this.alias,
+                    fbProfile: this.fbProfile,
+                    website: this.website
                 });
-
-            }, function (errorResponse) {
-                $scope.error = errorResponse.data.message;
-            });
+                // Redirect after save
+                pro.$save(function (response) {
+                    $scope.upload($scope.file, response._id).then(function (resp) {
+                        $location.path('pros/' + response._id);
+                        // Clear form fields
+                        $scope.name = '';
+                    }, function (resp) {
+                        $scope.error = resp.status;
+                        console.log('Error status: ' + resp.status);
+                    }, function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    });
+                }, function (errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            }
         };
         
         $scope.upload = function (file, proid) {
@@ -118,6 +120,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                         // Clear form fields
                         $scope.name = '';
                     }, function (resp) {
+                        $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
                     }, function (evt) {
                         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
