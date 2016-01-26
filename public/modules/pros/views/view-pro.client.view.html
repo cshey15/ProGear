@@ -1,6 +1,6 @@
 <section data-ng-controller="ProsController" data-ng-init="findOne()">
     <div class="page-header">
-        <div class="alert alert-warning" role="alert" ng-show="!pro.published"><p>This pro has not been published to our site. You may still access it via direct link.</p> <p>Feel free to add start adding gear for this pro but they won't show up until we have verified them</p></div>
+        <div class="alert alert-warning animate-show" role="alert" ng-show="pro.published===false"><p>This pro has not been published to our site. You may still access it via direct link.</p> <p>Feel free to add start adding gear for this pro but they won't show up until we have verified them</p></div>
         <div class="pull-right" data-ng-show="shouldRender(authentication.user)">
             <a class="btn btn-primary" href="/#!/pros/{{pro._id}}/edit">
                 <i class="glyphicon glyphicon-edit"></i>
