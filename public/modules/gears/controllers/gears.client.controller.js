@@ -6,7 +6,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
     function ($scope, $stateParams, $location, Authentication, Gears, $modal, $sce) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
-        $scope.pageSize = 10;
+        $scope.pageSize = 12;
         $scope.offset = 0;
         
         // Page changed handler
