@@ -4,7 +4,8 @@ module.exports = {
 	//db: 'mongodb://devprogear:as1gma@ds035844.mongolab.com:35844/progear',
 	//app: {
 	//	title: 'progear - Development Environment'
- //   },
+    //   },
+ // db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/progear',
     db: 'mongodb://40.78.71.93:35357',
     app: {
         title: 'progear - Development Environment'

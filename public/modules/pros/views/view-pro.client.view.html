@@ -1,5 +1,6 @@
 <section data-ng-controller="ProsController" data-ng-init="findOne()">
     <div class="page-header">
+        <div class="alert alert-warning" role="alert" ng-show="!pro.published"><p>This pro has not been published to our site. You may still access it via direct link.</p> <p>Feel free to add start adding gear for this pro but they won't show up until we have verified them</p></div>
         <div class="pull-right" data-ng-show="shouldRender(authentication.user)">
             <a class="btn btn-primary" href="/#!/pros/{{pro._id}}/edit">
                 <i class="glyphicon glyphicon-edit"></i>
@@ -21,16 +22,16 @@
         <div ng-repeat="types in gearTypes" class="row">
             <h2>{{types.name}}</h2>
             <div class="list-group">
-                <div ng-repeat="item in gearList | filter: {gear: {type: types.name}}" class="list-group-item col-sm-2 text-center">
+                <div ng-repeat="item in gearList | filter: {gear: {type: types}}" class="list-group-item col-sm-2 text-center">
                     <a data-ng-href="#!/gears/{{item.gear._id}}">
                         <img ng-src="{{item.gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
                         <h4 class="list-group-item-heading" data-ng-bind="item.gear.name"></h4>
                     </a>
                 </div>
                 <div class="list-group-item col-sm-2 text-center">
-                    <a ng-href="/#!/pros/{{pro._id}}/addGear?type={{types.name}}">
+                    <a ng-href="/#!/pros/{{pro._id}}/addGear?type={{types}}">
                         <img src="/modules/media/images/imageComingSoon.jpg" class="img-responsive img-rounded center-block" />
-                        <h4 class="list-group-item-heading">Add a {{types.name}}</h4>
+                        <h4 class="list-group-item-heading">Add a {{types}}</h4>
                     </a>
                 </div>
             </div>

@@ -36,7 +36,9 @@ function save(req, res, gear) {
                 gear.name = result.Items.Item.ItemAttributes.Title;
             } else {
                 console.log('Error getting product');
-                // Todo- default values?
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
             }
             
             gear.save(function (err) {

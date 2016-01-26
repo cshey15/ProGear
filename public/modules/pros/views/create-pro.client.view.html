@@ -1,6 +1,6 @@
 <section data-ng-controller="ProsController">
     <div class="page-header">
-        <h1>New Pro</h1>
+        <h1>Submit a new pro to Proz Gear</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label class="control-label" for="name">Picture</label>
                     <div class="controls">
-                        <button class="controls">
+                        <button type="button" class="controls">
                             <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
                                  ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                                  ngf-resize="{width: 160, height: 160}">Select</div>

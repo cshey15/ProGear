@@ -10,12 +10,12 @@
         </div>
         <div class="row">
             <div class="col-sm-2">
-                <a data-ng-href="{{gear.amazonLink}}"><img ng-src="{{gear.profilePictureUrl}}" /></a>
+                <a data-ng-href="{{gear.amazonLink}}"><img ng-src="{{gear.profilePictureUrl}}" class="profilepic img-rounded" /></a>
             </div>
             <div class="col-sm-10">
                 <h1>{{gear.name}}</h1>
                 <p>Type: <span data-ng-bind="gear.type"></span></p>
-                <p><a data-ng-href="{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Check it out on Amazon</a><span  data-ng-show="gear.website">| <a data-ng-href="http://{{gear.website}}">Official Website</a></span></p>
+                <p><a data-ng-href="{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Check it out on Amazon</a><span data-ng-show="gear.website">| <a data-ng-href="http://{{gear.website}}">Official Website</a></span></p>
                 <p></p>
             </div>
         </div>
@@ -24,7 +24,7 @@
         </ul>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row" ng-show="relatedPros">
             <!-- TODO- add default if there are no pros that use this gear -->
             <h2>Pros that use {{gear.name}}</h2>
             <div class="list-group">
@@ -37,14 +37,20 @@
                 </div>
             </div>
         </div>
-        <div class="row"> <!-- TODO move this to footer-->
+        <div class="row"><!-- TODO move this to footer-->
             <small>
                 <em class="text-muted">
                     Posted on
                     <span data-ng-bind="gear.created | date:'mediumDate'"></span>
                 </em>
             </small>
-            <p><small><a>Report an issue</a></small></p><!-- TODO-->
+        </div>
+        <div class="row">
+            <small>
+                <em class="text-muted">
+                    <a role="button">Report an issue</a>
+                </em>
+            </small>
         </div>
     </div>
 </section>

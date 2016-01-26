@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Gears Routes
 	app.route('/gears')
 		.get(gears.list)
-		.post(users.requiresLogin, gears.create);
+		.post(gears.create);
 
     app.route('/gears/top')
 		.get(gears.listTop);

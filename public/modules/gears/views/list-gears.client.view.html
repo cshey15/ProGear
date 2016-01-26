@@ -16,9 +16,9 @@
             <button type="button"
                     ng-repeat="gearType in gearTypes"
                     class="btn btn-default  btn-sm"
-                    ng-class="{active: gearType.name == selectedTypeFilter}"
-                    ng-click="setFilterGearType(gearType.name)">
-                {{gearType.name}}
+                    ng-class="{active: gearType == selectedTypeFilter}"
+                    ng-click="setFilterGearType(gearType)">
+                {{gearType}}
             </button>
         </div>
     </div>

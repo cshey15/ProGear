@@ -14,7 +14,7 @@ angular.module('pros').config(['$stateProvider',
             templateUrl: 'modules/pros/views/create-pro.client.view.html'
         }).
 		state('viewPro', {
-            url: '/pros/:proId',
+            url: '/pros/:proId?new',
             templateUrl: 'modules/pros/views/view-pro.client.view.html'
         }).
         state('addGear', {

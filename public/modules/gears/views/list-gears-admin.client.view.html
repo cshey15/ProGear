@@ -8,15 +8,14 @@
     <div class="form-group">
         Filter by type:
         <button type="button"class="btn btn-default"
-                
                 ng-class="{active: !selectedTypeFilter}"
                 ng-click="setFilterGearType()">All</button>
         <button type="button"
                 ng-repeat="gearType in gearTypes"
                 class="btn btn-default"
-                ng-class="{active: gearType.name == selectedTypeFilter}"
-                ng-click="setFilterGearType(gearType.name)">
-            {{gearType.name}}
+                ng-class="{active: gearType == selectedTypeFilter}"
+                ng-click="setFilterGearType(gearType)">
+            {{gearType}}
         </button>
     </div>
     <div class="list-group">

@@ -15,10 +15,9 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         };
         
         $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places.
-            { id: 1, name: 'Keyboard' },
-            { id: 2, name: 'Mouse' }
+            'Keyboard', 'Mouse'
         ];
-        $scope.selectedGearType = null;
+        $scope.selectedGearType = $stateParams.type;
         
         $scope.selectedTypeFilter = undefined;
 
@@ -39,7 +38,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             // Create new Gear object
             var gear = new Gears.resource({
                 name: this.name,
-                type: $scope.selectedGearType.name,
+                type: $scope.selectedGearType,
                 amazonLink: this.amazonLink,
                 website: this.website
             });
@@ -135,10 +134,13 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         };
 }]);
 
-app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', function ($scope, Gears, $modalInstance) {
+app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', '$stateParams', function ($scope, Gears, $modalInstance, $stateParams) {
         $scope.selected = {
             gear: null
         };
+        $scope.data = {};
+        $scope.data.selectedGearType = $stateParams.type;
+
         $scope.gears = Gears.resource.query();
         $scope.ok = function () {
             $modalInstance.close($scope.selected.gear);
@@ -150,18 +152,21 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', func
 
         $scope.modalSubmit = function (data) {
             //event.preventDefault();
+            if (!data) {
+                data = {};
+            }
             var gear = new Gears.resource({
                 name: data.name,
-                type: data.selectedGearType.name,
+                type: data.selectedGearType,
                 amazonLink: data.amazonLink,
                 website: data.website
             });
             
             // close modal after save
             gear.$save(function (response) {
-                $modalInstance.close(gear);
+                $modalInstance.close(response);
             }, function (errorResponse) {
-                $scope.error = errorResponse.data.message;
+                $scope.modalerror = errorResponse.data.message;
             });
         };
 

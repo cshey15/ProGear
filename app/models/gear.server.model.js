@@ -20,7 +20,7 @@ var GearSchema = new Schema({
     },
     type: {
         type: String, default: '',
-        required: 'Please fill Gear type',
+        required: 'Please specify Gear type',
         enum: ['Keyboard', 'Mouse']
     }, //keyboard, mouse, etc
     /* this might be unnecessary.. we might want to write some backend
@@ -36,7 +36,10 @@ var GearSchema = new Schema({
     },
 
     // START - Retrieved from Amazon.
-    amazonLink: { type: String }, 
+    amazonLink: {
+        type: String,
+        required: 'Please include a link to the product\'s amazon page'
+    }, 
     profilePictureUrl: {
         type: String,
         default: '/modules/media/images/imageComingSoon.jpg',
@@ -48,7 +51,7 @@ var GearSchema = new Schema({
 
     published: {
         type: Boolean,
-        default: false
+        default: true
     },
 	created: {
 		type: Date,

@@ -9,9 +9,8 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         $scope.currentPage = 1;
         $scope.pageSize = 12;
         $scope.offset = 0;
-        $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places.
-            { id: 1, name: 'Keyboard' },
-            { id: 2, name: 'Mouse' }
+        $scope.gearTypes = [ //TODO: extract this somehow it is in multiple places. 
+            'Keyboard', 'Mouse'
         ];
         
         // Page changed handler
@@ -66,8 +65,6 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 pro.$save(function (response) {
                     $scope.upload($scope.file, response._id).then(function (resp) {
                         $location.path('pros/' + response._id);
-                        // Clear form fields
-                        $scope.name = '';
                     }, function (resp) {
                         $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
@@ -117,8 +114,6 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 if ($scope.file) {
                     $scope.upload($scope.file, pro._id).then(function (resp) {
                         $location.path('pros/' + pro._id);
-                        // Clear form fields
-                        $scope.name = '';
                     }, function (resp) {
                         $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
@@ -192,6 +187,11 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             $scope.selectedGear = item;
         };
         
+        $scope.clearSelectedGear = function () {
+            $scope.selectedGear = null;
+            $scope.search = null;
+        }
+        
         $scope.createRequest = function () {
             // Create new request object
             var request = new LinkGearRequests({
@@ -216,7 +216,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                     $scope.error = errorResponse.data.message;
                 });
             }, function (errorResponse) {
-                $scope.error = errorResponse.data.message;
+                $scope.error = errorResponse.data.messag;e
             });
         };
         
@@ -243,6 +243,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             });
             modalInstance.result.then(function (gear) {
                 $scope.selectedGear = gear;
+                $scope.gears.push(gear)
             }, function () {
                 
             });
