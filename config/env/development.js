@@ -5,7 +5,7 @@ module.exports = {
 	//app: {
 	//	title: 'progear - Development Environment'
  //   },
-    db: 'mongodb://secret-springs-2:secret-springs-2@ds056698.mongolab.com:56698/MongoLab-b',
+    db: 'mongodb://40.78.71.93:35357',
     app: {
         title: 'progear - Development Environment'
     },
