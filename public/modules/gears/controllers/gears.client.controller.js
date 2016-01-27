@@ -2,8 +2,8 @@
 
 // Gears controller
 var app = angular.module('gears');
-app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal', '$sce',
-    function ($scope, $stateParams, $location, Authentication, Gears, $modal, $sce) {
+app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal', '$sce', 'Notification',
+    function ($scope, $stateParams, $location, Authentication, Gears, $modal, $sce, Notification) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 12;
@@ -46,7 +46,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             // Redirect after save
             gear.$save(function (response) {
                 $location.path('gears/' + response._id);
-                
+                Notification.success('Gear added!');
                 // Clear form fields
                 $scope.name = '';
             }, function (errorResponse) {
@@ -68,6 +68,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
                 } else {
                     $scope.gear.$remove(function () {
                         $location.path('gears');
+                        Notification.success('Gear Removed');
                     });
                 }
             }
@@ -79,6 +80,7 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             
             gear.$update(function () {
                 $location.path('gears/' + gear._id);
+                Notification.success('Gear Updated!');
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
@@ -95,9 +97,6 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
         
         // Find existing Gear
         $scope.findOne = function () {
-            $scope.$watch(function () {
-                console.log('digest called');
-            });
             $scope.gear = Gears.resource.get({
                 gearId: $stateParams.gearId
             });

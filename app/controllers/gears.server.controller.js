@@ -52,14 +52,8 @@ function save(req, res, gear) {
             });
         });
     } else {
-        gear.save(function (err) {
-            if (err) {
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                res.jsonp(gear);
-            }
+        return res.status(400).send({
+            message: 'Please include a link to the product\'s amazon page. Remember to include the http://'
         });
     }
 }

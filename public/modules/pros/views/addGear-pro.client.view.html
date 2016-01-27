@@ -12,15 +12,16 @@
                         <input type="text" ng-model="search" typeahead="gear as gear.name for gear in gears | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="gearSelect($item)" placeholder="Start typing for Gear...">
                         <button type="button" class="btn btn-info" ng-click="openCreateGear(type)">Or create a new one</button>
                     </div>
-                    <div ng-show="selectedGear"><p><strong>Gear selected:</strong> {{selectedGear.name}}<button ng-click="clearSelectedGear()" ng-show="selectedGear.name">Clear</button></p></div>
                 </div>
+                <div ng-show="selectedGear"><p><strong>Gear selected:</strong><a target="_blank" ng-href="{{selectedGear.amazonLink}}">{{selectedGear.name}}</a><button ng-click="clearSelectedGear()">Clear</button></p></div>
+
             </div>
 
             <div class="form-group">
                 <h3>Step 2. Provide proof</h3>
                 <label class="control-label" for="name">Please include a link that proves {{pro.name}} uses this gear</label>
                 <div class="controls">
-                    <input type="text" name="proof" data-ng-model="proofLink" id="proofLink" class="form-control" placeholder="" />
+                    <input type="url" name="proof" data-ng-model="proofLink" id="proofLink" class="form-control" placeholder="http://www.website.com/" />
                 </div>
             </div>
 

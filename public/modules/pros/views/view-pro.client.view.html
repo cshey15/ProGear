@@ -15,15 +15,15 @@
         <p>Sport: {{pro.sport}}</p>
         <p>Team: {{pro.team}}</p>
         <p>Alt Ids: {{pro.alias}}</p>
-        <p><a data-ng-href="http://{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook</a></p>
-        <p><a data-ng-href="http://{{pro.website}}" data-ng-show="pro.website">Website</a></p>
+        <p><a data-ng-href="{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook</a></p>
+        <p><a data-ng-href="{{pro.website}}" data-ng-show="pro.website">Website</a></p>
     </div>
     <div class="container">
         <div ng-repeat="types in gearTypes" class="row">
             <h2>{{types.name}}</h2>
             <div class="list-group">
                 <div ng-repeat="item in gearList | filter: {gear: {type: types}}" class="list-group-item col-sm-2 text-center">
-                    <a data-ng-href="#!/gears/{{item.gear._id}}">
+                    <a data-ng-href="/#!/gears/{{item.gear._id}}">
                         <img ng-src="{{item.gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
                         <h4 class="list-group-item-heading" data-ng-bind="item.gear.name"></h4>
                     </a>

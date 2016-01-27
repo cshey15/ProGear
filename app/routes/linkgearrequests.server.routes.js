@@ -6,8 +6,8 @@ module.exports = function(app) {
 
 	// LinkGearRequests Routes
 	app.route('/linkGearRequests')
-		.get(users.requiresLogin, linkGearRequests.list)
-		.post(users.requiresLogin, linkGearRequests.create);
+		.get(linkGearRequests.list)
+		.post(linkGearRequests.create);
 
 	app.route('/linkGearRequests/:linkGearRequestId')
 		.get(linkGearRequests.read)

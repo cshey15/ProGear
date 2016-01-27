@@ -3,8 +3,8 @@
 
 // Pros controller
 var app = angular.module('pros');
-app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus', 'Upload',
-    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload) {
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus', 'Upload', 'Notification',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload, Notification) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 12;
@@ -65,6 +65,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 pro.$save(function (response) {
                     $scope.upload($scope.file, response._id).then(function (resp) {
                         $location.path('pros/' + response._id);
+                        Notification.success('Thanks! Your submission was successful. It will show up on our site after we approve it.');
                     }, function (resp) {
                         $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
@@ -114,6 +115,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 if ($scope.file) {
                     $scope.upload($scope.file, pro._id).then(function (resp) {
                         $location.path('pros/' + pro._id);
+                        Notification.success('Update Successful!');
                     }, function (resp) {
                         $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
@@ -207,7 +209,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 // Redirect after save
                 $scope.pro.$update(function (response) {
                     $location.path('pros/' + response._id);
-                    
+                    Notification.success('Thanks! Your submission will show up here after we approve it!');
                     $scope.search = '';
                     // Clear form fields
                     $scope.proofLink = '';
@@ -216,10 +218,18 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                     $scope.error = errorResponse.data.message;
                 });
             }, function (errorResponse) {
-                $scope.error = errorResponse.data.messag;e
+                $scope.error = errorResponse.data.message;
             });
         };
-        
+        var cleanURL = function (url) {
+            var parser = document.createElement('a');
+            try {
+                parser.href = url;
+                return parser.href;
+            } catch (e) {
+                return false;
+            }
+        };
         $scope.openCreate = function () {
             var modalInstance = $modal.open({
                 animation: true,

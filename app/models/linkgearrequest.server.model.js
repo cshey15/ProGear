@@ -21,8 +21,8 @@ var LinkGearRequestSchema = new Schema({
     pro: { type: mongoose.Schema.Types.ObjectId, ref: 'Pro' },
     proofLink: {
         type: String,
-        required: 'Please provide proof',
-        validate: [validateUrl, 'Proof link should be a valid url']
+        validate: [validateUrl, 'Proof link should be a valid url. Remember to include the http://'],
+        required: 'Please provide proof'
     },
     explanation: {
         type: String,

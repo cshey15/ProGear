@@ -76,9 +76,11 @@ var ProSchema = new Schema({
     },
     fbProfile: {
         type: String,
+        validate: [validateUrl, 'Facebook profile should be a valid url. Remember to include the http://']
     },
     website: {
         type: String,
+        validate: [validateUrl, 'Website should be a valid url. Remember to include the http://']
     },
     alias: {
         type: String,

@@ -17,7 +17,7 @@ module.exports = function(app) {
     // the proId param is added to the params object for the request
     app.route('/pros/:proId')
         .get(pros.read)
-        .put(users.requiresLogin, pros.update)
+        .put(pros.update)
 	    .delete(users.requiresLogin, pros.delete);
 
     app.route('/pros/:proId/gears')

@@ -6,21 +6,24 @@
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name</label>
                         <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Name" required>
-		                <select id="type" class="form-control" ng-model="selectedGearType" ng-options="type for type in gearTypes"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="type">Type</label>
+                        <select id="type" class="form-control" ng-model="selectedGearType" ng-options="type for type in gearTypes"></select>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name">Amazon Link</label>
                         <div class="controls">
-                            <input type="text" data-ng-model="amazonLink" id="amazonLink" class="form-control" placeholder="www.amazon.com/">
+                            <input type="url" data-ng-model="amazonLink" id="amazonLink" class="form-control" placeholder="http://www.amazon.com/">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="name">Official Website</label>
                         <div class="controls">
-                            <input type="text" data-ng-model="website" id="website" class="form-control" placeholder="www.website.com/">
+                            <input type="url" data-ng-model="website" id="website" class="form-control" placeholder="http://www.website.com/">
                         </div>
                     </div>
                 </div>

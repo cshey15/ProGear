@@ -15,6 +15,7 @@
     "angular-ui-utils": "~0.1.1",
     "angular-ui-router": "~0.2.11",
     "ng-file-upload": "~11.0.1",
-    "connect-multiparty": "https://github.com/andrewrk/connect-multiparty.git#~2.0.0"
+    "connect-multiparty": "https://github.com/andrewrk/connect-multiparty.git#~2.0.0",
+    "angular-ui-notification": "~0.1.0"
   }
 }

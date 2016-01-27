@@ -40,7 +40,7 @@ exports.read = function(req, res) {
 /**
  * Update a Pro
  */
-exports.update = function(req, res) {
+exports.update = function(req, res) { // TODO: need a better way to allow gearList to be updated, without allowing anyone to update a pro.
     var pro = req.pro;
     //pro.gearList = req.pro.gearList;
     pro = _.extend(pro, req.body);
