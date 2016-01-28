@@ -48,8 +48,7 @@ var GearSchema = new Schema({
     // START - Retrieved from Amazon.
     amazonLink: {
         type: String,
-        validate: [validateAmazonUrl, 'Amazon Link must be from amazon and should be a valid url. Remember to include the http://'],
-        required: 'Please include a link to the product\'s amazon page. Remember to include the http://'
+        validate: [validateAmazonUrl, 'Amazon Link must be from amazon and should be a valid url. Remember to include the http://']
     }, 
     profilePictureUrl: {
         type: String,

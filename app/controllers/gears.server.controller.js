@@ -4,12 +4,12 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	errorHandler = require('./errors.server.controller'),
+    errorHandler = require('./errors.server.controller'),
     Gear = mongoose.model('Gear'),
     Pro = mongoose.model('Pro'),
     LinkGearRequest = mongoose.model('LinkGearRequest'),
-	_ = require('lodash');
-    
+    _ = require('lodash');
+
 var regexForASIN = new RegExp('http://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})');
 function extractASIN(url) {
     return url.match(regexForASIN);
@@ -52,8 +52,14 @@ function save(req, res, gear) {
             });
         });
     } else {
-        return res.status(400).send({
-            message: 'Please include a link to the product\'s amazon page. Remember to include the http://'
+        gear.save(function (err) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.jsonp(gear);
+            }
         });
     }
 }
@@ -61,8 +67,8 @@ function save(req, res, gear) {
 /**
  * Create a Gear
  */
-exports.create = function(req, res) {
-	var gear = new Gear(req.body);
+exports.create = function (req, res) {
+    var gear = new Gear(req.body);
     gear.user = req.user;
     save(req, res, gear);
 };
@@ -93,10 +99,10 @@ exports.getDetails = function (req, res) { //Possible TODO: move this to save/up
 /**
  * Update a Gear
  */
-exports.update = function(req, res) {
-	var gear = req.gear ;
-
-	gear = _.extend(gear , req.body);
+exports.update = function (req, res) {
+    var gear = req.gear;
+    
+    gear = _.extend(gear , req.body);
     save(req, res, gear);
 
 };
@@ -104,33 +110,33 @@ exports.update = function(req, res) {
 /**
  * Delete an Gear
  */
-exports.delete = function(req, res) {
-	var gear = req.gear ;
-
-	gear.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(gear);
-		}
-	});
+exports.delete = function (req, res) {
+    var gear = req.gear;
+    
+    gear.remove(function (err) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(gear);
+        }
+    });
 };
 
 /**
  * List of Gears
  */
-exports.list = function(req, res) { 
-	Gear.find({ published: true }).sort('-created').populate('user', 'displayName').populate('pro').exec(function(err, gears) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(gears);
-		}
-	});
+exports.list = function (req, res) {
+    Gear.find({ published: true }).sort('-created').populate('user', 'displayName').populate('pro').exec(function (err, gears) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(gears);
+        }
+    });
 };
 
 exports.listTop = function (req, res) {
@@ -184,21 +190,21 @@ exports.getProsForGear = function (req, res) {
 /**
  * Gear middleware
  */
-exports.gearByID = function(req, res, next, id) { 
-	Gear.findById(id).populate('user', 'displayName').populate('pro').exec(function(err, gear) {
-		if (err) return next(err);
+exports.gearByID = function (req, res, next, id) {
+    Gear.findById(id).populate('user', 'displayName').populate('pro').exec(function (err, gear) {
+        if (err) return next(err);
         if (!gear) return next(new Error('Failed to load Gear ' + id));
-            req.gear = gear;
-            next();
-	});
+        req.gear = gear;
+        next();
+    });
 };
 
 /**
  * Gear authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
-	if (req.gear.user.id !== req.user.id) {
-		return res.status(403).send('User is not authorized');
-	}
-	next();
+exports.hasAuthorization = function (req, res, next) {
+    if (req.gear.user.id !== req.user.id) {
+        return res.status(403).send('User is not authorized');
+    }
+    next();
 };
