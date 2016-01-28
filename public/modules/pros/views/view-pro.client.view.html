@@ -15,8 +15,8 @@
         <p>Sport: {{pro.sport}}</p>
         <p>Team: {{pro.team}}</p>
         <p>Alt Ids: {{pro.alias}}</p>
-        <p><a data-ng-href="{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook</a></p>
-        <p><a data-ng-href="{{pro.website}}" data-ng-show="pro.website">Website</a></p>
+        <p><a target="_blank" data-ng-href="{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook <span class="glyphicon glyphicon-new-window" aria-hidden="true"></a></p>
+        <p><a target="_blank" data-ng-href="{{pro.website}}" data-ng-show="pro.website">Website <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></p>
     </div>
     <div class="container">
         <div ng-repeat="types in gearTypes" class="row">

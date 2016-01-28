@@ -25,9 +25,7 @@ var LinkGearRequestSchema = new Schema({
         required: 'Please provide proof'
     },
     explanation: {
-        type: String,
-        required: 'Please provide explanation',
-    },
+        type: String    },
     status: {
         type: String, default: 'pending',
         enum: ['approved', 'denied', 'pending']
