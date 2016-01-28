@@ -14,7 +14,7 @@ var deepPopulate = require('mongoose-deep-populate')(mongoose);
  */
 function validateLength(v) {
     // a custom validation function for checking string length to be used by the model
-    return v.length <= 15;
+    return v.length <= 30;
 }
 
 function validateUrl(value) {
@@ -45,7 +45,7 @@ var ProSchema = new Schema({
         // make this a required field
         required: 'name cannot be blank',
         // wires in a custom validator function (http://mongoosejs.com/docs/api.html#schematype_SchemaType-validate).
-        validate: [validateLength, 'name must be 15 chars in length or less']
+        validate: [validateLength, 'name must be 30 chars in length or less']
     },
     profilePictureUrl: {
         type: String,
@@ -56,14 +56,16 @@ var ProSchema = new Schema({
         default: '',
         required: 'sport cannot be blank',
         // types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
-        trim: true
+        trim: true,
+        validate: [validateLength, 'name must be 30 chars in length or less']
     },
     team: {
         type: String,
         default: '',
         required: 'team cannot be blank',
         // types have specific functions e.g. trim, lowercase, uppercase (http://mongoosejs.com/docs/api.html#schema-string-js)
-        trim: true
+        trim: true,
+        validate: [validateLength, 'name must be 30 chars in length or less']
     },
     user: {
         type: Schema.ObjectId,

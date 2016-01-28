@@ -51,7 +51,7 @@
                 </div>
                 <div class="row">
                     <a data-ng-href="#!/pros/{{pro._id}}">
-                        <h4 class="list-group-item-heading" data-ng-bind="pro.name"></h4>
+                        <h4 class="list-group-item-heading" title="{{pro.name}}">{{pro.name | limitTo: 50 }}{{gear.name.length > 50 ? '...' : ''}}</h4>
                     </a>
                     <p class="list-group-item-text">Plays {{pro.sport}} for {{pro.team}}</p>
                 </div>
