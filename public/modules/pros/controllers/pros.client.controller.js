@@ -144,8 +144,14 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         $scope.findOne = function () {
             $scope.pro = Pros.resource.get({
                 proId: $stateParams.proId
+            }, function () {
+                if ($scope.pro.published) {
+                    $scope.gearList = Pros.getGearsForPro($stateParams.proId);
+                } else {
+                    $scope.gearList = Pros.getAllGearsForPro($stateParams.proId);
+                }
             });
-            $scope.gearList = Pros.getGearsForPro($stateParams.proId);
+
         };
         
         // Search for a pro

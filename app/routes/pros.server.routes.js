@@ -23,6 +23,9 @@ module.exports = function(app) {
     app.route('/pros/:proId/gears')
 	    .get(pros.getGearsForPro);
 
+    app.route('/pros/:proId/gears/all')
+        .get(pros.getGearsForProAll);
+
     app.route('/admin/pros/unpublished')
         .get(pros.listUnpublished);
 

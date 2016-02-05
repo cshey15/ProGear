@@ -23,6 +23,11 @@ angular.module('pros').factory('Pros', ['$resource',
                     proId: id
                 }).query();
             },
+            getAllGearsForPro: function (id) {
+                return $resource('pros/:proId/gears/all', {
+                    proId: id
+                }).query();
+            },
             getTop: function (id) {
                 return $resource('pros/top', {
                     gearId: id

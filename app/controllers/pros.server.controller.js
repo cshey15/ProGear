@@ -162,6 +162,19 @@ exports.getGearsForPro = function (req, res) {
     });
 };
 
+exports.getGearsForProAll = function (req, res) {
+    //TODO, add explanation and proof link to gears section
+    LinkGearRequest.find({ pro: req.pro}).deepPopulate('gear').select('proofLink explanation gear').exec(function (err, pros) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.json(pros);
+        }
+    });
+};
+
 var azure = require('azure-storage');
 var blobSvc = azure.createBlobService('prozgear', 'ga2+n3Y0sSwZSSCeKLs9M0s2JNgJahvZdkOU7ixRvTHvXzkzxIAVC8r00sHBroTjgIcwJO2zoIbbnZvD80c7HA==');
 blobSvc.createContainerIfNotExists('profileimages', { publicAccessLevel : 'blob' }, function (error, result, response) {
