@@ -17,7 +17,8 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
                 team: data[3],
                 alias: data[4],
                 fbProfile: data[5],
-                website: data[6]
+                website: data[6],
+                published: data[7]
             });
 
             pro.$save(function (response) {
@@ -42,7 +43,8 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
                 name: data[0],
                 type: data[1],
                 amazonLink: data[2],
-                website: data[3]
+                website: data[3],
+                published: data[4]
             });
             
             gear.$save(function (response) {
@@ -61,7 +63,8 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
                 pro: data[0],
                 gear: data[1],
                 proofLink: data[2],
-                explanation: data[3]
+                explanation: data[3],
+                published: data[4]
             });
             
             request.$save(function (response) {
