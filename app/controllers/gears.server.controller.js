@@ -16,7 +16,7 @@ function extractASIN(url) {
 }
 
 var aws = require('aws-lib');
-var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prsge-20');
+var prodAdv = aws.createProdAdvClient('AKIAJLWWNMTUDDWMMKVA', 'I83qtp2IInF4M/74nN9ZDx9ON4nUW3zehAcoS7LM', 'prozgear-20');
 function save(req, res, gear) {
     gear.lastUpdated = Date.now();
     if (gear.amazonLink && !gear.asin) {

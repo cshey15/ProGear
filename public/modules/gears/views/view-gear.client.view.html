@@ -15,14 +15,29 @@
             <div class="col-sm-10">
                 <h1>{{gear.name}}</h1>
                 <p>Type: <span data-ng-bind="gear.type"></span></p>
-                <p><a data-ng-href="{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Check it out on Amazon</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=prsge-20&l=pf4&o=1" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /><span data-ng-show="gear.website">| <a data-ng-href="{{gear.website}}">Official Website</a></span></p>
-                <p><a target="_blank" rel="nofollow" href="http://www.amazon.com/tryprimefree/?ref_=assoc_tag_ph_1427739975520&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=prsge-20&linkId=L72KJYDJUX6XK6ML">Get 2 day Shipping with a Free 30-day Amazon Prime Trial!</a></p>
+                <p><a data-ng-href="{{gear.amazonLink}}" data-ng-show="gear.amazonLink">Check it out on Amazon</a><span data-ng-show="gear.website">| <a data-ng-href="{{gear.website}}">Official Website</a></span></p>
+                <p><a target="_blank" rel="nofollow" href="http://www.amazon.com/tryprimefree/?ref_=assoc_tag_ph_1427739975520&_encoding=UTF8&camp=1789&creative=9325&linkCode=pf4&tag=prozgear-20&linkId=L72KJYDJUX6XK6ML">Get 2 day Shipping with a Free 30-day Amazon Prime Trial!</a></p>
                 <p></p>
             </div>
         </div>
         <ul>
             <li ng-repeat="feature in gear.features">{{feature}}</li>
         </ul>
+        <script type="text/javascript">
+amzn_assoc_placement = "adunit0";
+amzn_assoc_enable_interest_ads = "true";
+amzn_assoc_tracking_id = "prozgear-20";
+amzn_assoc_ad_mode = "auto";
+amzn_assoc_ad_type = "smart";
+amzn_assoc_marketplace = "amazon";
+amzn_assoc_region = "US";
+amzn_assoc_textlinks = "";
+amzn_assoc_linkid = "7b45b0f2b7f536f629891bd779ab5c73";
+amzn_assoc_emphasize_categories = "13900871,172282,468642";
+amzn_assoc_fallback_mode = {"type":"search","value":"keyboard and mouse"};
+amzn_assoc_default_category = "All";
+        </script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
     </div>
     <div class="container">
         <div class="row" ng-show="relatedPros">
