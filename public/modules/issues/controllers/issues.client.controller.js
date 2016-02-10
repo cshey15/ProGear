@@ -80,7 +80,7 @@ angular.module('issues').controller('IssuesController', ['$scope', '$stateParams
     }
 ]);
 
-app.controller('IssuesController.modal', ['$scope', 'Issues', '$modalInstance', function ($scope, Issues, $modalInstance) {
+app.controller('IssuesController.modal', ['$scope', 'Issues', '$modalInstance', '$stateParams', function ($scope, Issues, $modalInstance, $stateParams) {
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
@@ -89,7 +89,9 @@ app.controller('IssuesController.modal', ['$scope', 'Issues', '$modalInstance', 
             var issue = new Issues({
                 name: data.name,
                 email: data.email,
-                comment: data.comment
+                comment: data.comment,
+                gear: $stateParams.gearId,
+                pro: $stateParams.proId
             });
             
             // Redirect after save
