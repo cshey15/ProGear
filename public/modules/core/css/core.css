@@ -33,3 +33,7 @@
 .list-group-item {
     height: 235px;
 }
+
+.modal-wrapper {
+    padding:8px;
+}

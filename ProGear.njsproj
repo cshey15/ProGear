@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{fde3c981-18f1-4b53-817a-4869985a8668}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>server.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -23,12 +23,25 @@
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
     <Content Include="public\modules\gears\views\list-gears-admin.client.view.html" />
+    <Content Include="public\modules\issues\views\modalCreate-issue.client.view.html" />
+    <Content Include="public\modules\issues\views\create-issue.client.view.html" />
+    <Content Include="public\modules\issues\views\edit-issue.client.view.html" />
+    <Content Include="public\modules\issues\views\list-issues.client.view.html" />
+    <Content Include="public\modules\issues\views\view-issue.client.view.html" />
     <Content Include="public\modules\media\images\defaultPerson.jpg" />
     <Content Include="public\modules\media\images\imageComingSoon.jpg" />
     <Content Include="public\modules\pros\views\list-pros-admin.client.view.html" />
     <Content Include="README.md" />
+    <Compile Include="app\controllers\issues.server.controller.js" />
+    <Compile Include="app\models\issues.server.model.js" />
+    <Compile Include="app\routes\issues.server.routes.js" />
     <Compile Include="gruntfile.js" />
     <Compile Include="karma.conf.js" />
+    <Compile Include="public\modules\issues\config\issues.client.config.js" />
+    <Compile Include="public\modules\issues\config\issues.client.routes.js" />
+    <Compile Include="public\modules\issues\controllers\issues.client.controller.js" />
+    <Compile Include="public\modules\issues\issues.client.module.js" />
+    <Compile Include="public\modules\issues\services\issues.client.service.js" />
     <Compile Include="server.js" />
     <Compile Include="config\config.js" />
     <Compile Include="config\express.js" />
@@ -82,7 +95,7 @@
     <Compile Include="config\strategies\twitter.js" />
     <Compile Include="public\modules\core\core.client.module.js" />
     <Compile Include="public\modules\gears\gears.client.module.js" />
-    <Compile Include="public\modules\linkgearrequests\linkgearrequests.client.module.js" />
+    <Compile Include="public\modules\linkgearrequests\linkGearRequests.client.module.js" />
     <Compile Include="public\modules\pros\pros.client.module.js" />
     <Compile Include="public\modules\users\users.client.module.js" />
     <Compile Include="public\modules\core\config\core.client.routes.js" />
@@ -185,6 +198,11 @@
     <Folder Include="public\modules\gears\tests" />
     <Folder Include="public\modules\gears\views" />
     <Folder Include="public\modules\linkgearrequests" />
+    <Folder Include="public\modules\issues\" />
+    <Folder Include="public\modules\issues\config\" />
+    <Folder Include="public\modules\issues\controllers\" />
+    <Folder Include="public\modules\issues\services\" />
+    <Folder Include="public\modules\issues\views\" />
     <Folder Include="public\modules\linkgearrequests\config" />
     <Folder Include="public\modules\linkgearrequests\controllers" />
     <Folder Include="public\modules\linkgearrequests\services" />

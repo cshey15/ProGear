@@ -1,0 +1,33 @@
+<section data-ng-controller="IssuesController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="issue.name"></h1>
+	</div>
+	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == issue.user._id))">
+		<a class="btn btn-primary" href="/#!/issues/{{issue._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+        <br />
+        <a class="btn btn-primary" data-ng-click="setStatus(issue, 'approved');">
+            <i class="glyphicon glyphicon-ok"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="setStatus(issue, 'denied');">
+            <i class="glyphicon glyphicon-remove"></i>
+        </a>
+    </div>
+    <p>Name: {{issue.name}} - email: {{issue.email}}</p>
+    <p>Comment: <span data-ng-bind="issue.comment"></span></p>
+    <p ng-show="issue.pro">Pro: <a ng-href="#!/pros/{{issue.pro._id}}"><span data-ng-bind="issue.pro.name"></span></a></p>
+    <p ng-show="issue.gear">Gear: <a ng-href="#!/gears/{{issue.gear._id}}"><span data-ng-bind="issue.gear.name"></span></a></p>
+    <p>Status: <span data-ng-bind="issue.status"></span></p>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="issue.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="issue.user.displayName"></span>
+		</em>
+	</small>
+</section>

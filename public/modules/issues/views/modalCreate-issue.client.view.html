@@ -1,0 +1,37 @@
+<section data-ng-controller="IssuesController">
+    <div class="modal-wrapper">
+        <div class="modal-header">
+            <h4 class="modal-title text-center">What's the Issue?</h4>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" data-ng-submit="modalSubmit(data)" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label" for="name">Name</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="data.name" id="name" class="form-control"  tooltip="Optional" placeholder="Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="data.email" id="email" class="form-control" placeholder="Email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="comment">Comments</label>
+                        <div class="controls">
+                            <textarea type="text" data-ng-model="data.comment" id="comment" class="form-control" placeholder="..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default">
+                    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

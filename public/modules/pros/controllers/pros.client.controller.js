@@ -283,6 +283,22 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 }
             }
         };
+
+        $scope.reportIssue = function () {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/issues/views/modalCreate-issue.client.view.html',
+                controller: 'IssuesController.modal',
+                size: 'sm'
+            });
+            modalInstance.result.then(function (issue) {
+                // Thanks
+                if (issue) {
+                    Notification.success('Thanks! Your issue has been reported. We will will get right on it!');
+                }
+            }, function () {
+            });
+        };
     }]);
 
 app.controller('ProsController.modal', ['$scope', 'Pros', '$modalInstance', function ($scope, Pros, $modalInstance) {

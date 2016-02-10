@@ -131,6 +131,23 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             }
             return false;
         };
+        
+        // Should refactor this with pro
+        $scope.reportIssue = function () {
+            var modalInstance = $modal.open({
+                animation: true,
+                templateUrl: 'modules/issues/views/modalCreate-issue.client.view.html',
+                controller: 'IssuesController.modal',
+                size: 'sm'
+            });
+            modalInstance.result.then(function (issue) {
+                // Thanks
+                if (issue) {
+                    Notification.success('Thanks! Your issue has been reported. We will will get right on it!');
+                }
+            }, function () {
+            });
+        };
 }]);
 
 app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', '$stateParams', function ($scope, Gears, $modalInstance, $stateParams) {
