@@ -100,6 +100,10 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
             $scope.gear = Gears.resource.get({
                 gearId: $stateParams.gearId
             });
+            $scope.relatedPros = Gears.getProsForGear($stateParams.gearId);
+            $scope.$watch('relatedPros', function () {
+                console.log('hey, myVar has changed!');
+            });
         };
 
         // go to gear

@@ -24,36 +24,39 @@
             <li ng-repeat="feature in gear.features">{{feature}}</li>
         </ul>
         <script type="text/javascript">
-amzn_assoc_placement = "adunit0";
-amzn_assoc_enable_interest_ads = "true";
-amzn_assoc_tracking_id = "prozgear-20";
-amzn_assoc_ad_mode = "auto";
-amzn_assoc_ad_type = "smart";
-amzn_assoc_marketplace = "amazon";
-amzn_assoc_region = "US";
-amzn_assoc_textlinks = "";
-amzn_assoc_linkid = "7b45b0f2b7f536f629891bd779ab5c73";
-amzn_assoc_emphasize_categories = "13900871,172282,468642";
-amzn_assoc_fallback_mode = {"type":"search","value":"keyboard and mouse"};
-amzn_assoc_default_category = "All";
+            amzn_assoc_placement = "adunit0";
+            amzn_assoc_enable_interest_ads = "true";
+            amzn_assoc_tracking_id = "prozgear-20";
+            amzn_assoc_ad_mode = "auto";
+            amzn_assoc_ad_type = "smart";
+            amzn_assoc_marketplace = "amazon";
+            amzn_assoc_region = "US";
+            amzn_assoc_textlinks = "";
+            amzn_assoc_linkid = "7b45b0f2b7f536f629891bd779ab5c73";
+            amzn_assoc_emphasize_categories = "13900871,172282,468642";
+            amzn_assoc_fallback_mode = { "type": "search", "value": "keyboard and mouse" };
+            amzn_assoc_default_category = "All";
         </script>
         <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
     </div>
     <div class="container">
-        <div class="row" ng-show="relatedPros">
+        <div class="row" ng-show="relatedPros.length">
             <!-- TODO- add default if there are no pros that use this gear -->
             <h2>Pros that use {{gear.name}}</h2>
             <div class="list-group">
                 <div data-ng-repeat="proItem in relatedPros" class="list-group-item col-sm-2 text-center">
                     <a data-ng-href="#!/pros/{{proItem.pro._id}}">
-                        <img ng-src="{{proItem.pro.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                        <div class="row listpic">
+                            <img ng-src="{{proItem.pro.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                        </div>
                         <h4 class="list-group-item-heading">{{proItem.pro.name}}</h4>
                     </a>
 
                 </div>
             </div>
         </div>
-        <div class="row"><!-- TODO move this to footer-->
+        <div class="row">
+            <!-- TODO move this to footer-->
             <small>
                 <em class="text-muted">
                     Posted on

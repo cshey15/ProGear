@@ -211,18 +211,8 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             
             request.$save(function (response) {
                 $scope.pro.requestList.push(response);
-                
-                // Redirect after save
-                $scope.pro.$update(function (response) {
-                    $location.path('pros/' + response._id);
-                    Notification.success('Thanks! Your submission will show up here after we approve it!');
-                    $scope.search = '';
-                    // Clear form fields
-                    $scope.proofLink = '';
-                    $scope.explanation = '';
-                }, function (errorResponse) {
-                    $scope.error = errorResponse.data.message;
-                });
+                $location.path('pros/' + response._id);
+                Notification.success('Thanks! Your submission will show up here after we approve it!');
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });

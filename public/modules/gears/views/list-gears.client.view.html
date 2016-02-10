@@ -22,10 +22,13 @@
             </button>
         </div>
     </div>
-    <div class="list-group row"><!-- TODO make this the same height -->
+    <div class="list-group row">
+        <!-- TODO make this the same height -->
         <div data-ng-repeat="gear in gears | filter:byType | limitTo: offset - gears.length | limitTo: pageSize" class="list-group-item col-sm-3 text-center">
             <a data-ng-href="#!/gears/{{gear._id}}" title="{{gear.name}}">
-                <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                <div class="row listpic">
+                    <img ng-src="{{gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                </div>
                 <p class="list-group-item-heading">{{gear.name | limitTo: 70 }}{{gear.name.length > 70 ? '...' : ''}}</p>
             </a>
         </div>
