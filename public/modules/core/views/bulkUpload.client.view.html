@@ -1,0 +1,86 @@
+<section data-ng-controller="AdminController">
+    <div class="page-header">
+        <h1>Bulk Upload Gear</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="bulkUploadPros(pros)" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="control-label" for="pros">
+                            Upload Pros:
+                            _id: data[0],
+                            name: data[1],
+                            sport: data[2],
+                            team: data[3],
+                            alias: data[4],
+                            fbProfile: data[5],
+                            website: data[6]
+                        </label>
+                        <textarea type="text" data-ng-model="pros" id="pros" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+        <hr />
+        <form class="form-horizontal" data-ng-submit="bulkUploadGears(gears)" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="control-label" for="gears">
+                            Upload Gears:
+                            name: data[0],
+                            type: data[1],
+                            amazonLink: data[2],
+                            website: data[3]
+                        </label>
+                        <textarea type="text" data-ng-model="gears" id="gears" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+        <hr />
+        <form class="form-horizontal" data-ng-submit="bulkUploadRequests(requests)" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="control-label" for="requests">
+                            Upload Requests:
+                            pro(id): data[0],
+                            gear (id): data[1],
+                            proofLink: data[2],
+                            explanation: data[3]
+                        </label>
+                        <textarea type="text" data-ng-model="requests" id="requests" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <hr />
+    <div>
+        Results:
+        <div ng-repeat="id in responseList">
+            {{id}} <br />
+        </div>
+    </div>
+</section>

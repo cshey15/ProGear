@@ -22,6 +22,7 @@
     <Content Include="node_modules\.bin\bower" />
     <Content Include="package.json" />
     <Content Include="LICENSE.md" />
+    <Content Include="public\modules\core\views\bulkUpload.client.view.html" />
     <Content Include="public\modules\gears\views\list-gears-admin.client.view.html" />
     <Content Include="public\modules\issues\views\modalCreate-issue.client.view.html" />
     <Content Include="public\modules\issues\views\create-issue.client.view.html" />
@@ -41,6 +42,8 @@
     <Compile Include="app\routes\issues.server.routes.js" />
     <Compile Include="gruntfile.js" />
     <Compile Include="karma.conf.js" />
+    <Compile Include="public\modules\core\config\config.client.config.js" />
+    <Compile Include="public\modules\core\controllers\admin.client.controller.js" />
     <Compile Include="public\modules\issues\config\issues.client.config.js" />
     <Compile Include="public\modules\issues\config\issues.client.routes.js" />
     <Compile Include="public\modules\issues\controllers\issues.client.controller.js" />
@@ -125,7 +128,6 @@
     <Content Include="public\modules\gears\views\modalCreate-gear.client.view.html" />
     <Content Include="public\modules\gears\views\modalList-gear.client.view.html" />
     <Content Include="public\modules\gears\views\view-gear.client.view.html" />
-    <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.config.js" />
     <Compile Include="public\modules\linkgearrequests\config\linkgearrequests.client.routes.js" />
     <Compile Include="public\modules\linkgearrequests\controllers\linkgearrequests.client.controller.js" />
     <Compile Include="public\modules\linkgearrequests\services\linkgearrequests.client.service.js" />

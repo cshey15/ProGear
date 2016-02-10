@@ -4,6 +4,7 @@
 angular.module('pros').factory('Pros', ['$resource',
     function ($resource) {
         return {
+            createResource: $resource('pros/'),
             resource: $resource('pros/:proId', {
                 proId: '@_id'
             }, {

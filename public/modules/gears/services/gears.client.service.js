@@ -11,6 +11,7 @@ angular.module('gears').factory('Gears', ['$resource',
             }
         });
         return {
+            createResource: $resource('gears/'),
             resource: resource,
             admin: $resource('admin/gears/unpublished/:gearId', {
                 gearId: '@_id'

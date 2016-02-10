@@ -101,9 +101,6 @@ app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authe
                 gearId: $stateParams.gearId
             });
             $scope.relatedPros = Gears.getProsForGear($stateParams.gearId);
-            $scope.$watch('relatedPros', function () {
-                console.log('hey, myVar has changed!');
-            });
         };
 
         // go to gear
@@ -175,7 +172,8 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', '$st
             if (!data) {
                 data = {};
             }
-            var gear = new Gears.resource({
+            var gear = new Gears.createResource({
+                _id: '56baa03351d203c810d9b662',
                 name: data.name,
                 type: data.selectedGearType,
                 amazonLink: data.amazonLink,
