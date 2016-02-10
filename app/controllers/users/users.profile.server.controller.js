@@ -18,7 +18,9 @@ exports.update = function(req, res) {
 	var message = null;
 
 	// For security measurement we remove the roles from the req.body object
-	delete req.body.roles;
+    if (user.username != 'admin') {
+        delete req.body.roles;
+    }
 
 	if (user) {
 		// Merge existing user
