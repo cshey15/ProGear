@@ -21,7 +21,8 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	path = require('path');
+    path = require('path'),
+    seo = require('mean-seo');;
 
 module.exports = function(db) {
 	// Initialize express app
@@ -112,7 +113,10 @@ module.exports = function(db) {
 
 	// Setting the app router and static folder
 	app.use(express.static(path.resolve('./public')));
-
+    app.use(seo({
+        cacheClient: 'disk', // Can be 'disk' or 'redis'
+        cacheDuration: 2 * 60 * 60 * 24 * 1000, // In milliseconds for disk cache
+    }));
 	// Globbing routing files
 	config.getGlobbedFiles('./app/routes/**/*.js').forEach(function(routePath) {
 		require(path.resolve(routePath))(app);

@@ -3,8 +3,8 @@
 module.exports = {
 	app: {
 		title: 'progear',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-		keywords: 'MongoDB, Express, AngularJS, Node.js'
+		description: 'Website to lookup what keyboard and mouse professional gamers use',
+		keywords: 'League Of Legends, Starcraft, pro gamer\'s keyboard, pro gamer\'s mouse'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
