@@ -3,11 +3,15 @@
 //LinkGearRequests service used to communicate LinkGearRequests REST endpoints
 angular.module('linkGearRequests').factory('LinkGearRequests', ['$resource',
 	function($resource) {
-		return $resource('linkGearRequests/:linkGearRequestId', { linkGearRequestId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
+		return {
+            createResource: $resource('linkGearRequests/'),
+            resource: $resource('linkGearRequests/:linkGearRequestId', {
+                linkGearRequestId: '@_id'
+            }, {
+                update: {
+                    method: 'PUT'
+                }
+            })
+        };
 	}
 ]);

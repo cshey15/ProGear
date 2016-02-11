@@ -6,7 +6,6 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
         $scope.responseList = [];
         $scope.bulkUploadPros = function (data) {
             parse(data, ProsParser, "Pros");
-
         }
         
         var ProsParser = function (data, i) {
@@ -18,7 +17,8 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
                 alias: data[4],
                 fbProfile: data[5],
                 website: data[6],
-                published: data[7]
+                profilePictureUrl: data[7],
+                published: data[8]
             });
 
             pro.$save(function (response) {
@@ -30,21 +30,17 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
         
         
         $scope.bulkUploadGears = function (data) {
-            console.log("Starting bulk upload Gears-");
-            
-            var lines = data.split("\n");
-            for (var i = 0; i < lines.length; i++) {
-                console.log('line: ' + lines[i]);
-            }
+            parse(data, GearsParser, "Gears");
         }
 
         var GearsParser = function (data, i) {
-            var gear = new Gears.resource({
-                name: data[0],
-                type: data[1],
-                amazonLink: data[2],
-                website: data[3],
-                published: data[4]
+            var gear = new Gears.createResource({
+                _id: data[0],
+                name: data[1],
+                type: data[2],
+                amazonLink: data[3],
+                website: data[4],
+                published: data[5]
             });
             
             gear.$save(function (response) {
@@ -58,13 +54,14 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
             parse(data, requestParser, 'Requests');
         }
         
-        var requestParser = function (line) {
-            var request = new LinkGearRequests({
-                pro: data[0],
-                gear: data[1],
-                proofLink: data[2],
-                explanation: data[3],
-                published: data[4]
+        var requestParser = function (data, i) {
+            var request = new LinkGearRequests.createResource({
+                _id:data[0],
+                pro: data[1],
+                gear: data[2],
+                proofLink: data[3],
+                explanation: data[4],
+                status: data[5]
             });
             
             request.$save(function (response) {
@@ -83,14 +80,14 @@ angular.module('core').controller('AdminController', ['$scope', 'Authentication'
             var response = [];
             for (var i = 0; i < length; i++) {
                 console.log("parsed " + (i+1) + "/" + length + " lines");
-                var line = lines[i].split(',');
+                var line = lines[i].split('\t');
                 //replace empty values with undefined so that the server doesn't get confused.
                 for (var x = 0; x < line.length; x++) {
                     if (line[x] === "") {
                         line[x] = undefined;
                     }
                 }
-                response[i] = parser(line, i);
+                response[i] = new parser(line, i);
             }
         }
     }

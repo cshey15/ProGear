@@ -8,7 +8,7 @@ angular.module('linkGearRequests').controller('LinkGearRequestsController', ['$s
         // Create new LinkGearRequest
         $scope.create = function () {
             // Create new LinkGearRequest object
-            var linkGearRequest = new LinkGearRequests({
+            var linkGearRequest = new LinkGearRequests.resource({
                 name: this.name
             });
             

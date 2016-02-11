@@ -52,7 +52,7 @@
 
 		it('$scope.find() should create an array with at least one LinkGearRequest object fetched from XHR', inject(function(LinkGearRequests) {
 			// Create sample LinkGearRequest using the LinkGearRequests service
-			var sampleLinkGearRequest = new LinkGearRequests({
+			var sampleLinkGearRequest = new LinkGearRequests.resource({
 				name: 'New LinkGearRequest'
 			});
 
@@ -72,7 +72,7 @@
 
 		it('$scope.findOne() should create an array with one LinkGearRequest object fetched from XHR using a linkGearRequestId URL parameter', inject(function(LinkGearRequests) {
 			// Define a sample LinkGearRequest object
-			var sampleLinkGearRequest = new LinkGearRequests({
+			var sampleLinkGearRequest = new LinkGearRequests.resource({
 				name: 'New LinkGearRequest'
 			});
 

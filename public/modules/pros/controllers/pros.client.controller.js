@@ -202,7 +202,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
         
         $scope.createRequest = function () {
             // Create new request object
-            var request = new LinkGearRequests({
+            var request = new LinkGearRequests.resource({
                 pro: $scope.pro._id,
                 gear: $scope.selectedGear._id,
                 proofLink: this.proofLink,
