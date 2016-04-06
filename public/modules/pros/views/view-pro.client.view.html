@@ -21,7 +21,7 @@
     </div>
     <div class="container">
         <div ng-repeat="type in gearTypes" class="row">
-            <h2>{{type}}</h2>
+            <h2>{{type}}s that {{pro.name}} uses</h2>
             <div class="list-group">
                 <div ng-repeat="item in gearList | filter: {gear: {type: type}}" class="list-group-item col-sm-2 text-center">
                     <a data-ng-href="/#!/gears/{{item.gear._id}}">
