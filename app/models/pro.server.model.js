@@ -89,7 +89,7 @@ var ProSchema = new Schema({
     },
     published: {
         type: Boolean,
-        default: false,
+        default: true,
     }
 });
 

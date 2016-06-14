@@ -27,7 +27,7 @@ var LinkGearRequestSchema = new Schema({
     explanation: {
         type: String    },
     status: {
-        type: String, default: 'pending',
+        type: String, default: 'approved',
         enum: ['approved', 'denied', 'pending']
     },
     lastUpdated: {
