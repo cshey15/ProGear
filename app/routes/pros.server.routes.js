@@ -17,8 +17,8 @@ module.exports = function(app) {
     // the proId param is added to the params object for the request
     app.route('/pros/:proId')
         .get(pros.read)
-        .put(pros.update)
-	    .delete(users.requiresLogin, pros.delete);
+        .put(users.hasAuthorization(['admin']), pros.update)
+	    .delete(users.hasAuthorization(['admin']), pros.delete);
 
     app.route('/pros/:proId/gears')
 	    .get(pros.getGearsForPro);
@@ -27,7 +27,7 @@ module.exports = function(app) {
         .get(pros.getGearsForProAll);
 
     app.route('/admin/pros/unpublished')
-        .get(pros.listUnpublished);
+        .get(users.hasAuthorization(['admin']), pros.listUnpublished);
 
     var multiparty = require('connect-multiparty'),
         multipartyMiddleware = multiparty();

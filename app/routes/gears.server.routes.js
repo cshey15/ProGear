@@ -17,8 +17,8 @@ module.exports = function(app) {
 
 	app.route('/gears/:gearId')
 		.get(gears.read)
-		.put(users.requiresLogin, gears.update)
-		.delete(users.requiresLogin, gears.hasAuthorization, gears.delete);
+		.put(users.hasAuthorization(['admin']), gears.update)
+		.delete(users.hasAuthorization(['admin']), gears.delete);
     
     app.route('/gears/:gearId/pros')
 	.get(gears.getProsForGear);
@@ -28,7 +28,7 @@ module.exports = function(app) {
     
 
     app.route('/admin/gears/unpublished')
-        .get(gears.listUnpublished);
+        .get(users.hasAuthorization(['admin']), gears.listUnpublished);
 
 	// Finish by binding the Gear middleware
 	app.param('gearId', gears.gearByID);

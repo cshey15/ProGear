@@ -11,8 +11,8 @@ module.exports = function(app) {
 
 	app.route('/linkGearRequests/:linkGearRequestId')
 		.get(linkGearRequests.read)
-		.put(users.requiresLogin, linkGearRequests.update)
-		.delete(users.requiresLogin, linkGearRequests.hasAuthorization, linkGearRequests.delete);
+		.put(users.hasAuthorization(['admin']), linkGearRequests.update)
+		.delete(users.hasAuthorization(['admin']), linkGearRequests.delete);
 
 	// Finish by binding the LinkGearRequest middleware
 	app.param('linkGearRequestId', linkGearRequests.linkGearRequestByID);

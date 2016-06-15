@@ -6,13 +6,13 @@ module.exports = function(app) {
 
 	// Issue Routes
 	app.route('/issues')
-		.get(users.requiresLogin, issue.list)
+		.get(users.hasAuthorization(['admin']),, issue.list)
 		.post(issue.create);
 
 	app.route('/issues/:issueId')
-		.get(users.requiresLogin, issue.read)
-		.put(users.requiresLogin, issue.update)
-		.delete(users.requiresLogin, issue.delete);
+		.get(users.hasAuthorization(['admin']),, issue.read)
+		.put(users.hasAuthorization(['admin']),, issue.update)
+		.delete(users.hasAuthorization(['admin']),, issue.delete);
 
 	// Finish by binding the Issues middleware
 	app.param('issueId', issue.issueByID);
