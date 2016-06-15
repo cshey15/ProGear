@@ -249,7 +249,7 @@ exports.proByID = function (req, res, next, id) {
  * Pro authorization middleware
  */
 exports.hasAuthorization = function (req, res, next) {
-    if (req.pro.user.id !== req.user.id) {
+    if (req.pro.user.id !== req.user.id && req.user.roles.indexOf('admin') < 0) {
         return res.status(403).send('User is not authorized');
     }
     next();
