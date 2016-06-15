@@ -173,7 +173,6 @@ app.controller('GearsController.modal', ['$scope','Gears','$modalInstance', '$st
                 data = {};
             }
             var gear = new Gears.createResource({
-                _id: '56baa03351d203c810d9b662',
                 name: data.name,
                 type: data.selectedGearType,
                 amazonLink: data.amazonLink,
