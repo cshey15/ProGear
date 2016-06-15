@@ -16,7 +16,7 @@
         <p>Sport: {{pro.sport}}</p>
         <p>Team: {{pro.team}}</p>
         <p>Alt Ids: {{pro.alias}}</p>
-        <p><a target="_blank" data-ng-href="{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook <span class="glyphicon glyphicon-new-window" aria-hidden="true"></a></p>
+        <p><a target="_blank" data-ng-href="{{pro.fbProfile}}" data-ng-show="pro.fbProfile">Facebook <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></p>
         <p><a target="_blank" data-ng-href="{{pro.website}}" data-ng-show="pro.website">Website <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></p>
     </div>
     <div class="container">
@@ -24,12 +24,15 @@
             <h2>{{type}}s that {{pro.name}} uses</h2>
             <div class="list-group">
                 <div ng-repeat="item in gearList | filter: {gear: {type: type}}" class="list-group-item col-sm-2 text-center">
-                    <a data-ng-href="/#!/gears/{{item.gear._id}}">
+                    <a data-ng-href="{{item.proofLink}}"><span title="Proof" class="glyphicon glyphicon-info-sign prooflink" aria-hidden="true"></span></a>
+                    <a data-ng-href="{{item.gear.amazonLink}}">
                         <div class="row listpic">
-                            <img ng-src="{{item.gear.profilePictureUrl}}" class="img-responsive img-rounded center-block" />
+                            <img ng-src="{{item.gear.profilePictureUrl}}" class="img-responsive img-rounded center-block"/>
                         </div>
-                        <p class="list-group-item-heading" title="{{item.gear.name}}">{{item.gear.name | limitTo: 50 }}{{item.gear.name.length > 50 ? '...' : ''}}</p>
+                        <p class="list-group-item-heading" title="{{item.gear.name}}">{{item.gear.name | limitTo: 50 }}{{item.gear.name.length > 50 ? '...' : ''}} </p>
                     </a>
+                    <p class="seemorelink"><a data-ng-href="/#!/gears/{{item.gear._id}}">See more who use this</a>
+                    </p>
                 </div>
                 <div class="list-group-item col-sm-2 text-center">
                     <a ng-href="/#!/pros/{{pro._id}}/addGear?type={{type}}">

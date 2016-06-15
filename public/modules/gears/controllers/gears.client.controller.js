@@ -2,8 +2,8 @@
 
 // Gears controller
 var app = angular.module('gears');
-app.controller('GearsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Gears', '$modal', '$sce', 'Notification',
-    function ($scope, $stateParams, $location, Authentication, Gears, $modal, $sce, Notification) {
+app.controller('GearsController', ['$scope', '$stateParams', '$location', '$rootScope', 'Authentication', 'Gears', '$modal', '$sce', 'Notification',
+    function ($scope, $stateParams, $location, $rootScope, Authentication, Gears, $modal, $sce, Notification) {
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 12;

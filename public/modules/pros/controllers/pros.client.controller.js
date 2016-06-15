@@ -65,7 +65,7 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
                 pro.$save(function (response) {
                     $scope.upload($scope.file, response._id).then(function (resp) {
                         $location.path('pros/' + response._id);
-                        Notification.success('Thanks! Your submission was successful. It will show up on our site after we approve it.');
+                        Notification.success('Thanks! Your submission was successful.');
                     }, function (resp) {
                         $scope.error = resp.status;
                         console.log('Error status: ' + resp.status);
@@ -211,8 +211,8 @@ app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authen
             
             request.$save(function (response) {
                 $scope.pro.requestList.push(response);
-                $location.path('pros/' + response._id);
-                Notification.success('Thanks! Your submission will show up here after we approve it!');
+                $location.path('pros/' + $scope.pro._id);
+                Notification.success('Thanks! Your submission has been added!');
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });

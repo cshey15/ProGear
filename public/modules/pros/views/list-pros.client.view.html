@@ -46,7 +46,7 @@
             <div data-ng-repeat="pro in pros | filter:sportFilter | filter:teamFilter | limitTo: offset - pros.length | limitTo: pageSize | orderBy:'name'" class="list-group-item col-sm-3 text-center listitem">
                 <div class="row listpic">
                     <a data-ng-href="#!/pros/{{pro._id}}">
-                        <img ng-src="{{pro.profilePictureUrl}}" class="img-responsive img-rounded text-center center-block" />
+                        <img ng-src="{{pro.profilePictureUrl}}" class="img-responsive img-rounded text-center center-block listpic" />
                     </a>
                 </div>
                 <div class="row">

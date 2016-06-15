@@ -35,6 +35,7 @@
     <Content Include="public\modules\media\images\new-keyboard.png" />
     <Content Include="public\modules\media\images\new-mouse.jpg" />
     <Content Include="public\modules\media\images\new-mouse.png" />
+    <Content Include="public\modules\media\images\seeitonamazon.jpg" />
     <Content Include="public\modules\pros\views\list-pros-admin.client.view.html" />
     <Content Include="README.md" />
     <Compile Include="app\controllers\issues.server.controller.js" />
