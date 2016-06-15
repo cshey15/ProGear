@@ -53,12 +53,12 @@ angular.module('linkGearRequests').controller('LinkGearRequestsController', ['$s
         
         // Find a list of LinkGearRequests
         $scope.find = function () {
-            $scope.linkGearRequests = LinkGearRequests.query();
+            $scope.linkGearRequests = LinkGearRequests.resource.query();
         };
         
         // Find existing LinkGearRequest
         $scope.findOne = function () {
-            $scope.linkGearRequest = LinkGearRequests.get({
+            $scope.linkGearRequest = LinkGearRequests.resource.get({
                 linkGearRequestId: $stateParams.linkGearRequestId
             });
         };
