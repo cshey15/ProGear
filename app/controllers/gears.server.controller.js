@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
     LinkGearRequest = mongoose.model('LinkGearRequest'),
     _ = require('lodash');
 
-var regexForASIN = new RegExp('http://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})');
+var regexForASIN = new RegExp('.*www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})');
 function extractASIN(url) {
     return url.match(regexForASIN);
 }
