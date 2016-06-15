@@ -25,18 +25,20 @@ angular.module('linkGearRequests').controller('LinkGearRequestsController', ['$s
         
         // Remove existing LinkGearRequest
         $scope.remove = function (linkGearRequest) {
-            if (linkGearRequest) {
-                linkGearRequest.$remove();
-                
-                for (var i in $scope.linkGearRequests) {
-                    if ($scope.linkGearRequests [i] === linkGearRequest) {
-                        $scope.linkGearRequests.splice(i, 1);
+            if (confirm('Are you sure you want to delete?')) {
+                if (linkGearRequest) {
+                    linkGearRequest.$remove();
+
+                    for (var i in $scope.linkGearRequests) {
+                        if ($scope.linkGearRequests[i] === linkGearRequest) {
+                            $scope.linkGearRequests.splice(i, 1);
+                        }
                     }
+                } else {
+                    $scope.linkGearRequest.$remove(function() {
+                        $location.path('linkGearRequests');
+                    });
                 }
-            } else {
-                $scope.linkGearRequest.$remove(function () {
-                    $location.path('linkGearRequests');
-                });
             }
         };
         

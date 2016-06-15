@@ -14,6 +14,9 @@
                 <a class="btn btn-primary" data-ng-click="setStatus(linkGearRequest, 'denied');">
                     <i class="glyphicon glyphicon-remove"></i>
                 </a>
+                <a class="btn btn-primary" data-ng-click="remove(linkGearRequest);">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
             </div>
             <p>Pro: <a ng-href="#!/pros/{{linkGearRequest.pro._id}}"><span data-ng-bind="linkGearRequest.pro.name"></span></a> - <a ng-href="#!/gears/{{linkGearRequest.gear._id}}"><span data-ng-bind="linkGearRequest.gear.name"></span></a></p>
             <p>Explanation: <span data-ng-bind="linkGearRequest.explanation"></span></p>
