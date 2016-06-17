@@ -70,7 +70,35 @@ function save(req, res, gear) {
 exports.create = function (req, res) {
     var gear = new Gear(req.body);
     gear.user = req.user;
-    save(req, res, gear);
+    if (gear.amazonLink) {
+        var matches = extractASIN(gear.amazonLink);
+        if (matches) {
+
+            Gear.find({ asin: matches[4] })
+                .limit(1)
+                .exec(function(err, gears) {
+                    if (err) {
+                        return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                    } else {
+                            if (!gears || gears.length === 0) {
+                                save(req, res, gear);
+                            } else {
+                                res.json(gears[0]);
+                            }
+                        }
+                    });
+        } else {
+            return res.status(400).send({
+                message: "Can't find amazon id try a different link"
+            });
+        }
+    } else {
+        return res.status(400).send({
+            message: "Need amazon link"
+        });
+    }
 };
 
 
