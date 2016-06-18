@@ -102,7 +102,7 @@ exports.delete = function(req, res) {
  * List of Pros
  */
 exports.list = function(req, res) {
-    Pro.find({ published: true }).populate('user', 'displayName').deepPopulate('requestList.gear').exec(function (err, pros) {
+    Pro.find({ published: true }).populate('user', 'displayName').deepPopulate('requestList.gear').sort('-popularityScore').exec(function (err, pros) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -160,6 +160,8 @@ exports.getGearsForPro = function (req, res) {
             res.json(pros);
         }
     });
+    req.pro.popularityScore++;
+    req.pro.save();
 };
 
 exports.getGearsForProAll = function (req, res) {
