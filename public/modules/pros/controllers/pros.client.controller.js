@@ -3,8 +3,12 @@
 
 // Pros controller
 var app = angular.module('pros');
-app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus', 'Upload', 'Notification',
-    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload, Notification) {
+app.controller('ProsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pros', 'Gears', '$modal', 'LinkGearRequests', 'Menus', 'Upload', 'Notification', '$window',
+    function ($scope, $stateParams, $location, Authentication, Pros, Gears, $modal, LinkGearRequests, Menus, Upload, Notification, $window) {
+        
+        $scope.$watch('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', { page: $location.url() });
+        });
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 12;

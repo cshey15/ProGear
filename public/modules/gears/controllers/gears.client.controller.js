@@ -2,8 +2,13 @@
 
 // Gears controller
 var app = angular.module('gears');
-app.controller('GearsController', ['$scope', '$stateParams', '$location', '$rootScope', 'Authentication', 'Gears', '$modal', '$sce', 'Notification',
-    function ($scope, $stateParams, $location, $rootScope, Authentication, Gears, $modal, $sce, Notification) {
+app.controller('GearsController', ['$scope', '$stateParams', '$location', '$rootScope', 'Authentication', 'Gears', '$modal', '$sce', 'Notification', '$window',
+    function ($scope, $stateParams, $location, $rootScope, Authentication, Gears, $modal, $sce, Notification, $window) {
+        
+        $scope.$watch('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', { page: $location.url() });
+        });
+
         $scope.authentication = Authentication;
         $scope.currentPage = 1;
         $scope.pageSize = 12;
