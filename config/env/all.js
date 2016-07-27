@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'progear',
+        title: 'Prozgear - Find what gear your favorite pro uses',
 		description: 'Website to lookup what keyboard and mouse professional gamers use',
 		keywords: 'League Of Legends, Starcraft, pro gamer\'s keyboard, pro gamer\'s mouse'
 	},
@@ -28,7 +28,9 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
                 'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
                 'public/lib/ng-file-upload/ng-file-upload.js',
-                'public/lib/angular-ui-notification/dist/angular-ui-notification.js'
+                'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
+                'public/lib/angular-google-analytics/dist/angular-google-analytics.js'
+
 			]
 		},
 		css: [
