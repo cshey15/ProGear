@@ -21,6 +21,7 @@
             <p>Pro: <a ng-href="#!/pros/{{linkGearRequest.pro._id}}"><span data-ng-bind="linkGearRequest.pro.name"></span></a> - <a ng-href="#!/gears/{{linkGearRequest.gear._id}}"><span data-ng-bind="linkGearRequest.gear.name"></span></a></p>
             <p>Explanation: <span data-ng-bind="linkGearRequest.explanation"></span></p>
             <p>Status: <span data-ng-bind="linkGearRequest.status"></span></p>
+            <p><a class="list-group-item-heading" data-ng-href="linkGearRequest.proofLink">{{linkGearRequest.proofLink}}</a></p>
 			<small class="list-group-item-text">
 				Posted on
 				<span data-ng-bind="linkGearRequest.created | date:'medium'"></span>
